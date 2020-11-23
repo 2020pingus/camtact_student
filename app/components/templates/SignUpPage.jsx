@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core';
-import SignUp from '../components/SignUp';
+import SignUp from '../organisms/SignUp';
 
 const useStyles = makeStyles((theme) => ({
   card: {

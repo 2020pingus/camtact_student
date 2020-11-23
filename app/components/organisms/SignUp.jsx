@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
-import routes from '../constants/routes.json';
-import logo from '../../resources/camtact_img.png';
+import routes from '../../constants/routes.json';
+import logo from '../../../resources/camtact_img.png';
 
 const useStyles = makeStyles((theme) => ({
   main: {
