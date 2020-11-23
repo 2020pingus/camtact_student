@@ -2,5 +2,6 @@
   "HOME": "/",
   "LOGIN": "/login",
   "SIGNUP": "/signup",
+  "FRAME": "/frame",
   "COUNTER": "/counter"
 }

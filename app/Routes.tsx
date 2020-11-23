@@ -6,6 +6,7 @@ import App from './components/templates/App';
 import HomePage from './components/templates/HomePage';
 import LoginPage from './components/templates/LoginPage';
 import SignUpPage from './components/templates/SignUpPage';
+import FramePage from './components/templates/FramePage';
 
 // Lazily load routes and code split with webpack
 const LazyCounterPage = React.lazy(() =>
@@ -26,6 +27,7 @@ export default function Routes() {
       <Switch>
         <Route exact path={routes.HOME} component={HomePage} />
         <Route path={routes.COUNTER} component={CounterPage} />
+        <Route path={routes.FRAME} component={FramePage} />
         <Route path={routes.LOGIN} component={LoginPage} />
         <Route path={routes.SIGNUP} component={SignUpPage} />
       </Switch>
