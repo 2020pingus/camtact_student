@@ -10,8 +10,6 @@ import {
 } from '@material-ui/core';
 import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import { relative } from 'path';
-import useWindowSize from '../../hooks/useWindowSize';
 
 const useStyles = makeStyles((theme) => ({
   appBar: (props) => ({

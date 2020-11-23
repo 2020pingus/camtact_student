@@ -24,7 +24,7 @@ export default function Frame() {
         drawerWidth={DRAWER_WIDTH}
         windowSize={windowSize}
       />
-      <MyDrawer drawerWidth={DRAWER_WIDTH} />
+      <MyDrawer appBarHeight={APP_BAR_HEIGHT} drawerWidth={DRAWER_WIDTH} />
       <Content
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}

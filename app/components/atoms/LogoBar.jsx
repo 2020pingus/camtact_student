@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Divider, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import logo from '../../../resources/camtact_logo.png';
 
 const useStyles = makeStyles((theme) => ({

@@ -5,8 +5,8 @@ import DrawerAvatar from '../atoms/DrawerAvatar';
 import DrawerList from '../atoms/DrawerList';
 
 const useStyles = makeStyles((theme) => ({
-  drawer: (props) => ({
-    width: props.drawerWidth,
+  drawer: (drawerWidth) => ({
+    width: drawerWidth,
     flexShrink: 0,
   }),
   drawerPaper: (props) => ({
@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-function MyDrawer(props) {
-  const classes = useStyles(props);
+function MyDrawer({ appBarHeight, drawerWidth }) {
+  const classes = useStyles(drawerWidth);
 
   return (
     <Drawer
