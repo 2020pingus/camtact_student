@@ -3,8 +3,8 @@ import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
-    width: props.windowSize.width,
-    height: props.windowSize.height,
+    width: props.windowSize.width - props.drawerWidth,
+    height: props.windowSize.height - props.appBarHeight,
     position: 'relative',
     top: props.appBarHeight,
     backgroundColor: '#E5E5E5',

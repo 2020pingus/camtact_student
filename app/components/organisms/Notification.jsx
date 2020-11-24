@@ -13,13 +13,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
   },
-  card: {
-    width: '100%',
-    height: '100%',
-    padding: 0,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
 }));
 
 export default function Notification() {
@@ -34,19 +27,11 @@ export default function Notification() {
         windowSize={windowSize}
       />
       <MyDrawer appBarHeight={APP_BAR_HEIGHT} drawerWidth={DRAWER_WIDTH} />
-      <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      style={{ height: '100%' }}
-    >
-      <Card className={classes.card} elevation={1}>
-        <Notice 
+      <Notice
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}
-        windowSize={windowSize}/>
-      </Card>
-    </Box>
+        windowSize={windowSize}
+      />
     </div>
   );
 }

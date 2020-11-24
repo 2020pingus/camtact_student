@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
   }),
-  drawerPaper: (props) => ({
-    width: props.drawerWidth,
+  drawerPaper: (drawerWidth) => ({
+    width: drawerWidth,
     backgroundColor: theme.palette.primary.main,
   }),
 }));
