@@ -14,6 +14,8 @@ export default function Home(): JSX.Element {
         <Link to={routes.SIGNUP}>to SignUp</Link>
         <br />
         <Link to={routes.FRAME}>to Frame</Link>
+        <br />
+        <Link to={routes.NOTIFICATION}>to Notification</Link>
       </div>
     </>
   );
