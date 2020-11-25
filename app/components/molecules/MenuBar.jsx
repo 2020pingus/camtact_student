@@ -6,7 +6,16 @@ import {
   Tabs,
   Box,
   Typography,
+  Toolbar,
+  Button,
+  Grid,
+  Popper,
+  Grow,
+  Paper,
+  ClickAwayListener,
+  MenuList,
 } from '@material-ui/core';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -23,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     backgroundColor: 'transparent',
     marginTop: theme.spacing(-2),
+    marginLeft: theme.spacing(1.8),
+    width: 1118,
+    height: 41,
   },
   tabs: {
     borderBottom: '1px solid #E3E7EB',
@@ -40,6 +52,25 @@ const useStyles = makeStyles((theme) => ({
       color: '#253053',
       fontWeight: 'bold',
     },
+  },
+  button: {
+    background: '#FFFFFF',
+    fontWeight: 'bold',
+    color: '#253053',
+    width: 95,
+    height: 36,
+    fontSize: 16,
+    margin: theme.spacing(3.2, 0, 1.6, 1.8),
+  },
+  createExamButton: {
+    background: '#FFFFFF',
+    fontWeight: 'bold',
+    color: '#253053',
+    width: 95,
+    height: 36,
+    fontSize: 16,
+    margin: theme.spacing(3.2, 0, 1.6, 1.8),
+    marginLeft: -18,
   },
 }));
 
@@ -107,8 +138,28 @@ export default function MenuBar(props) {
           <Tab className={classes.tab} label="종료된 시험" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
+
+      <Grid container direction="row">
+        <Grid item xs={3}>
+          <Button className={classes.button} size="small" variant="contained">
+            날짜순
+            <ArrowDropDownIcon />
+          </Button>
+        </Grid>
+        <Grid item xs={8} />
+        <Grid item xs={1}>
+          <Button
+            className={classes.createExamButton}
+            size="small"
+            variant="contained"
+          >
+            시험 등록
+          </Button>
+        </Grid>
+      </Grid>
+
       <TabPanel value={value} index={0}>
-        {/* Item One */}
+        {/* Item one */}
       </TabPanel>
       <TabPanel value={value} index={1}>
         {/* Item two */}
