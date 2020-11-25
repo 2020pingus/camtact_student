@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     height: props.windowSize.height - props.appBarHeight,
     position: 'relative',
     top: props.appBarHeight,
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#F6F6F6',
     padding: theme.spacing(3),
   }),
 }));
