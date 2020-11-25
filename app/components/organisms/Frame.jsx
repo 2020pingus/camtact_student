@@ -4,6 +4,7 @@ import MyAppBar from '../molecules/AppBar';
 import MyDrawer from '../molecules/Drawer';
 import useWindowSize from '../../hooks/useWindowSize';
 import Content from '../molecules/Content';
+import MenuBar from '../molecules/MenuBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
   },
 }));
+
+const APP_BAR_HEIGHT = 62;
+const DRAWER_WIDTH = 237;
 
 export default function Frame() {
   const classes = useStyles();
@@ -25,7 +29,7 @@ export default function Frame() {
         windowSize={windowSize}
       />
       <MyDrawer appBarHeight={APP_BAR_HEIGHT} drawerWidth={DRAWER_WIDTH} />
-      <Content
+      <MenuBar
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}
         windowSize={windowSize}
@@ -33,6 +37,3 @@ export default function Frame() {
     </div>
   );
 }
-
-const APP_BAR_HEIGHT = 62;
-const DRAWER_WIDTH = 237;
