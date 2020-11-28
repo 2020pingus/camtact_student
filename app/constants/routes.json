@@ -3,6 +3,7 @@
   "LOGIN": "/login",
   "SIGNUP": "/signup",
   "FRAME": "/frame",
+  "MYPAGE": "/mypage",
   "COUNTER": "/counter",
   "NOTIFICATION":"/notification"
 }

@@ -8,7 +8,7 @@ import LoginPage from './components/templates/LoginPage';
 import SignUpPage from './components/templates/SignUpPage';
 import FramePage from './components/templates/FramePage';
 import NotificationPage from './components/templates/NotificationPage';
-
+import MyPage from './components/organisms/MyPage';
 
 // Lazily load routes and code split with webpack
 const LazyCounterPage = React.lazy(() =>
@@ -33,6 +33,7 @@ export default function Routes() {
         <Route path={routes.LOGIN} component={LoginPage} />
         <Route path={routes.SIGNUP} component={SignUpPage} />
         <Route path={routes.NOTIFICATION} component={NotificationPage} />
+        <Route path={routes.MYPAGE} component={MyPage} />
       </Switch>
     </App>
   );
