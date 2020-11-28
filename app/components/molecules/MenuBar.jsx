@@ -17,6 +17,7 @@ import {
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import React from 'react';
+import ExamList from './ExamList';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
@@ -159,13 +160,13 @@ export default function MenuBar(props) {
       </Grid>
 
       <TabPanel value={value} index={0}>
-        {/* Item one */}
+        <ExamList index={0}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* Item two */}
+        <ExamList index={1} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        {/* Item three */}
+        <ExamList index={2} />
       </TabPanel>
     </div>
   );
