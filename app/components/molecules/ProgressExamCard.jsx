@@ -11,6 +11,11 @@ import {
   Button,
   Chip,
   Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
 } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PersonIcon from '@material-ui/icons/Person';
@@ -118,7 +123,32 @@ export default function ProgressExamCard(props) {
           <Divider className={classes.divider} />
           <div className={classes.footer}>
             <Button className={classes.button} style={{width: '100%', marginLeft: -25}} onClick={handleClickOpen}>시험 상세 정보</Button>
-            <ExamDialog open={open} onClose={handleClose} subject="운영체제" date="2020년 12월 20일 12시 30분 ~ 13시 30분" remainingTime="시험 종료 0시간 50분 20초 남음" />
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle style={{color: '#253053', fontSize: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700,  marginTop: 47, marginBottom: -20}}>
+                <span style={{fontSize: 30, fontWeight: 700}}>{"운영체제"}</span>
+              </DialogTitle>
+              <DialogContent>
+                {/* <DialogContentText style={{display: 'flex', alignItems: 'center', justifyContent: 'column' }}> */}
+                  <p style={{display:'flex', alignItems: 'center', justifyContent: 'center', color: '#9FA4B6', marginTop: 14, fontsize: 20}}>양승민 교수님</p>
+                  <Chip label="0시간 10분 30초 남음" style={{ marginLeft: 134, marginRight: 134, marginTop: 23, marginBottom: 27, backgroundColor: '#FF5E57', color: '#FFFFFF', fontWeight: 700, width: 250, height: 36}}> </Chip>
+                  <p style={{display: 'flex', justifyContent: 'row', fontSize: 20}}>
+                    <p style={{marginLeft: 93, marginRight: 38}}>응시 대상</p>
+                    <p style={{marginRight: 93}}>숭실대학교 소프트웨어학부생</p>
+                  </p>
+                  <p style={{display: 'flex', justifyContent: 'row', fontSize: 20 }}>
+                    <p style={{marginLeft: 93, marginRight: 38}}>시험 점수</p>
+                    <p style={{marginRight: 93}}> -- / 100</p>
+                  </p>
+                  <p style={{display: 'flex', justifyContent: 'row', fontSize: 20}}>
+                    <p style={{marginLeft: 93, marginRight: 38}}>시험 등수</p>
+                    <p style={{marginRight: 93}}> -- / 50</p>
+                  </p>
+                {/* </DialogContentText> */}
+              </DialogContent>
+              <DialogActions style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <Button variant="contained" onClick={handleClose} color='primary' style={{marginTop: 38, marginBottom: 53, width: 82, height: 36}} >확인</Button>
+              </DialogActions>
+            </Dialog>
             <Divider
               orientation="vertical"
               style={{ height: 54, alignSelf: 'center'}}
