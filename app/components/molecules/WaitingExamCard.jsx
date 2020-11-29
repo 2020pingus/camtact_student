@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'row',
   },
-  box:{
+  box: {
     display: 'flex',
     justifyContent: 'row',
   },
@@ -90,54 +90,85 @@ export default function ProgressExamCard(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
-  }
+  };
 
   const handleClose = () => {
     setOpen(false);
-  }
-  return(
+  };
+  return (
     <>
-    <div className={classes.content} ms={6} >
+      <div className={classes.content} ms={6}>
         <Box className={classes.box}>
-        <Card className={classes.card}>
-          <CardHeader className={classes.cardHeader}
-            action={
-              <IconButton>
-                <MoreVertIcon className={classes.moreIcon} />
-              </IconButton>
-            }
-            title={
-              <Typography className={classes.title} gutterBottom variant="h2" component="h1" >
-                운영체제
-                <Chip className={classes.isAllowedWaitingChip} label="승인 대기"></Chip>
+          <Card className={classes.card}>
+            <CardHeader
+              className={classes.cardHeader}
+              action={
+                <IconButton>
+                  <MoreVertIcon className={classes.moreIcon} />
+                </IconButton>
+              }
+              title={
+                <Typography
+                  className={classes.title}
+                  gutterBottom
+                  variant="h2"
+                  component="h1"
+                >
+                  운영체제
+                  <Chip
+                    className={classes.isAllowedWaitingChip}
+                    label="승인 대기"
+                  ></Chip>
+                </Typography>
+              }
+            ></CardHeader>
+            <CardContent className={classes.cardContent}>
+              <Typography className={classes.subTitle}>
+                <PersonIcon className={classes.icon} /> 양승민 교수님
               </Typography>
-            }
-          >
-          </CardHeader>
-          <CardContent className={classes.cardContent}>
-            <Typography className={classes.subTitle}>
-              <PersonIcon className={classes.icon} /> 양승민 교수님
-            </Typography>
-            <Typography className={classes.subTitle}>
-              <EventNoteIcon className={classes.icon} /> 2020년 12월 20일 12시 30분 ~ 13시 30분
-            </Typography>
-            <Typography className={classes.subTitle} style={{color: '#42ABFF'}} >
-              <AccessAlarmIcon className={classes.icon} /> 시험 종료 0시간 50분 20초 남음
-            </Typography>
-          </CardContent>
-          <Divider className={classes.divider} />
-          <div className={classes.footer}>
-            <Button className={classes.button} style={{width: '100%', marginLeft: -25}} onClick={handleClickOpen}>시험 상세 정보</Button>
-            <ExamDialog open={open} onClose={handleClose} subject="운영체제" date="2020년 12월 20일 12시 30분 ~ 13시 30분" remainingTime="시험 종료 0시간 50분 20초 남음" />
-            <Divider
-              orientation="vertical"
-              style={{ height: 54, alignSelf: 'center'}}
-            />
-            <Button className={classes.button} style={{color: '#C4C4C4'}} disabled>시험 시작</Button>
-          </div>
-        </Card>
-      </Box>
-    </div>
+              <Typography className={classes.subTitle}>
+                <EventNoteIcon className={classes.icon} /> 2020년 12월 20일 12시
+                30분 ~ 13시 30분
+              </Typography>
+              <Typography
+                className={classes.subTitle}
+                style={{ color: '#42ABFF' }}
+              >
+                <AccessAlarmIcon className={classes.icon} /> 시험 종료 0시간
+                50분 20초 남음
+              </Typography>
+            </CardContent>
+            <Divider className={classes.divider} />
+            <div className={classes.footer}>
+              <Button
+                className={classes.button}
+                style={{ width: '100%', marginLeft: -25 }}
+                onClick={handleClickOpen}
+              >
+                시험 상세 정보
+              </Button>
+              <ExamDialog
+                open={open}
+                onClose={handleClose}
+                subject="운영체제"
+                date="2020년 12월 20일 12시 30분 ~ 13시 30분"
+                remainingTime="시험 종료 0시간 50분 20초 남음"
+              />
+              <Divider
+                orientation="vertical"
+                style={{ height: 54, alignSelf: 'center' }}
+              />
+              <Button
+                className={classes.button}
+                style={{ color: '#C4C4C4' }}
+                disabled
+              >
+                시험 시작
+              </Button>
+            </div>
+          </Card>
+        </Box>
+      </div>
     </>
   );
 }

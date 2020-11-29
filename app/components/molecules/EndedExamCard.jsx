@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'row',
   },
-  box:{
+  box: {
     display: 'flex',
     justifyContent: 'row',
   },
@@ -90,50 +90,67 @@ export default function ProgressExamCard(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
-  }
+  };
 
   const handleClose = () => {
     setOpen(false);
-  }
-  return(
+  };
+  return (
     <>
-    <div className={classes.content} >
-      <Box className={classes.box}>
-      <Card className={classes.card}>
-        <CardHeader className={classes.cardHeader}
-          action={
-            <IconButton>
-              <MoreVertIcon className={classes.moreIcon} />
-            </IconButton>
-          }
-          title={
-            <Typography className={classes.title} gutterBottom variant="h2" component="h1" >
-              컴퓨터 그래픽스
-              <Chip className={classes.isEndedChip} label="종료"></Chip>
-            </Typography>
-          }
-        >
-        </CardHeader>
-        <CardContent className={classes.cardContent}>
-          <Typography className={classes.subTitle}>
-            <PersonIcon className={classes.icon} /> 김동호 교수님
-          </Typography>
-          <Typography className={classes.subTitle}>
-            <EventNoteIcon className={classes.icon} /> 2020년 11월 20일 12시 30분 ~ 13시 30분
-          </Typography>
-        </CardContent>
-        <Divider className={classes.divider} />
-        <div className={classes.footer}>
-          <Button className={classes.button} style={{width: '100%', marginLeft: -25}}>시험 상세 정보</Button>
-          <Divider
-            orientation="vertical"
-            style={{ height: 54, alignSelf: 'center'}}
-          />
-          <Button className={classes.button} style={{color: '#C4C4C4'}} disabled>시험 시작</Button>
-        </div>
-      </Card>
-    </Box>
-    </div>
+      <div className={classes.content}>
+        <Box className={classes.box}>
+          <Card className={classes.card}>
+            <CardHeader
+              className={classes.cardHeader}
+              action={
+                <IconButton>
+                  <MoreVertIcon className={classes.moreIcon} />
+                </IconButton>
+              }
+              title={
+                <Typography
+                  className={classes.title}
+                  gutterBottom
+                  variant="h2"
+                  component="h1"
+                >
+                  컴퓨터 그래픽스
+                  <Chip className={classes.isEndedChip} label="종료"></Chip>
+                </Typography>
+              }
+            ></CardHeader>
+            <CardContent className={classes.cardContent}>
+              <Typography className={classes.subTitle}>
+                <PersonIcon className={classes.icon} /> 김동호 교수님
+              </Typography>
+              <Typography className={classes.subTitle}>
+                <EventNoteIcon className={classes.icon} /> 2020년 11월 20일 12시
+                30분 ~ 13시 30분
+              </Typography>
+            </CardContent>
+            <Divider className={classes.divider} />
+            <div className={classes.footer}>
+              <Button
+                className={classes.button}
+                style={{ width: '100%', marginLeft: -25 }}
+              >
+                시험 상세 정보
+              </Button>
+              <Divider
+                orientation="vertical"
+                style={{ height: 54, alignSelf: 'center' }}
+              />
+              <Button
+                className={classes.button}
+                style={{ color: '#C4C4C4' }}
+                disabled
+              >
+                시험 시작
+              </Button>
+            </div>
+          </Card>
+        </Box>
+      </div>
     </>
   );
 }

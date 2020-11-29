@@ -49,6 +49,13 @@ const theme = createMuiTheme({
       fontSize: 14,
     },
   },
+  overrides: {
+    MuiTabs: {
+      indicator: {
+        height: 4,
+      },
+    },
+  },
 });
 
 const Root = ({ store, history }: Props) => (

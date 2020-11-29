@@ -27,51 +27,70 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     top: props.appBarHeight,
     backgroundColor: '#F6F6F6',
-    padding: theme.spacing(3),
+    padding: `0 ${
+      (props.windowSize.width - props.drawerWidth - 1118) / 2
+    }px 0 `,
   }),
   menuBar: {
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
     backgroundColor: 'transparent',
-    marginTop: theme.spacing(-2),
-    marginLeft: theme.spacing(1.8),
+    marginTop: 14,
     width: 1118,
-    height: 41,
+    height: 49,
   },
   tabs: {
     borderBottom: '1px solid #E3E7EB',
+    '& > span': {
+      height: 4,
+    },
   },
   tab: {
     fontSize: 16,
     fontWeight: theme.typography.fontWeightRegular,
     color: '#7C7C7C',
     minWidth: 125,
+    '&:hover': {
+      color: theme.palette.primary.main,
+      fontWeight: 700,
+    },
     '&:focus': {
-      fontWeight: 'bold',
-      color: '#253053',
+      color: theme.palette.primary.main,
+      fontWeight: 700,
     },
     '&$selected': {
-      color: '#253053',
-      fontWeight: 'bold',
+      color: theme.palette.primary.main,
+      fontWeight: 700,
     },
   },
-  button: {
-    background: '#FFFFFF',
+  buttons: {
+    marginTop: 16,
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  sortButton: {
+    backgroundColor: '#FFFFFF',
     fontWeight: 'bold',
-    color: '#253053',
+    color: theme.palette.primary.main,
     width: 95,
     height: 36,
     fontSize: 16,
-    margin: theme.spacing(3.2, 0, 1.6, 1.8),
+    padding: '4px 6px',
+    paddingLeft: 11,
+    boxShadow:
+      '0px 1px 0px rgba(63, 63, 68, 0.14), 0px 3px 4px rgba(63, 63, 68, 0.12), 0px 1px 5px rgba(63, 63, 68, 0.2)',
+    borderRadius: 7,
   },
   createExamButton: {
-    background: '#FFFFFF',
+    backgroundColor: '#FFFFFF',
     fontWeight: 'bold',
-    color: '#253053',
-    width: 95,
+    color: theme.palette.primary.main,
+    width: 105,
     height: 36,
     fontSize: 16,
-    margin: theme.spacing(3.2, 0, 1.6, 0),
-    marginLeft: -18,
+    padding: 2.5,
+    boxShadow:
+      '0px 1px 0px rgba(63, 63, 68, 0.14), 0px 3px 4px rgba(63, 63, 68, 0.12), 0px 1px 5px rgba(63, 63, 68, 0.2)',
+    borderRadius: 7,
   },
 }));
 
@@ -86,11 +105,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <>{children}</>}
     </div>
   );
 }
@@ -140,27 +155,18 @@ export default function MenuBar(props) {
         </Tabs>
       </AppBar>
 
-      <Grid container direction="row">
-        <Grid item xs={3}>
-          <Button className={classes.button} size="small" variant="contained">
-            날짜순
-            <ArrowDropDownIcon />
-          </Button>
-        </Grid>
-        <Grid item xs={8} />
-        <Grid item xs={1}>
-          <Button
-            className={classes.createExamButton}
-            size="small"
-            variant="contained"
-          >
-            시험 등록
-          </Button>
-        </Grid>
-      </Grid>
+      <Box className={classes.buttons}>
+        <Button className={classes.sortButton} variant="contained">
+          날짜순
+          <ArrowDropDownIcon viewBox="-2 1.5 22 22" />
+        </Button>
+        <Button className={classes.createExamButton} variant="contained">
+          시험 등록
+        </Button>
+      </Box>
 
       <TabPanel value={value} index={0}>
-        <ExamList index={0}/>
+        <ExamList index={0} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ExamList index={1} />

@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     top: props.appBarHeight,
     backgroundColor: '#F6F6F6',
-    padding: theme.spacing(3),
   }),
 }));
 
