@@ -31,13 +31,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 537,
     minHeight: 250,
     padding: theme.spacing(2, 0, 0, 2),
-    margin: theme.spacing(-1.5, -1.5, 6),
-  },
-  cardEnded: {
-    minWidth: 537,
-    minHeight: 220,
-    padding: theme.spacing(2.5, 0, 0, 3),
-    margin: theme.spacing(-1.5, -1.5, 6),
+    margin: theme.spacing(-1.5, -1.5, 6, 4),
   },
   cardHeader: {
     color: theme.palette.primary.main,
@@ -105,7 +99,7 @@ export default function ProgressExamCard(props) {
     <>
     <div className={classes.content} ms={6} >
         <Box className={classes.box}>
-        <Card className={classes.card} style={{marginLeft: 34}}>
+        <Card className={classes.card}>
           <CardHeader className={classes.cardHeader}
             action={
               <IconButton>
