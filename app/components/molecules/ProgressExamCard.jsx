@@ -132,15 +132,15 @@ export default function ProgressExamCard(props) {
                   <p style={{display:'flex', alignItems: 'center', justifyContent: 'center', color: '#9FA4B6', marginTop: 14, fontsize: 20}}>양승민 교수님</p>
                   <Chip label="0시간 10분 30초 남음" style={{ marginLeft: 134, marginRight: 134, marginTop: 23, marginBottom: 27, backgroundColor: '#FF5E57', color: '#FFFFFF', fontWeight: 700, width: 250, height: 36}}> </Chip>
                   <p style={{display: 'flex', justifyContent: 'row', fontSize: 20}}>
-                    <p style={{marginLeft: 93, marginRight: 38}}>응시 대상</p>
+                    <p style={{marginLeft: 93, marginRight: 38, color:'#293356'}}>응시 대상</p>
                     <p style={{marginRight: 93}}>숭실대학교 소프트웨어학부생</p>
                   </p>
                   <p style={{display: 'flex', justifyContent: 'row', fontSize: 20 }}>
-                    <p style={{marginLeft: 93, marginRight: 38}}>시험 점수</p>
+                    <p style={{marginLeft: 93, marginRight: 38, color:'#293356'}}>시험 점수</p>
                     <p style={{marginRight: 93}}> -- / 100</p>
                   </p>
                   <p style={{display: 'flex', justifyContent: 'row', fontSize: 20}}>
-                    <p style={{marginLeft: 93, marginRight: 38}}>시험 등수</p>
+                    <p style={{marginLeft: 93, marginRight: 38, color:'#293356'}}>시험 등수</p>
                     <p style={{marginRight: 93}}> -- / 50</p>
                   </p>
                 {/* </DialogContentText> */}
