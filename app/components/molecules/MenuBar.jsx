@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     width: 95,
     height: 36,
     fontSize: 16,
-    margin: theme.spacing(3.2, 0, 1.6, 1.8),
+    margin: theme.spacing(3.2, 0, 1.6, 0),
     marginLeft: -18,
   },
 }));
