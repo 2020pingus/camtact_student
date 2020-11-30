@@ -22,7 +22,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import ExamDialog from './ExamDialog';
-import ExamCardButton from './ExamCardButton';
+import CardButton from './CardButton';
 import { Translate } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 16,
     boxShadow:
       '0px 1px 0px rgba(63, 63, 68, 0.05), 0px 1px 3px rgba(63, 63, 68, 0.15)',
-  },cardEnded: {
+  },
+  cardEnded: {
     minWidth: 537,
     minHeight: 220,
     padding: theme.spacing(2, 0, 0, 2),
@@ -130,18 +131,24 @@ export default function ProgressExamCard(props) {
             </IconButton>
           }
           title={
-            <Typography className={classes.examTitle}>운영체제
-              { progress === 'allowed' &&
-                <Chip className={classes.isAllowedChip} label="승인 완료"></Chip>
-              }
-              { progress === 'waiting' &&
-                <Chip className={classes.isAllowedWaitingChip} label="승인 대기"></Chip>
-              }
-              { progress === 'end' &&
+            <Typography className={classes.examTitle}>
+              운영체제
+              {progress === 'allowed' && (
+                <Chip
+                  className={classes.isAllowedChip}
+                  label="승인 완료"
+                ></Chip>
+              )}
+              {progress === 'waiting' && (
+                <Chip
+                  className={classes.isAllowedWaitingChip}
+                  label="승인 대기"
+                ></Chip>
+              )}
+              {progress === 'end' && (
                 <Chip className={classes.isEndedChip} label="종료"></Chip>
-              }
+              )}
             </Typography>
-
           }
         />
         {/* Card Content */}
@@ -154,162 +161,56 @@ export default function ProgressExamCard(props) {
             <EventNoteIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
             2020년 12월 20일 12시 30분 ~ 13시 30분
           </Typography>
-          {progress === 'start' &&
+          {progress === 'start' && (
             <Typography className={classes.examInfo} color="error">
               <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
               시험 종료 0시간 50분 20초 남음
             </Typography>
-          }
-          {progress === 'waiting' &&
-            <Typography className={classes.examInfo} style={{ color: '#42ABFF' }}>
+          )}
+          {progress === 'waiting' && (
+            <Typography
+              className={classes.examInfo}
+              style={{ color: '#42ABFF' }}
+            >
               <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-               5시간 50분 20초 남음
+              5시간 50분 20초 남음
             </Typography>
-          }
-          {progress === 'allowed' &&
-            <Typography className={classes.examInfo} style={{ color: '#47B881' }}>
+          )}
+          {progress === 'allowed' && (
+            <Typography
+              className={classes.examInfo}
+              style={{ color: '#47B881' }}
+            >
               <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
               10일 23시간 50분 20초 남음
             </Typography>
-          }
-          {progress === 'end' &&
-            <Typography className={classes.examInfo} style={{ color: '#F2C94C' }}>
+          )}
+          {progress === 'end' && (
+            <Typography
+              className={classes.examInfo}
+              style={{ color: '#F2C94C' }}
+            >
               <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
               시험 종료
             </Typography>
-          }
+          )}
         </CardContent>
         <Divider className={classes.divider} />
         {/* Card Footer */}
         <div className={classes.footer}>
-          <ExamCardButton state="exam" />
-          <ExamDialog open={open} onClose={handleClose} subject="운영체제" date="2020년 12월 20일 12시 30분 ~ 13시 30분" remainingTime="시험 종료 0시간 50분 20초 남음" />
-        </div>
-          {/* TODO : Dialog 하위 컴포넌트로 빼기 */}
-          <Dialog open={open} onClose={handleClose}>
-            <DialogTitle
-              style={{
-                color: '#253053',
-                fontSize: 30,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 700,
-                marginTop: 47,
-                marginBottom: -20,
-              }}
-            >
-              <span style={{ fontSize: 30, fontWeight: 700 }}>
-                {'운영체제'}
-              </span>
-            </DialogTitle>
-            <DialogContent>
-              {/* <DialogContentText style={{display: 'flex', alignItems: 'center', justifyContent: 'column' }}> */}
-              <p
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#9FA4B6',
-                  marginTop: 14,
-                  fontsize: 20,
-                }}
-              >
-                양승민 교수님
-              </p>
-              <Chip
-                label="0시간 10분 30초 남음"
-                style={{
-                  marginLeft: 134,
-                  marginRight: 134,
-                  marginTop: 23,
-                  marginBottom: 27,
-                  backgroundColor: '#FF5E57',
-                  color: '#FFFFFF',
-                  fontWeight: 700,
-                  width: 250,
-                  height: 36,
-                }}
-              />
-              <p
-                style={{
-                  display: 'flex',
-                  justifyContent: 'row',
-                  fontSize: 20,
-                }}
-              >
-                <p
-                  style={{
-                    marginLeft: 93,
-                    marginRight: 38,
-                    color: '#293356',
-                  }}
-                >
-                  응시 대상
-                </p>
-                <p style={{ marginRight: 93 }}>숭실대학교 소프트웨어학부생</p>
-              </p>
-              <p
-                style={{
-                  display: 'flex',
-                  justifyContent: 'row',
-                  fontSize: 20,
-                }}
-              >
-                <p
-                  style={{
-                    marginLeft: 93,
-                    marginRight: 38,
-                    color: '#293356',
-                  }}
-                >
-                  시험 점수
-                </p>
-                <p style={{ marginRight: 93 }}> -- / 100</p>
-              </p>
-              <p
-                style={{
-                  display: 'flex',
-                  justifyContent: 'row',
-                  fontSize: 20,
-                }}
-              >
-                <p
-                  style={{
-                    marginLeft: 93,
-                    marginRight: 38,
-                    color: '#293356',
-                  }}
-                >
-                  시험 등수
-                </p>
-                <p style={{ marginRight: 93 }}> -- / 50</p>
-              </p>
-              {/* </DialogContentText> */}
-            </DialogContent>
-            <DialogActions
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Button
-                variant="contained"
-                onClick={handleClose}
-                color="primary"
-                style={{
-                  marginTop: 38,
-                  marginBottom: 53,
-                  width: 82,
-                  height: 36,
-                }}
-              >
-              확인
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <CardButton state="exam" />
+          {/* <CardButton state="supervise" mode="start" /> */}
+          {/* <CardButton state="supervise" mode="notStart" /> */}
 
+          {/* <ExamDialog
+            open={open}
+            onClose={handleClose}
+            subject="운영체제"
+            date="2020년 12월 20일 12시 30분 ~ 13시 30분"
+            remainingTime="시험 종료 0시간 50분 20초 남음"
+          /> */}
+        </div>
+        {/* TODO : Dialog 하위 컴포넌트로 빼기 */}
       </Card>
     </Box>
   );

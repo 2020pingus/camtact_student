@@ -18,8 +18,8 @@ export default function ExamList(props) {
       {index === 0 && <ExamCard progress="start" />}
       {index === 1 && (
         <>
-        <ExamCard progress="waiting" />
-        <ExamCard progress="allowed" />
+          <ExamCard progress="waiting" />
+          <ExamCard progress="allowed" />
         </>
       )}
       {index === 2 && <ExamCard progress="end" />}
