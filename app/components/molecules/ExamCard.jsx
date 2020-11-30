@@ -22,6 +22,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import ExamDialog from './ExamDialog';
+import ExamCardButton from './ExamCardButton';
 import { Translate } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 16,
     boxShadow:
       '0px 1px 0px rgba(63, 63, 68, 0.05), 0px 1px 3px rgba(63, 63, 68, 0.15)',
+  },cardEnded: {
+    minWidth: 537,
+    minHeight: 220,
+    padding: theme.spacing(2, 0, 0, 2),
+    margin: theme.spacing(-1.5, -1.5, 6),
   },
   cardHeader: {
     color: theme.palette.primary.main,
@@ -44,6 +50,33 @@ const useStyles = makeStyles((theme) => ({
   examTitle: {
     fontSize: 25,
     fontWeight: 700,
+  },
+  isAllowedChip: {
+    backgroundColor: '#47B881',
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: 700,
+    minWidth: 75,
+    minHeight: 25,
+    marginLeft: theme.spacing(1.2),
+  },
+  isAllowedWaitingChip: {
+    backgroundColor: '#42ABFF',
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: 700,
+    minWidth: 74,
+    minHeight: 25,
+    marginLeft: theme.spacing(1.2),
+  },
+  isEndedChip: {
+    backgroundColor: '#F2C94C',
+    color: '#253053',
+    fontSize: 14,
+    fontWeight: 700,
+    minWidth: 74,
+    minHeight: 25,
+    marginLeft: theme.spacing(1.2),
   },
   moreIcon: {
     padding: 0,
@@ -71,21 +104,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
   },
-  divider: {
-    backgroundColor: '#E4E7EB',
-    minWidth: 537,
-  },
-  button: {
-    width: '100%',
-    color: theme.palette.primary.main,
-    fontSize: 16,
-    fontWeight: 700,
-  },
 }));
 
 export default function ProgressExamCard(props) {
   const classes = useStyles(props);
   const [open, setOpen] = useState(false);
+  const progress = props.progress;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -106,10 +130,20 @@ export default function ProgressExamCard(props) {
             </IconButton>
           }
           title={
-            <Typography className={classes.examTitle}>운영체제</Typography>
+            <Typography className={classes.examTitle}>운영체제
+              { progress === 'allowed' &&
+                <Chip className={classes.isAllowedChip} label="승인 완료"></Chip>
+              }
+              { progress === 'waiting' &&
+                <Chip className={classes.isAllowedWaitingChip} label="승인 대기"></Chip>
+              }
+              { progress === 'end' &&
+                <Chip className={classes.isEndedChip} label="종료"></Chip>
+              }
+            </Typography>
+
           }
         />
-
         {/* Card Content */}
         <CardContent className={classes.cardContent}>
           <Typography className={classes.examInfo}>
@@ -120,19 +154,37 @@ export default function ProgressExamCard(props) {
             <EventNoteIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
             2020년 12월 20일 12시 30분 ~ 13시 30분
           </Typography>
-          <Typography className={classes.examInfo} color="error">
-            <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-            시험 종료 0시간 50분 20초 남음
-          </Typography>
+          {progress === 'start' &&
+            <Typography className={classes.examInfo} color="error">
+              <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
+              시험 종료 0시간 50분 20초 남음
+            </Typography>
+          }
+          {progress === 'waiting' &&
+            <Typography className={classes.examInfo} style={{ color: '#42ABFF' }}>
+              <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
+               5시간 50분 20초 남음
+            </Typography>
+          }
+          {progress === 'allowed' &&
+            <Typography className={classes.examInfo} style={{ color: '#47B881' }}>
+              <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
+              10일 23시간 50분 20초 남음
+            </Typography>
+          }
+          {progress === 'end' &&
+            <Typography className={classes.examInfo} style={{ color: '#F2C94C' }}>
+              <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
+              시험 종료
+            </Typography>
+          }
         </CardContent>
         <Divider className={classes.divider} />
-
         {/* Card Footer */}
         <div className={classes.footer}>
-          <Button className={classes.button} onClick={handleClickOpen}>
-            시험 상세 정보
-          </Button>
-
+          <ExamCardButton state="exam" />
+          <ExamDialog open={open} onClose={handleClose} subject="운영체제" date="2020년 12월 20일 12시 30분 ~ 13시 30분" remainingTime="시험 종료 0시간 50분 20초 남음" />
+        </div>
           {/* TODO : Dialog 하위 컴포넌트로 빼기 */}
           <Dialog open={open} onClose={handleClose}>
             <DialogTitle
@@ -253,19 +305,11 @@ export default function ProgressExamCard(props) {
                   height: 36,
                 }}
               >
-                확인
+              확인
               </Button>
             </DialogActions>
           </Dialog>
 
-          <Divider
-            orientation="vertical"
-            style={{ height: 54, alignSelf: 'center' }}
-          />
-          <Button className={classes.button} style={{ color: '#FF5E57' }}>
-            시험 시작
-          </Button>
-        </div>
       </Card>
     </Box>
   );

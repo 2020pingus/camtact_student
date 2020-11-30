@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ProgressExamCard from './ProgressExamCard';
-import AllowedExamCard from './AllowedExamCard';
-import WaitingExamCard from './WaitingExamCard';
-import EndedExamCard from './EndedExamCard';
+import ExamCard from './ExamCard';
 
 export default function ExamList(props) {
   const index = props.index;
@@ -18,14 +15,14 @@ export default function ExamList(props) {
   };
   return (
     <>
-      {index === 0 && <ProgressExamCard />}
+      {index === 0 && <ExamCard progress="start" />}
       {index === 1 && (
         <>
-          <AllowedExamCard />
-          <WaitingExamCard />
+        <ExamCard progress="waiting" />
+        <ExamCard progress="allowed" />
         </>
       )}
-      {index === 2 && <EndedExamCard />}
+      {index === 2 && <ExamCard progress="end" />}
     </>
   );
 }
