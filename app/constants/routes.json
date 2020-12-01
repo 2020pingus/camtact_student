@@ -5,6 +5,7 @@
   "FRAME": "/frame",
   "EXAMLIST": "/examlist",
   "MYPAGE": "/mypage",
+  "ADMIN": "/admin",
   "COUNTER": "/counter",
   "NOTIFICATION":"/notification"
 }

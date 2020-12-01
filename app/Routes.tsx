@@ -6,6 +6,7 @@ import App from './components/templates/App';
 import HomePage from './components/templates/HomePage';
 import LoginPage from './components/templates/LoginPage';
 import SignUpPage from './components/templates/SignUpPage';
+import AdminPage from './components/templates/AdminPage';
 import FramePage from './components/templates/FramePage';
 import ExamListPage from './components/templates/ExamListPage';
 import NotificationPage from './components/templates/NotificationPage';
@@ -35,6 +36,7 @@ export default function Routes() {
         <Route path={routes.FRAME} component={FramePage} />
         <Route path={routes.NOTIFICATION} component={NotificationPage} />
         <Route path={routes.MYPAGE} component={MyPage} />
+        <Route path={routes.ADMIN} component={AdminPage} />
         <Route path={routes.EXAMLIST} component={ExamListPage} />
       </Switch>
     </App>
