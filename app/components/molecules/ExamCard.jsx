@@ -17,13 +17,13 @@ import {
   DialogContentText,
   DialogActions,
 } from '@material-ui/core';
+import { Translate } from '@material-ui/icons';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PersonIcon from '@material-ui/icons/Person';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import ExamDialog from './ExamDialog';
 import CardButton from './CardButton';
-import { Translate } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -131,24 +131,21 @@ export default function ProgressExamCard(props) {
             </IconButton>
           }
           title={
-            <Typography className={classes.examTitle}>
+            <div className={classes.examTitle}>
               운영체제
               {progress === 'allowed' && (
-                <Chip
-                  className={classes.isAllowedChip}
-                  label="승인 완료"
-                ></Chip>
+                <Chip className={classes.isAllowedChip} label="승인 완료" />
               )}
               {progress === 'waiting' && (
                 <Chip
                   className={classes.isAllowedWaitingChip}
                   label="승인 대기"
-                ></Chip>
+                />
               )}
               {progress === 'end' && (
-                <Chip className={classes.isEndedChip} label="종료"></Chip>
+                <Chip className={classes.isEndedChip} label="종료" />
               )}
-            </Typography>
+            </div>
           }
         />
         {/* Card Content */}
