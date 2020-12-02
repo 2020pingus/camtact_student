@@ -1,5 +1,17 @@
 import React from 'react';
+import { Grid, Button, Card } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: theme.spacing(2, 2.9, 2, 2.8),
+  },
+}));
 export default function AdminTable() {
-  return <>{'응시자 테이블\n'}</>;
+  const classes = useStyles();
+  return (
+    <>
+      <Card className={classes.root}>안녕</Card>
+    </>
+  );
 }
