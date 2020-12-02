@@ -36,6 +36,8 @@ const rows = [
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(2, 2.9, 2, 2.8),
+    width: 1144,
+    height: 703,
   },
   table: {
     flex: 1,
@@ -48,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
   },
   pagination: {
-    display: 'flex',
-    justifyContent: 'center',
     margin: theme.spacing(2, 0, 2, 0),
+    position: 'fixed',
+    bottom: 50,
   },
 }));
 
@@ -101,21 +103,43 @@ export default function AdminTable() {
                 <TableCell className={classes.tableCellRow}>
                   {row.isAllowed === 'x' ? (
                     <>
-                      <Button>승인</Button>
-                      <Button>거절</Button>
+                      <Button color="primary" style={{ fontSize: 18 }}>
+                        승인
+                      </Button>
+                      /
+                      <Button color="primary" style={{ fontSize: 18 }}>
+                        거절
+                      </Button>
                     </>
                   ) : (
-                    <Button disabled>완료</Button>
+                    <div>
+                      <Button disabled>-</Button>
+                    </div>
                   )}
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
+          <caption
+            style={{
+              position: 'fixed',
+              bottom: 50,
+              captionSide: 'bottom',
+            }}
+          >
+            <Divider />
+            <Pagination
+              count={10}
+              shape="rounded"
+              color="primary"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            />
+          </caption>
         </Table>
-        <div className={classes.pagination}>
-          <Divider />
-          <Pagination count={10} shape="rounded" color="primary" />
-        </div>
       </Card>
     </>
   );
