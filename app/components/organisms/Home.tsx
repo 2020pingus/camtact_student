@@ -13,6 +13,8 @@ export default function Home(): JSX.Element {
         <br />
         <Link to={routes.SIGNUP}>to SignUp</Link>
         <br />
+        <Link to={routes.EXAM}>to Exam</Link>
+        <br />
         <Link to={routes.EXAMLIST}>to ExamList</Link>
         <br />
         <Link to={routes.NOTIFICATION}>to Notification</Link>

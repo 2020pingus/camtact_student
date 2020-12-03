@@ -31,13 +31,14 @@ const theme = createMuiTheme({
     },
   },
   typography: {
+    fontFamily: '"Noto Sans KR", serif',
     h1: {
       fontSize: 26,
-      fontWeight: 700,
+      fontWeight: 500,
     },
     h2: {
       fontSize: 24,
-      fontWeight: 700,
+      fontWeight: 500,
     },
     h3: {
       fontSize: 18,

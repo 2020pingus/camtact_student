@@ -22,7 +22,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PersonIcon from '@material-ui/icons/Person';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-import ExamDialog from './ExamDialog';
+import ExamDialog from '../atoms/ExamDialog';
 import CardButton from './CardButton';
 
 const useStyles = makeStyles((theme) => ({

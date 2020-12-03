@@ -3,6 +3,7 @@
   "LOGIN": "/login",
   "SIGNUP": "/signup",
   "FRAME": "/frame",
+  "EXAM": "/exam",
   "EXAMLIST": "/examlist",
   "MYPAGE": "/mypage",
   "ADMIN": "/admin",
