@@ -34,11 +34,11 @@ const theme = createMuiTheme({
     fontFamily: '"Noto Sans KR", serif',
     h1: {
       fontSize: 26,
-      fontWeight: 500,
+      fontWeight: 600,
     },
     h2: {
       fontSize: 24,
-      fontWeight: 500,
+      fontWeight: 600,
     },
     h3: {
       fontSize: 18,

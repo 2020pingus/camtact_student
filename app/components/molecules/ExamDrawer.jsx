@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   submitButton: {
     width: 126,
     height: 36,
-    backgroundColor: '#47B881',
     position: 'fixed',
     bottom: 36,
     color: 'white',
@@ -53,7 +52,11 @@ function ExamDrawer({ appBarHeight, drawerWidth }) {
       <Divider variant="middle" style={{ backgroundColor: '#E4E7EB' }} />
       <ExamDrawerList />
       <div className={classes.submit}>
-        <Button type="submit" className={classes.submitButton}>
+        <Button
+          type="submit"
+          className={classes.submitButton}
+          style={{ backgroundColor: '#47B881' }}
+        >
           시험 종료
         </Button>
       </div>
