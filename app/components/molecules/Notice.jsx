@@ -5,6 +5,7 @@ import {
   Box,
   ListItemAvatar,
   Card,
+  Button,
 } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import EditIcon from '@material-ui/icons/Edit';
@@ -14,6 +15,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
@@ -51,6 +53,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
     marginLeft: 16,
   },
+  noticeBox: {
+    width: 472,
+    height: 42,
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 16,
+  },
   typoPrimary: {
     color: theme.palette.primary.main,
     fontWeight: 'bold',
@@ -61,10 +70,21 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 8,
     marginLeft: 6,
   },
+  pagination: {
+    width: '100%',
+    height: '8.5%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 }));
 
 export default function Notice(props) {
   const classes = useStyles(props);
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
   return (
     <div className={classes.content}>
       <Card className={classes.card}>
@@ -82,148 +102,87 @@ export default function Notice(props) {
         </div>
         <Divider />
         <List className={classes.allNoticeBox}>
-          <ListItem className={classes.noticeBox}>
-            <ListItemAvatar>
-              <Avatar style={{ background: '#47B881' }}>
-                <DoneIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography variant="h3" className={classes.typoPrimary}>
-                  운영체제 중간고사
-                </Typography>
-              }
-              secondary={
-                <Typography variant="h5" className={classes.typoSecondary}>
-                  응시 승인을 받았습니다.
-                </Typography>
-              }
-            ></ListItemText>
-          </ListItem>
-          <Divider />
-          <ListItem className={classes.noticeBox}>
-            <ListItemAvatar>
-              <Avatar style={{ background: '#47B881' }}>
-                <DoneIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography variant="h3" className={classes.typoPrimary}>
-                  캡스톤 디자인 종합 프로젝트 1 중간고사
-                </Typography>
-              }
-              secondary={
-                <Typography variant="h5" className={classes.typoSecondary}>
-                  응시 승인을 받았습니다.
-                </Typography>
-              }
-            ></ListItemText>
-          </ListItem>
-          <Divider />
-          <ListItem className={classes.noticeBox}>
-            <ListItemAvatar>
-              <Avatar style={{ background: '#47B881' }}>
-                <DoneIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography variant="h3" className={classes.typoPrimary}>
-                  컴퓨터 그래픽스 중간고사
-                </Typography>
-              }
-              secondary={
-                <Typography variant="h5" className={classes.typoSecondary}>
-                  응시 승인을 받았습니다.
-                </Typography>
-              }
-            ></ListItemText>
-          </ListItem>
-          <Divider />
-          <ListItem className={classes.noticeBox}>
-            <ListItemAvatar>
-              <Avatar style={{ background: '#FF5E57' }}>
-                <ClearIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography variant="h3" className={classes.typoPrimary}>
-                  미래 융합 기술 세미나 중간고사
-                </Typography>
-              }
-              secondary={
-                <Typography variant="h5" className={classes.typoSecondary}>
-                  응시 거부를 받았습니다.
-                </Typography>
-              }
-            ></ListItemText>
-          </ListItem>
-          <Divider />
-          <ListItem className={classes.noticeBox}>
-            <ListItemAvatar>
-              <Avatar style={{ background: '#F2C94C' }}>
-                <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography variant="h3" className={classes.typoPrimary}>
-                  데이터베이스 응용 중간고사
-                </Typography>
-              }
-              secondary={
-                <Typography variant="h5" className={classes.typoSecondary}>
-                  시험 점수가 발표되었습니다.
-                </Typography>
-              }
-            ></ListItemText>
-          </ListItem>
-          <Divider />
-          <ListItem className={classes.noticeBox}>
-            <ListItemAvatar>
-              <Avatar style={{ background: '#47B881' }}>
-                <DoneIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography variant="h3" className={classes.typoPrimary}>
-                  데이터베이스 응용 중간고사
-                </Typography>
-              }
-              secondary={
-                <Typography variant="h5" className={classes.typoSecondary}>
-                  응시 승인을 받았습니다.
-                </Typography>
-              }
-            ></ListItemText>
-          </ListItem>
-          <Divider />
-          <ListItem className={classes.noticeBox}>
-            <ListItemAvatar>
-              <Avatar style={{ background: '#F2C94C' }}>
-                <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography variant="h3" className={classes.typoPrimary}>
-                  시스템 프로그래밍 기말고사
-                </Typography>
-              }
-              secondary={
-                <Typography variant="h5" className={classes.typoSecondary}>
-                  시험 점수가 발표되었습니다.
-                </Typography>
-              }
-            ></ListItemText>
-          </ListItem>
-          <Divider />
+          {noticeList.map((notice, index) => (
+            <>
+              <ListItem key={index} className={classes.noticeBox}>
+                <ListItemAvatar>
+                  {notice.status === 0 ? (
+                    <Avatar style={{ background: '#47B881' }}>
+                      <DoneIcon />
+                    </Avatar>
+                  ) : notice.status === 1 ? (
+                    <Avatar style={{ background: '#FF5E57' }}>
+                      <ClearIcon />
+                    </Avatar>
+                  ) : (
+                    <Avatar style={{ background: '#F2C94C' }}>
+                      <EditIcon />
+                    </Avatar>
+                  )}
+                </ListItemAvatar>
+                <ListItemText
+                  primary={
+                    <Typography variant="h3" className={classes.typoPrimary}>
+                      {notice.title}
+                    </Typography>
+                  }
+                  secondary={
+                    <Typography variant="h5" className={classes.typoSecondary}>
+                      {notice.content}
+                    </Typography>
+                  }
+                ></ListItemText>
+              </ListItem>
+              <Divider />
+            </>
+          ))}
         </List>
+        <div className={classes.pagination}>
+          <Pagination
+            color="primary"
+            shape="rounded"
+            count={2}
+            page={page}
+            onChange={handleChange}
+            hidePrevButton
+            hideNextButton
+          />
+        </div>
       </Card>
     </div>
   );
 }
+
+const noticeList = [
+  { status: 0, title: '운영체제 중간고사', content: '응시 승인을 받았습니다.' },
+  {
+    status: 0,
+    title: '캡스톤 디자인 종합 프로젝트 1 중간고사',
+    content: '응시 승인을 받았습니다.',
+  },
+  {
+    status: 0,
+    title: '컴퓨터 그래픽스 중간고사',
+    content: '응시 승인을 받았습니다.',
+  },
+  {
+    status: 1,
+    title: '미래 융합 기술 세미나 중간고사',
+    content: '응시 거부를 받았습니다.',
+  },
+  {
+    status: 2,
+    title: '데이터베이스 응용 중간고사',
+    content: '시험 점수가 발표되었습니다.',
+  },
+  {
+    status: 0,
+    title: '데이터베이스 응용 중간고사',
+    content: '응시 승인을 받았습니다.',
+  },
+  {
+    status: 2,
+    title: '시스템 프로그래밍 기말고사',
+    content: '시험 점수가 발표되었습니다.',
+  },
+];
