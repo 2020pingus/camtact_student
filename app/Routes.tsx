@@ -12,6 +12,7 @@ import ExamPage from './components/templates/ExamPage';
 import ExamListPage from './components/templates/ExamListPage';
 import NotificationPage from './components/templates/NotificationPage';
 import MyPage from './components/templates/MyPage';
+import SupervisePage from './components/templates/SupervisePage';
 
 // Lazily load routes and code split with webpack
 const LazyCounterPage = React.lazy(() =>
@@ -40,6 +41,7 @@ export default function Routes() {
         <Route path={routes.ADMIN} component={AdminPage} />
         <Route path={routes.EXAM} component={ExamPage} />
         <Route path={routes.EXAMLIST} component={ExamListPage} />
+        <Route path={routes.SUPERVISE} component={SupervisePage} />
       </Switch>
     </App>
   );

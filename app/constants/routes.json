@@ -8,5 +8,6 @@
   "MYPAGE": "/mypage",
   "ADMIN": "/admin",
   "COUNTER": "/counter",
-  "NOTIFICATION":"/notification"
+  "NOTIFICATION": "/notification",
+  "SUPERVISE": "/supervise"
 }
