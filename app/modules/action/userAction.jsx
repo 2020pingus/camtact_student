@@ -2,6 +2,7 @@
 export const EDIT_USER_INFO = 'user/EDIT_USER_INFO';
 export const EDIT_AVATAR = 'user/EDIT_AVATAR';
 export const REMOVE_AVATAR = 'user/REMOVE_AVATAR';
+export const MOVE_TO_PAGE = 'user/MOVE_TO_PAGE';
 
 // action creators
 export function editUserInfo(userInfo) {
@@ -13,4 +14,8 @@ export function editAvatar(imgUrl) {
 
 export function removeAvatar() {
   return { type: REMOVE_AVATAR };
+}
+
+export function moveToAnotherPage(page) {
+  return { type: MOVE_TO_PAGE, page };
 }

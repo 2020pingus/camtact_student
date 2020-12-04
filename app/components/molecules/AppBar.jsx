@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core';
 import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import { useHistory } from 'react-router';
+import routes from '../../constants/routes.json';
 
 const useStyles = makeStyles((theme) => ({
   appBar: (props) => ({
@@ -54,6 +56,7 @@ const StyledBadge = withStyles((theme) => ({
 
 export default function MyAppBar(props) {
   const classes = useStyles(props);
+  const history = useHistory();
 
   return (
     <AppBar position="absolute" className={classes.appBar} elevation={1}>
@@ -65,7 +68,11 @@ export default function MyAppBar(props) {
           color="inherit"
           noWrap
         />
-        <IconButton className={classes.notificationButton} color="primary">
+        <IconButton
+          className={classes.notificationButton}
+          color="primary"
+          onClick={() => history.push(routes.NOTIFICATION)}
+        >
           <StyledBadge badgeContent={5} color="error">
             <NotificationsNoneRoundedIcon
               className={classes.notificationIcon}

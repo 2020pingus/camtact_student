@@ -16,6 +16,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import routes from '../../constants/routes.json';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const useStyles = makeStyles((theme) => ({
   card: {

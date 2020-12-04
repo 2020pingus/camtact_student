@@ -1,5 +1,6 @@
 import { Avatar, Box, makeStyles, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import avatar from '../../../resources/avatar_example.jpg';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,9 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DrawerAvatar() {
   const classes = useStyles();
-  const [avatarImage, setAvatarImage] = useState(avatar);
-  const [username, setUsername] = useState('정승욱');
-  const [role, setRole] = useState('응시자');
+  const { username, role, avatarImage } = useSelector((state) => state.user);
 
   return (
     <>
@@ -41,7 +40,7 @@ export default function DrawerAvatar() {
         flexDirection="column"
         justifyContent="center"
       >
-        <Avatar alt="" src={avatarImage} className={classes.avatarImg} />
+        <Avatar alt="" src={avatar} className={classes.avatarImg} />
         <Typography variant="h4" display="block" className={classes.username}>
           {username}
         </Typography>

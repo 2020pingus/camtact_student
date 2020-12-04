@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
 import {
@@ -8,6 +8,10 @@ import {
   ListItemText,
   makeStyles,
 } from '@material-ui/core';
+import { useHistory } from 'react-router';
+import routes from '../../constants/routes.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { moveToAnotherPage } from '../../modules/action/userAction';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -25,8 +29,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const EXAM_LIST = 0;
+const MY_PAGE = 1;
+const CREATE_EXAM = 2;
+
 export default function DrawerList() {
   const classes = useStyles();
+  const { currentPage } = useSelector((state) => state.user);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const moveToExamListPage = () => {
+    dispatch(moveToAnotherPage(EXAM_LIST));
+    history.push(routes.EXAM_LIST);
+  };
+
+  const moveToMyPage = () => {
+    dispatch(moveToAnotherPage(MY_PAGE));
+    history.push(routes.MY_PAGE);
+  };
+
+  // const moveToCreateExamPage = () => {
+  //   dispatch(moveToAnotherPage(CREATE_EXAM));
+  //   history.push(routes.CREATE_EXAM);
+  // };
 
   return (
     <>
@@ -34,25 +60,38 @@ export default function DrawerList() {
         <ListItem
           button
           className={classes.listItem}
-          style={{ color: '#8D93A5' }}
+          style={{
+            color: `${currentPage === EXAM_LIST ? 'white' : '#8D93A5'}`,
+          }}
+          onClick={moveToExamListPage}
         >
           <ListItemIcon>
             <DashboardRoundedIcon
-              viewBox="2 2 23 23"
+              viewBox="2 0 23 23"
               className={classes.listIcon}
               style={{
-                color: '#8D93A5',
+                color: `${currentPage === EXAM_LIST ? 'white' : '#8D93A5'}`,
               }}
             />
           </ListItemIcon>
           <ListItemText primary="시험 목록" style={{ marginLeft: -3 }} />
         </ListItem>
-        <ListItem button className={classes.listItem} style={{ marginTop: 4 }}>
+        <ListItem
+          button
+          className={classes.listItem}
+          style={{
+            marginTop: 4,
+            color: `${currentPage === MY_PAGE ? 'white' : '#8D93A5'}`,
+          }}
+          onClick={moveToMyPage}
+        >
           <ListItemIcon>
             <PersonRoundedIcon
-              viewBox="2 2 23 23"
+              viewBox="2 0 23 23"
               className={classes.listIcon}
-              style={{ color: 'white' }}
+              style={{
+                color: `${currentPage === MY_PAGE ? 'white' : '#8D93A5'}`,
+              }}
             />
           </ListItemIcon>
           <ListItemText primary="마이 페이지" style={{ marginLeft: -3 }} />
