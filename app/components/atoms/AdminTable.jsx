@@ -10,6 +10,7 @@ import {
   TableRow,
   Checkbox,
   Divider,
+  TableFooter,
 } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -49,10 +50,22 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 18,
     fontWeight: 400,
   },
-  pagination: {
-    margin: theme.spacing(2, 0, 2, 0),
+  caption: {
     position: 'fixed',
     bottom: 50,
+    captionSide: 'bottom',
+    width: 1144,
+    marginLeft: theme.spacing(-1.5),
+    marginBottom: theme.spacing(-1),
+  },
+  divider: {
+    marginBottom: theme.spacing(1.4),
+  },
+  pagination: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 0,
   },
 }));
 
@@ -120,23 +133,13 @@ export default function AdminTable() {
               </TableRow>
             ))}
           </TableBody>
-          <caption
-            style={{
-              position: 'fixed',
-              bottom: 50,
-              captionSide: 'bottom',
-            }}
-          >
-            <Divider />
+          <caption className={classes.caption}>
+            <Divider className={classes.divider} />
             <Pagination
+              className={classes.pagination}
               count={10}
               shape="rounded"
               color="primary"
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
             />
           </caption>
         </Table>
