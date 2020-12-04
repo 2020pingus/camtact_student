@@ -17,8 +17,61 @@ import {
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import React from 'react';
-import ExamList from './ExamList';
 import PropTypes from 'prop-types';
+import ExamList from './ExamList';
+
+function createData(id, name, professor, time, state) {
+  return { id, name, professor, time, state };
+}
+
+const ONGOING = 0;
+const ALLOWED = 1;
+const WAITING_ALLWOWED = 2;
+const END = 3;
+
+const rowsStart = [
+  createData(
+    0,
+    '운영체제',
+    '양승민 교수님',
+    '2020년 12월 4일 12시 ~ 13시',
+    ONGOING
+  ),
+  createData(
+    1,
+    '컴퓨터그래픽',
+    '김동호 교수님',
+    '2020년 12월 7일 12시',
+    ONGOING
+  ),
+];
+
+const rowsExpecting = [
+  createData(
+    2,
+    '컴퓨터그래픽스',
+    '김동호 교수님',
+    '2020년 12월 7일 12시 ~ 13시',
+    ALLOWED
+  ),
+  createData(
+    3,
+    '캡스톤',
+    '이수원 교수님',
+    '2020년 12월 10일 12시 ~ 13시',
+    WAITING_ALLWOWED
+  ),
+];
+
+const rowsEnd = [
+  createData(
+    4,
+    '프레젠테이션테크닉디자인',
+    '유명환 교수님',
+    '2020년 12월 1일 12시',
+    END
+  ),
+];
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
@@ -154,7 +207,6 @@ export default function MenuBar(props) {
           <Tab className={classes.tab} label="종료된 시험" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-
       <Box className={classes.buttons}>
         <Button className={classes.sortButton} variant="contained">
           날짜순
@@ -164,16 +216,48 @@ export default function MenuBar(props) {
           시험 등록
         </Button>
       </Box>
-
-      <TabPanel value={value} index={0}>
-        <ExamList index={0} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <ExamList index={1} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <ExamList index={2} />
-      </TabPanel>
+      {rowsStart.map((row) => (
+        <>
+          <TabPanel value={value} index={0}>
+            <ExamList
+              index={0}
+              key={row.id}
+              name={row.name}
+              professor={row.professor}
+              time={row.time}
+              state={row.state}
+            />
+          </TabPanel>
+        </>
+      ))}
+      {rowsExpecting.map((row) => (
+        <>
+          <TabPanel value={value} index={1}>
+            <ExamList
+              key={row.id}
+              index={1}
+              name={row.name}
+              professor={row.professor}
+              time={row.time}
+              state={row.state}
+            />
+          </TabPanel>
+        </>
+      ))}
+      {rowsEnd.map((row) => (
+        <>
+          <TabPanel value={value} index={2}>
+            <ExamList
+              key={row.id}
+              index={2}
+              name={row.name}
+              professor={row.professor}
+              time={row.time}
+              state={row.state}
+            />
+          </TabPanel>
+        </>
+      ))}
     </div>
   );
 }
