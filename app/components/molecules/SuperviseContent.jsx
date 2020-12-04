@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: 518,
     height: 218,
-    margin: theme.spacing(2.8, 5.6, 0, 4.8),
+    margin: theme.spacing(2.9, 5.6, 0, 4.8),
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
@@ -64,14 +64,28 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
   },
   footer: {
+    width: 1144,
+    height: 46.5,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 100,
   },
-  divider: { border: 5, backgroundColor: '#E4E7EB', width: 1144, height: 5 },
+  divider: {
+    border: 1,
+    backgroundColor: '#E4E7EB',
+    width: 1144,
+    marginTop: theme.spacing(-2.3),
+    marginLeft: theme.spacing(6.8),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   pagination: {
-    paddingBottom: 10,
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(-2),
+    paddingBottom: 0,
   },
 }));
 
