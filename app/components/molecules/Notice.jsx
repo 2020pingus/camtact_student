@@ -54,12 +54,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
     marginLeft: 16,
   },
-  noticeBox: {
-    width: 472,
-    height: 42,
-    marginTop: 20,
-    marginBottom: 20,
-    marginLeft: 16,
+  divider: {
+    backgroundColor: '#E4E7EB',
   },
   typoPrimary: {
     color: theme.palette.primary.main,
@@ -140,7 +136,7 @@ export default function Notice(props) {
                   }
                 ></ListItemText>
               </ListItem>
-              <Divider />
+              <Divider className={classes.divider} />
             </>
           ))}
         </List>
