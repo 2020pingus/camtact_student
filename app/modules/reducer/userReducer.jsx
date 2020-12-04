@@ -19,5 +19,5 @@ export const userReducer = createReducer(USER_INITIAL_STATE, {
   [EDIT_AVATAR]: (state, action) => {
     console.log(state, action);
   },
-  [REMOVE_AVATAR]: (state, action) => console.log(state, action),
+  [REMOVE_AVATAR]: (action) => console.log(action),
 });

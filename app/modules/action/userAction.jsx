@@ -11,6 +11,6 @@ export function editAvatar(imgUrl) {
   return { type: EDIT_AVATAR, imgUrl };
 }
 
-export function removeAvatar({}) {
+export function removeAvatar() {
   return { type: REMOVE_AVATAR };
 }
