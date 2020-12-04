@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpPage() {
+export default function LoginPage() {
   const classes = useStyles();
   return (
     <Box

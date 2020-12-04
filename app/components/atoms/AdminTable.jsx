@@ -140,6 +140,8 @@ export default function AdminTable() {
               count={10}
               shape="rounded"
               color="primary"
+              hidePrevButton
+              hideNextButton
             />
           </caption>
         </Table>

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Supervise({ history }) {
+export default function Supervise() {
   const classes = useStyles();
   const windowSize = useWindowSize();
 
@@ -27,7 +27,6 @@ export default function Supervise({ history }) {
       <SuperviseDrawer
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}
-        history={history}
       />
       <SuperviseContent
         appBarHeight={APP_BAR_HEIGHT}

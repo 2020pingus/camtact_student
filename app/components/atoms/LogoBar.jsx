@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, makeStyles } from '@material-ui/core';
 import logo from '../../../resources/camtact_logo.png';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   logoBar: (logoBarHeight) => ({
@@ -15,8 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LogoBar({ logoBarHeight, history }) {
+export default function LogoBar({ logoBarHeight }) {
   const classes = useStyles(logoBarHeight);
+  const history = useHistory();
+
   return (
     <>
       <Box className={classes.logoBar}>
@@ -24,7 +27,7 @@ export default function LogoBar({ logoBarHeight, history }) {
           src={logo}
           alt=""
           className={classes.logoImg}
-          onClick={() => history.goBack()}
+          onClick={() => history.push('/')}
         />
       </Box>
     </>

@@ -24,7 +24,11 @@ export default function Exam({ history }) {
         drawerWidth={DRAWER_WIDTH}
         windowSize={windowSize}
       />
-      <ExamDrawer appBarHeight={APP_BAR_HEIGHT} drawerWidth={DRAWER_WIDTH} />
+      <ExamDrawer
+        appBarHeight={APP_BAR_HEIGHT}
+        drawerWidth={DRAWER_WIDTH}
+        history={history}
+      />
       <ExamContent
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}

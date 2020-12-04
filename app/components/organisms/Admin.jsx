@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Admin({ history }) {
+export default function Admin() {
   const classes = useStyles();
   const windowSize = useWindowSize();
 
@@ -24,11 +24,7 @@ export default function Admin({ history }) {
         drawerWidth={DRAWER_WIDTH}
         windowSize={windowSize}
       />
-      <MyDrawer
-        appBarHeight={APP_BAR_HEIGHT}
-        drawerWidth={DRAWER_WIDTH}
-        history={history}
-      />
+      <MyDrawer appBarHeight={APP_BAR_HEIGHT} drawerWidth={DRAWER_WIDTH} />
       <AdminContent
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}

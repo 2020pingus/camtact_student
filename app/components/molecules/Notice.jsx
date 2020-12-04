@@ -16,6 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Pagination from '@material-ui/lab/Pagination';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
@@ -81,13 +82,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Notice(props) {
   const classes = useStyles(props);
+  const noticeList = useSelector((state) => state.user.noticeList);
   const [page, setPage] = React.useState(1);
+
   const handleChange = (event, value) => {
     setPage(value);
   };
+
   return (
     <div className={classes.content}>
       <Card className={classes.card}>
+        {/* Notice Header */}
         <div className={classes.header}>
           <Typography variant="h1" color="primary" style={{ paddingTop: 24 }}>
             전체 알림
@@ -101,6 +106,8 @@ export default function Notice(props) {
           </Typography>
         </div>
         <Divider />
+
+        {/* Notice Content */}
         <List className={classes.allNoticeBox}>
           {noticeList.map((notice, index) => (
             <>
@@ -137,6 +144,8 @@ export default function Notice(props) {
             </>
           ))}
         </List>
+
+        {/* Notice Pagination */}
         <div className={classes.pagination}>
           <Pagination
             color="primary"
@@ -152,37 +161,3 @@ export default function Notice(props) {
     </div>
   );
 }
-
-const noticeList = [
-  { status: 0, title: '운영체제 중간고사', content: '응시 승인을 받았습니다.' },
-  {
-    status: 0,
-    title: '캡스톤 디자인 종합 프로젝트 1 중간고사',
-    content: '응시 승인을 받았습니다.',
-  },
-  {
-    status: 0,
-    title: '컴퓨터 그래픽스 중간고사',
-    content: '응시 승인을 받았습니다.',
-  },
-  {
-    status: 1,
-    title: '미래 융합 기술 세미나 중간고사',
-    content: '응시 거부를 받았습니다.',
-  },
-  {
-    status: 2,
-    title: '데이터베이스 응용 중간고사',
-    content: '시험 점수가 발표되었습니다.',
-  },
-  {
-    status: 0,
-    title: '데이터베이스 응용 중간고사',
-    content: '응시 승인을 받았습니다.',
-  },
-  {
-    status: 2,
-    title: '시스템 프로그래밍 기말고사',
-    content: '시험 점수가 발표되었습니다.',
-  },
-];

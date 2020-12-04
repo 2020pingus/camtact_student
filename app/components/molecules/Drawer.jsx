@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-function MyDrawer({ appBarHeight, drawerWidth, history }) {
+function MyDrawer({ appBarHeight, drawerWidth }) {
   const classes = useStyles(drawerWidth);
 
   return (
@@ -26,7 +26,7 @@ function MyDrawer({ appBarHeight, drawerWidth, history }) {
       anchor="left"
       color="primary"
     >
-      <LogoBar logoBarHeight={appBarHeight} history={history} />
+      <LogoBar logoBarHeight={appBarHeight} />
       <Divider variant="middle" style={{ backgroundColor: '#353F5F' }} />
       <DrawerAvatar />
       <Divider variant="middle" style={{ backgroundColor: '#E4E7EB' }} />

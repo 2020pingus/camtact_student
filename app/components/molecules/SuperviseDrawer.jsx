@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SuperviseDrawer({ appBarHeight, drawerWidth, history }, props) {
+function SuperviseDrawer({ appBarHeight, drawerWidth }, props) {
   const classes = useStyles(drawerWidth);
 
   return (
@@ -46,7 +46,7 @@ function SuperviseDrawer({ appBarHeight, drawerWidth, history }, props) {
       anchor="left"
       color="primary"
     >
-      <LogoBar logoBarHeight={appBarHeight} history={history} />
+      <LogoBar logoBarHeight={appBarHeight} />
       <Divider variant="middle" style={{ backgroundColor: '#353F5F' }} />
       <SuperviseDrawerInfo />
       <Divider variant="middle" style={{ backgroundColor: '#E4E7EB' }} />
