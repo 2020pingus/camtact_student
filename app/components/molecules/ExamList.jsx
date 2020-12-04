@@ -5,15 +5,7 @@ import ExamCard from './ExamCard';
 export default function ExamList(props) {
   const index = props.index;
   const state = props.state;
-  const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <>
       {index === 0 && (

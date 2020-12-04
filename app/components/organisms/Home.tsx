@@ -23,6 +23,8 @@ export default function Home(): JSX.Element {
         <br />
         <Link to={routes.ADMIN}>to Admin</Link>
         <br />
+        <Link to={routes.SUPERVISE}>to Supervise</Link>
+        <br />
         <Link to={routes.FRAME}>to Frame</Link>
       </div>
     </>

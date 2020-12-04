@@ -15,23 +15,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ExamCardFooter() {
+export default function ExamCardFooter(props) {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       <Divider className={classes.divider} />
       <div className={classes.footer}>
-        <CardButton state="exam" />
+        <CardButton
+          type="exam"
+          name={props.name}
+          professor={props.professor}
+          time={props.time}
+          state={props.state}
+        />
         {/* <CardButton state="supervise" mode="start" /> */}
         {/* <CardButton state="supervise" mode="notStart" /> */}
-
-        {/* <ExamDialog
-      open={open}
-      onClose={handleClose}
-      subject="운영체제"
-      date="2020년 12월 20일 12시 30분 ~ 13시 30분"
-      remainingTime="시험 종료 0시간 50분 20초 남음"
-    /> */}
       </div>
     </>
   );
