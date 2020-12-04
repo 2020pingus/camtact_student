@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const APP_BAR_HEIGHT = 62;
 const DRAWER_WIDTH = 237;
 
-export default function Frame() {
+export default function ExamLists({ history }) {
   const classes = useStyles();
   const windowSize = useWindowSize();
 
@@ -28,7 +28,11 @@ export default function Frame() {
         drawerWidth={DRAWER_WIDTH}
         windowSize={windowSize}
       />
-      <MyDrawer appBarHeight={APP_BAR_HEIGHT} drawerWidth={DRAWER_WIDTH} />
+      <MyDrawer
+        appBarHeight={APP_BAR_HEIGHT}
+        drawerWidth={DRAWER_WIDTH}
+        history={history}
+      />
       <MenuBar
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}

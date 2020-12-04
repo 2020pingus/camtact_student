@@ -1,6 +1,6 @@
 import React from 'react';
 import ExamLists from '../organisms/ExamLists';
 
-export default function FramePage() {
-  return <ExamLists />;
+export default function ExamListPage({ history }) {
+  return <ExamLists history={history} />;
 }

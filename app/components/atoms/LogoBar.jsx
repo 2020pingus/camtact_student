@@ -3,8 +3,8 @@ import { Box, makeStyles } from '@material-ui/core';
 import logo from '../../../resources/camtact_logo.png';
 
 const useStyles = makeStyles((theme) => ({
-  logoBar: (props) => ({
-    height: props.logoBarHeight,
+  logoBar: (logoBarHeight) => ({
+    height: logoBarHeight,
   }),
   logoImg: {
     width: 48,
@@ -15,12 +15,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LogoBar(props) {
-  const classes = useStyles(props);
+export default function LogoBar({ logoBarHeight, history }) {
+  const classes = useStyles(logoBarHeight);
   return (
     <>
       <Box className={classes.logoBar}>
-        <img src={logo} alt="" className={classes.logoImg} />
+        <img
+          src={logo}
+          alt=""
+          className={classes.logoImg}
+          onClick={() => history.goBack()}
+        />
       </Box>
     </>
   );

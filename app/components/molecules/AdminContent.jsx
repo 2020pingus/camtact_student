@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-export default function Content(props) {
+export default function AdminContent(props) {
   const classes = useStyles(props);
   return (
     <div className={classes.content}>
