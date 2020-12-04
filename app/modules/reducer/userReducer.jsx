@@ -4,7 +4,7 @@ import {
   REMOVE_AVATAR,
 } from '../action/userAction';
 import createReducer from '../createReducer';
-import avatarImage from '../../resources/avatar_example.jpg';
+import avatarImage from '../../../resources/avatar_example.jpg';
 
 const USER_INITIAL_STATE = {
   username: '정승욱',
@@ -14,8 +14,10 @@ const USER_INITIAL_STATE = {
   avatar: avatarImage,
 };
 
-export default useReducer = createReducer(USER_INITIAL_STATE, {
+export const userReducer = createReducer(USER_INITIAL_STATE, {
   [EDIT_USER_INFO]: (state, action) => console.log(state, action),
-  [EDIT_AVATAR]: (state, action) => console.log(state, action),
+  [EDIT_AVATAR]: (state, action) => {
+    console.log(state, action);
+  },
   [REMOVE_AVATAR]: (state, action) => console.log(state, action),
 });

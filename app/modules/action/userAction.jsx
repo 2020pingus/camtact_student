@@ -7,8 +7,8 @@ export const REMOVE_AVATAR = 'user/REMOVE_AVATAR';
 export function editUserInfo(userInfo) {
   return { type: EDIT_USER_INFO, userInfo };
 }
-export function editAvatar({ img }) {
-  return { type: EDIT_AVATAR, img };
+export function editAvatar(imgUrl) {
+  return { type: EDIT_AVATAR, imgUrl };
 }
 
 export function removeAvatar({}) {

@@ -1,12 +1,18 @@
 import avatarImage from '../../resources/avatar_example.jpg';
 
-const user = {
+const user = [{
   username: '정승욱',
   email: 'example123@naver.com',
   role: '응시자',
   organization: '숭실대학교 소프트웨어학부',
   avatar: avatarImage,
-};
+}, {
+  username: "조혜은",
+  email: "example1234@naver.com",
+  role: "감독자",
+  organization: "숭실대학교 소프트웨어학부",
+  avatar: null;
+}];
 
 // function makeDataGenerator(items) {
 //   let itemIndex = 0;

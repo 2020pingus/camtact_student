@@ -76,8 +76,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProblemCard(props) {
-  const classes = useStyles(props);
+export default function ProblemCard() {
+  const classes = useStyles();
   const [value, setValue] = React.useState('');
 
   const handleChange = (event) => {
@@ -147,12 +147,18 @@ export default function ProblemCard(props) {
   );
 }
 
+const SINGLE_CHOICE = 0;
+const MULTIPLE_CHOICE = 1;
+const SHORT_ANSWER = 2;
+const LONG_ANSWER = 3;
+
 const PROBLEM_INFO = {
+  type: SINGLE_CHOICE,
   title: '객관식 6',
   score: 5,
   question: '다음 글에서 틀린 단어가 포함된 구절은?',
   questionContent:
-    '   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation uzzalco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation uzzalco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   choices: [
     'Lorem ipsum dolor sit amet',
     'Ut enim ad minim veniam, quis nostrud exercitation uzzalco',

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Frame() {
+export default function Exam({ match }) {
   const classes = useStyles();
   const windowSize = useWindowSize();
 
