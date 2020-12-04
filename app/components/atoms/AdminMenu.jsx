@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginLeft: theme.spacing(2.8),
     marginBottom: theme.spacing(2),
+    width: 1177,
   },
   filterButton: {
     backgroundColor: '#FFFFFF',
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
     width: 298,
     height: 36,
-    marginRight: 570,
+    marginRight: theme.spacing(57),
     boxShadow:
       '0px 3px 1px rgba(63, 63, 68, 0.05), 0px 1px 3px rgba(63, 63, 68, 0.15)',
     '&:hover': {
