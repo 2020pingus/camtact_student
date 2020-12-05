@@ -21,7 +21,7 @@ export default function SignUpPage() {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      style={{ height: '100%' }}
+      style={{ height: '100%', backgroundColor: '#F6F6F6' }}
     >
       <Card className={classes.card} elevation={1}>
         <SignUp />
