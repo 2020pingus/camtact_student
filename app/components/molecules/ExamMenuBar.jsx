@@ -218,41 +218,14 @@ export default function ExamMenuBar(props) {
       </Box>
 
       <TabPanel value={value} index={0}>
-        {rowsStart.map((row) => (
-          <ExamList
-            key={row.id}
-            index={0}
-            name={row.name}
-            professor={row.professor}
-            time={row.time}
-            state={row.state}
-          />
-        ))}
+        <ExamList data={rowsStart} />
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        {rowsExpecting.map((row) => (
-          <ExamList
-            key={row.id}
-            index={1}
-            name={row.name}
-            professor={row.professor}
-            time={row.time}
-            state={row.state}
-          />
-        ))}
+        <ExamList data={rowsExpecting} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        {rowsEnd.map((row) => (
-          <ExamList
-            key={row.id}
-            index={2}
-            name={row.name}
-            professor={row.professor}
-            time={row.time}
-            state={row.state}
-          />
-        ))}
+        <ExamList data={rowsEnd} />
       </TabPanel>
     </div>
   );

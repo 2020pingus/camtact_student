@@ -1,8 +1,12 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ExamCard from './ExamCard';
 
 export default function ExamList(props) {
+  const { data } = props;
+  console.log(props);
   // const [open, setOpen] = useState(false);
 
   // const handleClickOpen = () => {
@@ -14,7 +18,16 @@ export default function ExamList(props) {
   // };
   return (
     <>
-      {props.index === 0 && (
+      {data.map((item) => (
+        <ExamCard
+          key={item.id}
+          name={item.name}
+          professor={item.professor}
+          time={item.time}
+          state={item.state}
+        />
+      ))}
+      {/* {props.index === 0 && (
         <ExamCard
           key={props.id}
           index={props.index}
@@ -25,7 +38,7 @@ export default function ExamList(props) {
         />
       )}
       {props.index === 1 &&
-        (state === 2 ? (
+        (props.state === 2 ? (
           <>
             <ExamCard
               key={props.id}
@@ -57,7 +70,7 @@ export default function ExamList(props) {
           time={props.time}
           state={props.state}
         />
-      )}
+      )} */}
     </>
   );
 }

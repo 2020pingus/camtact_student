@@ -4,7 +4,7 @@ import MyAppBar from '../molecules/AppBar';
 import MyDrawer from '../molecules/Drawer';
 import useWindowSize from '../../hooks/useWindowSize';
 import Content from '../molecules/Content';
-import MenuBar from '../molecules/MenuBar';
+import ExamMenuBar from '../molecules/ExamMenuBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +29,7 @@ export default function ExamLists() {
         windowSize={windowSize}
       />
       <MyDrawer appBarHeight={APP_BAR_HEIGHT} drawerWidth={DRAWER_WIDTH} />
-      <MenuBar
+      <ExamMenuBar
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}
         windowSize={windowSize}
