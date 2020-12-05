@@ -29,36 +29,28 @@ const useStyles = makeStyles(() => ({
 
 export default function ExamCard(props) {
   const classes = useStyles(props);
-  // const [open, setOpen] = useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const { state, name, professor, time } = props;
   return (
     <>
-      {props.state === 3 ? (
+      {state === 3 ? (
         <Card className={classes.cardEnded}>
-          <ExamCardHeader state={props.state} name={props.name} />
+          <ExamCardHeader state={state} name={name} />
           <ExamCardContent
-            state={props.state}
-            name={props.name}
-            professor={props.professor}
-            time={props.time}
+            state={state}
+            name={name}
+            professor={professor}
+            time={time}
           />
           <ExamCardFooter style={{ marginTop: -30 }} />
         </Card>
       ) : (
         <Card className={classes.card}>
-          <ExamCardHeader state={props.state} name={props.name} />
+          <ExamCardHeader state={state} name={name} />
           <ExamCardContent
-            state={props.state}
-            name={props.name}
-            professor={props.professor}
-            time={props.time}
+            state={state}
+            name={name}
+            professor={professor}
+            time={time}
           />
           <ExamCardFooter />
         </Card>
