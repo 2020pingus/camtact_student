@@ -6,7 +6,7 @@ import ExamCardContent from '../atoms/ExamCardContent';
 import ExamCardFooter from '../atoms/ExamCardFooter';
 import ExamDialog from '../atoms/ExamDialog';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   box: {
     display: 'flex',
     flexDirection: 'row',

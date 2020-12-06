@@ -145,6 +145,12 @@ const useStyles = makeStyles((theme) => ({
       '0px 1px 0px rgba(63, 63, 68, 0.14), 0px 3px 4px rgba(63, 63, 68, 0.12), 0px 1px 5px rgba(63, 63, 68, 0.2)',
     borderRadius: 7,
   },
+  tabPanel: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 }));
 
 function TabPanel(props) {
@@ -217,14 +223,14 @@ export default function ExamMenuBar(props) {
         </Button>
       </Box>
 
-      <TabPanel value={value} index={0}>
+      <TabPanel className={classes.tabPanel} value={value} index={0}>
         <ExamList data={rowsStart} />
       </TabPanel>
 
-      <TabPanel value={value} index={1}>
+      <TabPanel className={classes.tabPanel} value={value} index={1}>
         <ExamList data={rowsExpecting} />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel className={classes.tabPanel} value={value} index={2}>
         <ExamList data={rowsEnd} />
       </TabPanel>
     </div>
