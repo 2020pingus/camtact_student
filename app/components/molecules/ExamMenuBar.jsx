@@ -20,8 +20,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ExamList from './ExamList';
 
-function createData(id, name, professor, time, state) {
-  return { id, name, professor, time, state };
+function createData(id, name, professor, time, state, examiners) {
+  return { id, name, professor, time, state, examiners };
 }
 
 const ONGOING = 0;
@@ -35,14 +35,16 @@ const rowsStart = [
     '운영체제',
     '양승민 교수님',
     '2020년 12월 4일 12시 ~ 13시',
-    ONGOING
+    ONGOING,
+    '숭실대학교 소프트웨어학부생'
   ),
   createData(
     1,
     '컴퓨터그래픽',
     '김동호 교수님',
     '2020년 12월 7일 12시',
-    ONGOING
+    ONGOING,
+    '숭실대학교 컴퓨터학부생'
   ),
 ];
 
@@ -52,14 +54,16 @@ const rowsExpecting = [
     '컴퓨터그래픽스',
     '김동호 교수님',
     '2020년 12월 7일 12시 ~ 13시',
-    ALLOWED
+    ALLOWED,
+    '숭실대학교 컴퓨터학부생'
   ),
   createData(
     3,
     '캡스톤',
     '이수원 교수님',
     '2020년 12월 10일 12시 ~ 13시',
-    WAITING_ALLWOWED
+    WAITING_ALLWOWED,
+    '숭실대학교 소프트웨어학부생'
   ),
 ];
 
@@ -69,7 +73,8 @@ const rowsEnd = [
     '프레젠테이션테크닉디자인',
     '유명환 교수님',
     '2020년 12월 1일 12시',
-    END
+    END,
+    '숭실대학교 소프트웨어학부생'
   ),
 ];
 

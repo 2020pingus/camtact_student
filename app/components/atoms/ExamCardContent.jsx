@@ -36,10 +36,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function ExamCardContents(props) {
   const classes = useStyles();
-  const state = props.state;
   return (
     <>
-      {state === 0 && (
+      {props.state === 0 && (
         <CardContent className={classes.cardContent}>
           <Typography className={classes.examInfo}>
             <PersonIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
@@ -55,7 +54,7 @@ export default function ExamCardContents(props) {
           </Typography>
         </CardContent>
       )}
-      {state === 1 && (
+      {props.state === 1 && (
         <CardContent className={classes.cardContent}>
           <Typography className={classes.examInfo}>
             <PersonIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
@@ -71,7 +70,7 @@ export default function ExamCardContents(props) {
           </Typography>
         </CardContent>
       )}
-      {state === 2 && (
+      {props.state === 2 && (
         <CardContent className={classes.cardContent}>
           <Typography className={classes.examInfo}>
             <PersonIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
@@ -87,7 +86,7 @@ export default function ExamCardContents(props) {
           </Typography>
         </CardContent>
       )}
-      {state === 3 && (
+      {props.state === 3 && (
         <CardContent
           className={classes.cardEndedContent}
           style={{ marginBottom: -30 }}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, Divider } from '@material-ui/core';
-import CardButton from '../molecules/CardButton';
+import ExamCardButton from '../molecules/ExamCardButton';
 
 const useStyles = makeStyles(() => ({
   footer: {
@@ -14,23 +14,23 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ExamCardFooter() {
+export default function ExamCardFooter(props) {
   const classes = useStyles();
+  const { state, name, professor, time, examiners } = props;
   return (
     <>
       <Divider className={classes.divider} />
       <div className={classes.footer}>
-        <CardButton state="exam" />
-        {/* <CardButton state="supervise" mode="start" /> */}
-        {/* <CardButton state="supervise" mode="notStart" /> */}
-
-        {/* <ExamDialog
-      open={open}
-      onClose={handleClose}
-      subject="운영체제"
-      date="2020년 12월 20일 12시 30분 ~ 13시 30분"
-      remainingTime="시험 종료 0시간 50분 20초 남음"
-    /> */}
+        <ExamCardButton
+          type="exam"
+          state={state}
+          name={name}
+          professor={professor}
+          time={time}
+          examiners={examiners}
+        />
+        {/* <CardButton type="supervise" mode="start" /> */}
+        {/* <CardButton type="supervise" mode="notStart" /> */}
       </div>
     </>
   );

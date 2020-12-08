@@ -13,6 +13,7 @@ export default function ExamList(props) {
           professor={item.professor}
           time={item.time}
           state={item.state}
+          examiners={item.examiners}
         />
       ))}
     </>
