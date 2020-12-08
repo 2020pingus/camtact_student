@@ -9,5 +9,6 @@
   "ADMIN": "/admin",
   "COUNTER": "/counter",
   "NOTIFICATION": "/notification",
-  "SUPERVISE": "/supervise"
+  "SUPERVISE": "/supervise",
+  "EXAMCREATE" :"/examcreate"
 }
