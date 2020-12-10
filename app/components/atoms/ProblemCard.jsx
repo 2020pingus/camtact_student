@@ -12,6 +12,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { moveToProblem } from '../../modules/action/examAction';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -76,12 +78,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProblemCard() {
+export default function ProblemCard({ problem, currentProblem, count }) {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setValue(event.target.value);
+  };
+
+  const handleBeforePage = () => {
+    dispatch(moveToProblem(currentProblem - 1));
+  };
+
+  const handleNextPage = () => {
+    dispatch(moveToProblem(currentProblem + 1));
   };
 
   return (
@@ -94,7 +105,7 @@ export default function ProblemCard() {
             color="primary"
             style={{ display: 'inline', paddingTop: 6.5 }}
           >
-            {`${PROBLEM_INFO.title} (${PROBLEM_INFO.score}점)`}
+            {`${problem.title} (${problem.score}점)`}
           </Typography>
           <Checkbox color="secondary" style={{ transform: 'scale(1.3)' }} />
         </Box>
@@ -105,16 +116,16 @@ export default function ProblemCard() {
       <div className={classes.content}>
         <Box className={classes.question}>
           <Typography variant="h2" color="primary">
-            {PROBLEM_INFO.question}
+            {problem.question}
           </Typography>
           <p style={{ fontSize: 20, color: '#253053', paddingTop: 4 }}>
-            &nbsp;&nbsp;&nbsp;&nbsp;{PROBLEM_INFO.questionContent}
+            &nbsp;&nbsp;&nbsp;&nbsp;{problem.questionContent}
           </p>
         </Box>
         <Box className={classes.choices}>
           <FormControl component="fieldset">
             <RadioGroup value={value} onChange={handleChange}>
-              {PROBLEM_INFO.choices.map((choice, index) => (
+              {problem.choices.map((choice, index) => (
                 <FormControlLabel
                   value={index.toString()}
                   key={index}
@@ -139,31 +150,22 @@ export default function ProblemCard() {
       {/* Card Footer */}
       <div className={classes.footer}>
         <Box className={classes.moveBox}>
-          <Button className={classes.button}>{'< 이전'}</Button>
-          <Button className={classes.button}>{'다음 >'}</Button>
+          <Button
+            className={classes.button}
+            onClick={handleBeforePage}
+            disabled={currentProblem === 0 ? true : false}
+          >
+            {'< 이전'}
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={handleNextPage}
+            disabled={currentProblem === count - 1 ? true : false}
+          >
+            {'다음 >'}
+          </Button>
         </Box>
       </div>
     </Card>
   );
 }
-
-const SINGLE_CHOICE = 0;
-const MULTIPLE_CHOICE = 1;
-const SHORT_ANSWER = 2;
-const LONG_ANSWER = 3;
-
-const PROBLEM_INFO = {
-  type: SINGLE_CHOICE,
-  title: '객관식 6',
-  score: 5,
-  question: '다음 글에서 틀린 단어가 포함된 구절은?',
-  questionContent:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation uzzalco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  choices: [
-    'Lorem ipsum dolor sit amet',
-    'Ut enim ad minim veniam, quis nostrud exercitation uzzalco',
-    'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    'Excepteur sint occaecat cupidatat non proident',
-    'sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  ],
-};

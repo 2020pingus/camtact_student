@@ -48,24 +48,24 @@ const EXAM_INITIAL_STATE = {
       isSolved: false,
       check: false,
     },
-    {
-      type: SHORT_ANSWER,
-      title: '주관식 1',
-      score: 20,
-      question: '빈칸에 들어갈 알맞은 단어를 쓰시오.',
-      questionContent:
-        'Lorem [            ] dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation uzzalco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      isSolved: false,
-      check: false,
-    },
-    {
-      type: LONG_ANSWER,
-      title: '서술형 1',
-      score: 50,
-      question: 'Lorem ipsum 에 대해 논하시오.',
-      isSolved: false,
-      check: false,
-    },
+    // {
+    //   type: SHORT_ANSWER,
+    //   title: '주관식 1',
+    //   score: 20,
+    //   question: '빈칸에 들어갈 알맞은 단어를 쓰시오.',
+    //   questionContent:
+    //     'Lorem [            ] dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation uzzalco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    //   isSolved: false,
+    //   check: false,
+    // },
+    // {
+    //   type: LONG_ANSWER,
+    //   title: '서술형 1',
+    //   score: 50,
+    //   question: 'Lorem ipsum 에 대해 논하시오.',
+    //   isSolved: false,
+    //   check: false,
+    // },
   ],
 };
 
