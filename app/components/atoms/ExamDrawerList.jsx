@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   List,
   ListItem,
   ListItemText,
   makeStyles,
+  Typography,
 } from '@material-ui/core';
 import { current } from 'immer';
 import '../scroll.css';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { moveToProblem } from '../../modules/action/examAction';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -16,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   list: {
-    color: 'white',
     marginTop: 25,
     padding: 0,
     width: 187,
@@ -28,13 +30,18 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     height: 28,
     marginBottom: 8,
-    fontSize: 16,
     paddingLeft: 0,
+  },
+  typo: {
+    fontSize: 16,
+    fontWeight: 530,
   },
 }));
 
 export default function ExamDrawerList() {
   const classes = useStyles();
+  const { problems, currentProblem } = useSelector((state) => state.exam);
+  const dispatch = useDispatch();
 
   return (
     <div className={classes.box}>
@@ -42,8 +49,25 @@ export default function ExamDrawerList() {
         {problems.map((problem, index) => (
           <ListItem button key={index} className={classes.listItem}>
             <ListItemText
-              primary={problem.title}
+              primary={
+                <Typography
+                  className={classes.typo}
+                  style={
+                    index === currentProblem
+                      ? { color: '#47B881' }
+                      : problem.check
+                      ? { color: '#F2C94C' }
+                      : problem.isSolved
+                      ? { color: 'white' }
+                      : { color: '#9FA4B6' }
+                  }
+                >
+                  {problem.title}
+                </Typography>
+              }
+              key={index}
               className={classes.listItem}
+              onClick={() => dispatch(moveToProblem(index))}
             />
           </ListItem>
         ))}
@@ -51,31 +75,3 @@ export default function ExamDrawerList() {
     </div>
   );
 }
-
-const NOT_SOLVED = 0;
-const SOLVED = 1;
-const CURRENT_PROBLEM = 2;
-const CHECK_PROBLEM = 3;
-
-const problems = [
-  { title: '객관식 1', state: SOLVED },
-  { title: '객관식 2', state: SOLVED },
-  { title: '객관식 3', state: CHECK_PROBLEM },
-  { title: '객관식 4', state: SOLVED },
-  { title: '객관식 5', state: SOLVED },
-  { title: '객관식 6', state: CURRENT_PROBLEM },
-  { title: '객관식 7', state: NOT_SOLVED },
-  { title: '주관식 1', state: NOT_SOLVED },
-  { title: '주관식 2', state: NOT_SOLVED },
-  { title: '주관식 3', state: NOT_SOLVED },
-  { title: '서술형 1', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-  { title: '서술형 2', state: NOT_SOLVED },
-];
