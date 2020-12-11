@@ -71,13 +71,11 @@ const useStyles = makeStyles((theme) => ({
     width: 126,
     height: 36,
     color: '#FFFFFF',
-    backgroundColor: '#253053',
     fontSize: 18,
     fontWeight: 'bold',
     padding:0,
     alignText: 'center',
-    
-  },
+  }
 }));
 
 export default function ExamCreate(props) {
@@ -262,7 +260,7 @@ export default function ExamCreate(props) {
             />
             </FormControl>
             <div className={classes.create}>
-              <Button className={classes.createbutton}>시험 생성</Button>
+              <Button className={classes.createbutton} variant="contained" color="primary">시험 생성</Button>
             </div>
             </div>
       </Card>

@@ -82,7 +82,7 @@ export default function ExamDrawerInfo() {
           {EXAM_INFO.monitorState === CONNECT_SUCCESS ? (
             <Button
               className={classes.button}
-              style={{ width: 94, backgroundColor: '#F2C94C' , color: '#253053' }}
+              style={{ width: 94, backgroundColor: '#F2C94C' , color: '#253053' , fontWeight: 700}}
             >
               정보 수정
             </Button>
@@ -112,7 +112,7 @@ export default function ExamDrawerInfo() {
           ) : (
             <Button
               className={classes.button}
-              style={{ width: 94, backgroundColor: '#47B881', color: 'white' }}
+              style={{ width: 94, backgroundColor: '#47B881', color: 'white', fontWeight: 700 }}
             >
               문제 생성
             </Button>

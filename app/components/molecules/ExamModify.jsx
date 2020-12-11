@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     alignText: 'center',
     
+    
   },
 }));
 
@@ -262,7 +263,7 @@ export default function ExamCreate(props) {
             />
             </FormControl>
             <div className={classes.modify}>
-              <Button className={classes.modifybutton}>정보 수정</Button>
+              <Button className={classes.modifybutton} variant="contained" color="primary">정보 수정</Button>
             </div>
             </div>
       </Card>
