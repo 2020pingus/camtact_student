@@ -11,5 +11,7 @@
   "NOTIFICATION": "/notification",
   "SUPERVISE": "/supervise",
   "SUPERVISE_REALTIME": "/realtime",
-  "EXAMCREATE": "/examcreate"
+  "EXAMCREATE": "/examcreate",
+  "EXAMMODIFICATE": "/exammodify",
+  "EXAMCOMPLETE":"/examcomplete"
 }
