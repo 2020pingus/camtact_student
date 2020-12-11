@@ -8,6 +8,8 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
+import { useHistory } from 'react-router';
+import routes from '../../constants/routes.json';
 
 const useStyles = makeStyles((theme) => ({
   root: (props) => ({
@@ -91,10 +93,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SuperviseContent(props) {
   const classes = useStyles(props);
+  const history = useHistory();
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <div xs={6}>
+        <div xs={12}>
           <Card className={classes.card}>
             <div className={classes.window}>
               <div>
@@ -105,7 +108,12 @@ export default function SuperviseContent(props) {
             <div className={classes.window}>
               <p>화면2</p>
             </div>
-            <Button className={classes.button}>자세히 감독하기</Button>
+            <Button
+              className={classes.button}
+              onClick={() => history.push(routes.SUPERVISE_REALTIME)}
+            >
+              자세히 감독하기
+            </Button>
           </Card>
 
           <Card className={classes.card}>

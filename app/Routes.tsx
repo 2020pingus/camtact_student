@@ -13,6 +13,7 @@ import ExamListPage from './components/templates/ExamListPage';
 import NotificationPage from './components/templates/NotificationPage';
 import MyPage from './components/templates/MyPage';
 import SupervisePage from './components/templates/SupervisePage';
+import SuperviseRealTimePage from './components/templates/SuperviseRealTimePage';
 import ExamCreationPage from './components/templates/ExamCreationPage';
 
 // Lazily load routes and code split with webpack
@@ -43,7 +44,11 @@ export default function Routes() {
         <Route path={routes.EXAM} component={ExamPage} />
         <Route path={routes.EXAMLIST} component={ExamListPage} />
         <Route path={routes.SUPERVISE} component={SupervisePage} />
-        <Route path={routes.EXAMCREATE} component={ExamCreationPage}/>
+        <Route
+          path={routes.SUPERVISE_REALTIME}
+          component={SuperviseRealTimePage}
+        />
+        <Route path={routes.EXAMCREATE} component={ExamCreationPage} />
       </Switch>
     </App>
   );

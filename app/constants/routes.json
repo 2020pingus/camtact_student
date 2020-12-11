@@ -10,5 +10,6 @@
   "COUNTER": "/counter",
   "NOTIFICATION": "/notification",
   "SUPERVISE": "/supervise",
-  "EXAMCREATE" :"/examcreate"
+  "SUPERVISE_REALTIME": "/realtime",
+  "EXAMCREATE": "/examcreate"
 }
