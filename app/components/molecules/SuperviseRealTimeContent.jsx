@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
     width: 1144,
-    height: 78,
+    height: 70,
     borderBottom: '1px solid rgb(228,231,235)',
   },
   headerTopography: {
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     width: 120,
     height: 40,
-    margin: theme.spacing(1.9, 0, 0, 3.2),
+    margin: theme.spacing(1.9, 0, 0, 1.2),
   },
   space: {
     width: 733,

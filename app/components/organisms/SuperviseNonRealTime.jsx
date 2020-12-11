@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import MyAppBar from '../molecules/AppBar';
 import useWindowSize from '../../hooks/useWindowSize';
 import SuperviseDrawer from '../molecules/SuperviseDrawer';
-import SuperviseRealTimeContent from '../molecules/SuperviseRealTimeContent';
+import SuperviseNonRealTimeContent from '../molecules/SuperviseNonRealTimeContent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SuperviseRealTime() {
+export default function SuperviseNonRealTime() {
   const classes = useStyles();
   const windowSize = useWindowSize();
 
@@ -28,7 +28,7 @@ export default function SuperviseRealTime() {
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}
       />
-      <SuperviseRealTimeContent
+      <SuperviseNonRealTimeContent
         appBarHeight={APP_BAR_HEIGHT}
         drawerWidth={DRAWER_WIDTH}
         windowSize={windowSize}

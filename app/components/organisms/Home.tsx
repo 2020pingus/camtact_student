@@ -25,6 +25,10 @@ export default function Home(): JSX.Element {
         <br />
         <Link to={routes.SUPERVISE}>to Supervise</Link>
         <br />
+        <Link to={routes.SUPERVISE_NON_REALTIME}>
+          to Supervise Non Realtime
+        </Link>
+        <br />
         <Link to={routes.FRAME}>to Frame</Link>
         <br />
         <Link to={routes.EXAMCREATE}>to ExamCreate</Link>
