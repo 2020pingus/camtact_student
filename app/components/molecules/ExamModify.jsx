@@ -61,21 +61,24 @@ const useStyles = makeStyles((theme) => ({
     width: 82,
     height: 44,
   },
-  create: {
+  modify: {
     display: 'flex',
     marginTop: 43,
     flexDirection: 'row-reverse',
     alignItems: 'center',
   },
-  createbutton: {
+  modifybutton: {
     width: 126,
     height: 36,
     color: '#FFFFFF',
+    backgroundColor: '#253053',
     fontSize: 18,
     fontWeight: 'bold',
-    padding:0,
+    padding: 0,
     alignText: 'center',
-  }
+    
+    
+  },
 }));
 
 export default function ExamCreate(props) {
@@ -259,8 +262,8 @@ export default function ExamCreate(props) {
               }}
             />
             </FormControl>
-            <div className={classes.create}>
-              <Button className={classes.createbutton} variant="contained" color="primary">시험 생성</Button>
+            <div className={classes.modify}>
+              <Button className={classes.modifybutton} variant="contained" color="primary">정보 수정</Button>
             </div>
             </div>
       </Card>

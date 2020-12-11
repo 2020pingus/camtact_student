@@ -12,5 +12,7 @@
   "SUPERVISE": "/supervise",
   "SUPERVISE_REALTIME": "/realtime",
   "SUPERVISE_NON_REALTIME": "/non_realtime",
-  "EXAMCREATE": "/examcreate"
+  "EXAMCREATE": "/examcreate",
+  "EXAMMODIFICATE": "/exammodify",
+  "EXAMCOMPLETE": "/examcomplete"
 }

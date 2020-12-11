@@ -32,6 +32,10 @@ export default function Home(): JSX.Element {
         <Link to={routes.FRAME}>to Frame</Link>
         <br />
         <Link to={routes.EXAMCREATE}>to ExamCreate</Link>
+        <br />
+        <Link to={routes.EXAMMODIFICATE}>to ExamModify</Link>
+        <br />
+        <Link to={routes.EXAMCOMPLETE}>to ExamComplete</Link>
       </div>
     </>
   );
