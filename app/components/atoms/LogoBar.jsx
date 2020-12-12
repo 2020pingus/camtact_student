@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     left: 12,
     top: 8,
+    cursor: 'pointer',
   },
 }));
 
