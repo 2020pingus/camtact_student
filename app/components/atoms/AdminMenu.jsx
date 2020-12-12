@@ -6,9 +6,7 @@ import AdminTable from './AdminTable';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(2),
-    marginLeft: theme.spacing(2.8),
-    marginBottom: theme.spacing(2),
+    margin: theme.spacing(2, 2.9, 2, 2.8),
     width: 1177,
   },
   filterButton: {
@@ -27,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
     width: 298,
     height: 36,
-    marginRight: theme.spacing(57),
+    marginRight: theme.spacing(70.2),
     boxShadow:
       '0px 3px 1px rgba(63, 63, 68, 0.05), 0px 1px 3px rgba(63, 63, 68, 0.15)',
     '&:hover': {
@@ -59,6 +57,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     width: 140,
     height: 36.1,
+    float: 'right',
+    alignItems: 'flex-end',
   },
 }));
 export default function AdminMenu() {
@@ -90,7 +90,7 @@ export default function AdminMenu() {
               </div>
             </Grid>
             <Grid item ms={6} />
-            <Grid item ms={3}>
+            <Grid item ms={3} style={{ float: 'right' }}>
               <Button variant="contained" className={classes.deleteButton}>
                 응시자 삭제
               </Button>
