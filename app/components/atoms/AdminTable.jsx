@@ -156,7 +156,9 @@ export default function AdminTable() {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const handleChangePage = (event, newPage) => {
+
+  const handleChangeRowPerPage = (event, newPage) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(newPage);
   };
 
@@ -237,11 +239,10 @@ export default function AdminTable() {
             <Pagination
               className={classes.pagination}
               count={parseInt(rows.length / 10 + 1, 10)}
-              onClick={handleChangePage}
+              onChange={handleChangeRowPerPage}
               defaultPage={1}
               shape="rounded"
               color="primary"
-              rowsPerPage={rowsPerPage}
               hidePrevButton
               hideNextButton
             />
