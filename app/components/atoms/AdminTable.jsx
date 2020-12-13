@@ -184,7 +184,7 @@ export default function AdminTable() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
                 <TableRow key={row.id}>
-                  <TableCell>
+                  <TableCell style={{ textAlign: 'center', paddingLeft: 0 }}>
                     <Checkbox color="primary" />
                   </TableCell>
                   <TableCell className={classes.tableCellRow}>
