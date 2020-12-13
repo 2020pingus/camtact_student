@@ -131,11 +131,11 @@ const useStyles = makeStyles((theme) => ({
     bottom: 50,
     captionSide: 'bottom',
     width: 1144,
-    marginLeft: theme.spacing(-1.5),
+    marginLeft: theme.spacing(-2),
     marginBottom: theme.spacing(-1),
   },
   divider: {
-    marginBottom: theme.spacing(1.4),
+    marginBottom: theme.spacing(1.75),
   },
   pagination: {
     display: 'flex',

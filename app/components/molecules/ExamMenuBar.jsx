@@ -14,9 +14,11 @@ import {
   Paper,
   ClickAwayListener,
   MenuList,
+  MenuItem,
+  ButtonGroup,
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ExamList from './ExamList';
 
@@ -187,12 +189,36 @@ function a11yProps(index) {
   };
 }
 
+const options = ['날짜순', '시간순', '이름순'];
 export default function ExamMenuBar(props) {
   const classes = useStyles(props);
   const [value, setValue] = React.useState(0);
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleClick = () => {
+    console.info(`You clicked ${options[selectedIndex]}`);
+  };
+
+  const handleMenuItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setOpen(false);
+  };
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
   };
 
   return (
@@ -219,10 +245,67 @@ export default function ExamMenuBar(props) {
         </Tabs>
       </AppBar>
       <Box className={classes.buttons}>
-        <Button className={classes.sortButton} variant="contained">
+        {/* <Button className={classes.sortButton} variant="contained">
           날짜순
           <ArrowDropDownIcon viewBox="-2 1.5 22 22" />
-        </Button>
+        </Button> */}
+        <ButtonGroup
+          variant="contained"
+          ref={anchorRef}
+          aria-label="split button"
+        >
+          <Button
+            size="small"
+            aria-controls={open ? 'split-button-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleToggle}
+            style={{
+              backgroundColor: '#FFFFFF',
+              color: '#253053',
+              fontSize: 16,
+              fontWeight: 700,
+              width: 95,
+              height: 36,
+            }}
+          >
+            {options[selectedIndex]}
+            <ArrowDropDownIcon />
+          </Button>
+        </ButtonGroup>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom',
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList id="split-button-menu">
+                    {options.map((option, index) => (
+                      <MenuItem
+                        key={option}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+
         <Button className={classes.createExamButton} variant="contained">
           시험 등록
         </Button>
