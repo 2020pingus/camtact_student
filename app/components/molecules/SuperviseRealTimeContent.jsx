@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: 1145,
     height: 753,
-    margin: theme.spacing(2.6, 2.7, 0, 2.8),
+    margin: theme.spacing(3.25, 2.7, 0, 2.8),
     padding: theme.spacing(0),
     display: 'flex',
     flexWrap: 'wrap',
@@ -92,12 +92,10 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   screen: {
-    width: 1080,
-    margin: theme.spacing(0, 0, 0, 3.2),
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   contentSection: {
     width: 1080,
@@ -124,6 +122,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     width: 210,
     height: 210,
+    marginTop: 15,
   },
   cameraSectionFrame: {
     background: '#FFFFFF',
@@ -259,7 +258,12 @@ export default function SuperviseRealTimeContent(props) {
                 />
               </div>
             </div>
-            <div className={classes.screen}>
+            <div
+              className={classes.screen}
+              style={{
+                width: '100%',
+              }}
+            >
               <div className={classes.window}>
                 <div>
                   <p className={classes.cardP}>화면1</p>
@@ -274,7 +278,9 @@ export default function SuperviseRealTimeContent(props) {
             <div className={classes.contentSection}>
               <div className={classes.cameraControlSection}>
                 <div>
-                  <p className={classes.cardP}>카메라 제어</p>
+                  <p className={classes.cardP} style={{ margin: 0 }}>
+                    카메라 제어
+                  </p>
                   <p className={classes.cameraControlSectionContent}>
                     우측 상하좌우 버튼으로 카메라를 움직여보세요.
                   </p>
