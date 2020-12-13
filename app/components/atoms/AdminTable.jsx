@@ -25,14 +25,7 @@ const rows = [
   createData(0, '소프트웨어학부', 20141234, '허예은', 'heo@naver.com', 'x'),
   createData(1, '컴퓨터학부', 20151234, '김예은', 'kim@naver.com', 'x'),
   createData(2, '글로벌미디어학부', 20161234, '박예은', 'park@naver.com', 'o'),
-  createData(
-    3,
-    '스마트시스템소프트웨어학과',
-    20171234,
-    '이예은',
-    'lee@naver.com',
-    'o'
-  ),
+  createData(3, '소프트웨어학부', 20171234, '이예은', 'lee@naver.com', 'o'),
   createData(4, '소프트웨어학부', 20180000, '조예은', 'cho@naver.com', 'o'),
   createData(5, '소프트웨어학부', 20200000, '허혜은', 'jeong@naver.com', 'o'),
   createData(
@@ -180,7 +173,7 @@ export default function AdminTable() {
               <TableCell className={classes.tableCell}>이메일</TableCell>
               <TableCell
                 className={classes.tableCell}
-                style={{ paddingLeft: 31 }}
+                style={{ paddingLeft: 25, paddingRight: 48 }}
               >
                 응시 승인 요청
               </TableCell>
@@ -206,7 +199,10 @@ export default function AdminTable() {
                   <TableCell className={classes.tableCellRow}>
                     {row.email}
                   </TableCell>
-                  <TableCell className={classes.tableCellRow}>
+                  <TableCell
+                    className={classes.tableCellRow}
+                    style={{ paddingLeft: 35 }}
+                  >
                     {row.isAllowed === 'x' ? (
                       <>
                         <Link
@@ -220,14 +216,16 @@ export default function AdminTable() {
                         <Link
                           href="/#"
                           color="primary"
-                          style={{ fontSize: 18 }}
+                          style={{ fontSize: 18, marginRight: 48 }}
                         >
                           거절
                         </Link>
                       </>
                     ) : (
                       <div>
-                        <Button disabled>-</Button>
+                        <Button disabled style={{ marginRight: 48 }}>
+                          -
+                        </Button>
                       </div>
                     )}
                   </TableCell>
