@@ -15,30 +15,39 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: 'white',
     fontWeight: 500,
-    marginBottom: 10,
+    marginBottom: 2,
   },
   host: {
       color: 'white',
+      width: 174,
+      height: 41,
       fontSize: 18,
       fontWeight: 300,
       marginBottom: 3,
+      display: 'flex',
+      alignItems: 'center',
   },
   time: {
+      width: 181,
+      height: 20,
       color: 'white',
       fontSize: 16,
       fontWeight : 300,
+      marginBottom: 5,
   },
   totalscore: {
+      width: 190,
+      height: 31,
       color: 'white',
       fontSize: 16,
       fontWeight: 300,
-      marginTop: 3,
+      marginTop: 9,
   },
   infoButton: {
     width: 201,
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: 17,
+    marginTop: 15,
   },
   button: {
     height: 36,
@@ -82,7 +91,7 @@ export default function ExamDrawerInfo() {
           {EXAM_INFO.monitorState === CONNECT_SUCCESS ? (
             <Button
               className={classes.button}
-              style={{ width: 94, backgroundColor: '#F2C94C' , color: '#253053' , fontWeight: 700}}
+              style={{ width: 94, backgroundColor: '#F2C94C' , color: '#253053' , fontWeight: 700, marginRight: 13}}
             >
               정보 수정
             </Button>

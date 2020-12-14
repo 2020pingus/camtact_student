@@ -18,6 +18,7 @@ import SuperviseNonRealTimePage from './components/templates/SuperviseNonRealTim
 import ExamCreationPage from './components/templates/ExamCreationPage';
 import ExamModificationPage from './components/templates/ExamModificationPage';
 import ExamCompletionPage from './components/templates/ExamCompletionPage';
+import ExamWaitPage from './components/templates/ExamWaitPage';
 // Lazily load routes and code split with webpack
 const LazyCounterPage = React.lazy(() =>
   import(
@@ -55,8 +56,9 @@ export default function Routes() {
           component={SuperviseNonRealTimePage}
         />
         <Route path={routes.EXAMCREATE} component={ExamCreationPage} />
-        <Route path={routes.EXAMMODIFICATE} component={ExamModificationPage}/>
+        <Route path={routes.EXAMMODIFICATE} component={ExamModificationPage} />
         <Route path={routes.EXAMCOMPLETE} component={ExamCompletionPage} />
+        <Route path={routes.EXAMWAIT} component={ExamWaitPage} />
       </Switch>
     </App>
   );
