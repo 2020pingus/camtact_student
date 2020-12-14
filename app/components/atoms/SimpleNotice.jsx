@@ -93,8 +93,8 @@ export default function SimpleNotice() {
       <List className={classes.allNoticeBox}>
         {noticeList.slice(0, 4).map((notice, index) => (
           <>
-            <ListItem key={index} className={classes.noticeBox}>
-              <ListItemAvatar>
+            <ListItem key={`item-${index}`} className={classes.noticeBox}>
+              <ListItemAvatar key={`avatar-${index}`}>
                 {notice.status === 0 ? (
                   <Avatar style={{ background: '#47B881' }}>
                     <DoneIcon />
@@ -110,6 +110,7 @@ export default function SimpleNotice() {
                 )}
               </ListItemAvatar>
               <ListItemText
+                key={`text-${index}`}
                 primary={
                   <Typography variant="h3" className={classes.typoPrimary}>
                     {notice.title}
@@ -120,7 +121,7 @@ export default function SimpleNotice() {
                     {notice.content}
                   </Typography>
                 }
-              ></ListItemText>
+              />
             </ListItem>
             <Divider className={classes.divider} />
           </>
