@@ -28,6 +28,12 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ExamList from './ExamList';
 
+function createUser(type) {
+  return type;
+}
+
+const users = createUser('examiners');
+
 function createData(id, name, professor, time, state, examiners) {
   return { id, name, professor, time, state, examiners };
 }
@@ -317,13 +323,16 @@ export default function ExamMenuBar(props) {
           )}
         </Popper>
 
-        <Button
-          className={classes.createExamButton}
-          variant="contained"
-          onClick={handleDialogClickOpen}
-        >
-          시험 등록
-        </Button>
+        {users !== 'superviser' && (
+          <Button
+            className={classes.createExamButton}
+            variant="contained"
+            onClick={handleDialogClickOpen}
+          >
+            시험 등록
+          </Button>
+        )}
+
         <Dialog
           open={dialogOpen}
           onClose={handleDialogClose}
