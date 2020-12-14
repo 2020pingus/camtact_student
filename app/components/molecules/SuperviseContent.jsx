@@ -5,9 +5,11 @@ import {
   Grid,
   Divider,
   Button,
+  Chip,
 } from '@material-ui/core';
-import React from 'react';
-import Pagination from '@material-ui/lab/Pagination';
+import React, { useState } from 'react';
+import Paginations from '../atoms/Paginations';
+import { paginate } from '../../utils/paginate';
 import { useHistory } from 'react-router';
 import routes from '../../constants/routes.json';
 
@@ -26,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     marginTop: theme.spacing(-3),
   }),
+  cardView: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    height: 218,
+  },
   card: {
     width: 518,
     height: 218,
@@ -34,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     flexDirection: 'row',
   },
+
   cardContent: {
     width: '100%',
     flexDirection: 'row',
@@ -53,6 +61,20 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     color: theme.palette.primary.main,
   },
+  isNotConnected: {
+    width: 73,
+    height: 24,
+    marginLeft: 12,
+    backgroundColor: '#FF5E57',
+    opacity: 1,
+    color: '#FFFFFF',
+    textAlign: 'center',
+    borderRadius: 100,
+    fontSize: 12,
+    fontWeight: 700,
+    float: 'right',
+    marginRight: 15,
+  },
   cardP: {
     width: 73,
     height: 25,
@@ -67,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     width: 1144,
-    height: 46.5,
+    height: 46,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -78,123 +100,85 @@ const useStyles = makeStyles((theme) => ({
     border: 1,
     backgroundColor: '#E4E7EB',
     width: 1144,
-    marginTop: theme.spacing(-2.3),
+    marginTop: theme.spacing(2),
     marginLeft: theme.spacing(6.8),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   pagination: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(-2),
     paddingBottom: 0,
+    marginTop: theme.spacing(-1),
   },
 }));
 
 export default function SuperviseContent(props) {
+  const { data } = props;
   const classes = useStyles(props);
   const history = useHistory();
+  const getCards = () => {
+    return data;
+  };
+
+  const [cards, setCards] = useState({
+    data: getCards(),
+    pageSize: 6,
+    currentPage: 1,
+  });
+
+  const handlePageChange = (page) => {
+    setCards({ ...cards, currentPage: page });
+  };
+
+  const { pageSize, currentPage } = cards;
+  const pagedCards = paginate(data, currentPage, pageSize);
+
+  const { length: count } = cards.data;
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <div xs={12}>
-          <Card className={classes.card}>
-            <div className={classes.window}>
-              <div>
-                <p className={classes.cardP}>허예은</p>
-              </div>
-            </div>
+        <Box className={classes.cardView}>
+          {pagedCards.map((item) => (
+            <Box item style={{ width: '50%' }} key={item.id}>
+              <Card className={classes.card}>
+                <div className={classes.window}>
+                  {item.isConnected === 'o' ? (
+                    <div>
+                      <p className={classes.cardP}> {item.name}</p>
+                    </div>
+                  ) : (
+                    <>
+                      <p className={classes.isNotConnected}>연결 끊김</p>
+                      <div>
+                        <p className={classes.cardP}> {item.name}</p>
+                      </div>
+                    </>
+                  )}
+                </div>
 
-            <div className={classes.window}>
-              <p>화면2</p>
-            </div>
-            <Button
-              className={classes.button}
-              onClick={() => history.push(routes.SUPERVISE_REALTIME)}
-            >
-              자세히 감독하기
-            </Button>
-          </Card>
-
-          <Card className={classes.card}>
-            <div className={classes.window}>
-              <div>
-                <p className={classes.cardP}>이예은</p>
-              </div>
-            </div>
-
-            <div className={classes.window}>
-              <p>화면2</p>
-            </div>
-            <Button className={classes.button}>자세히 감독하기</Button>
-          </Card>
-
-          <Card className={classes.card}>
-            <div className={classes.window}>
-              <div>
-                <p className={classes.cardP}>박예은</p>
-              </div>
-            </div>
-
-            <div className={classes.window}>
-              <p>화면2</p>
-            </div>
-            <Button className={classes.button}>자세히 감독하기</Button>
-          </Card>
-        </div>
-        <div xs={6}>
-          <Card className={classes.card}>
-            <div className={classes.window}>
-              <div>
-                <p className={classes.cardP}>정예은</p>
-              </div>
-            </div>
-
-            <div className={classes.window}>
-              <p>화면2</p>
-            </div>
-            <Button className={classes.button}>자세히 감독하기</Button>
-          </Card>
-
-          <Card className={classes.card}>
-            <div className={classes.window}>
-              <div>
-                <p className={classes.cardP} style={{ color: '#F2C94C' }}>
-                  조예은
-                </p>
-              </div>
-            </div>
-
-            <div className={classes.window}>
-              <p>화면2</p>
-            </div>
-            <Button className={classes.button}>자세히 감독하기</Button>
-          </Card>
-
-          <Card className={classes.card}>
-            <div className={classes.window}>
-              <div>
-                <p className={classes.cardP} style={{ color: '#F2C94C' }}>
-                  김예은
-                </p>
-              </div>
-            </div>
-
-            <div className={classes.window}>
-              <p>화면2</p>
-            </div>
-            <Button className={classes.button}>자세히 감독하기</Button>
-          </Card>
-        </div>
+                <div className={classes.window}>
+                  <p>화면2</p>
+                </div>
+                <Button
+                  className={classes.button}
+                  onClick={() => history.push(routes.SUPERVISE_REALTIME)}
+                >
+                  자세히 감독하기
+                </Button>
+              </Card>
+            </Box>
+          ))}
+        </Box>
       </div>
 
       <div className={classes.footer}>
         <Divider className={classes.divider} />
-        <Pagination
+        <Paginations
           className={classes.pagination}
-          count={10}
-          shape="rounded"
-          color="primary"
+          pageSize={pageSize}
+          itemsCount={count}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
         />
       </div>
     </div>

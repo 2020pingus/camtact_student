@@ -17,7 +17,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Paginations from '../atoms/Paginations';
 import { useSelector } from 'react-redux';
-import { paginate } from '../../utils/paginate'
+import { paginate } from '../../utils/paginate';
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
@@ -162,20 +162,20 @@ export default function Notice(props) {
     return notices;
   }
 
-  const [notices,setNotices] = React.useState({
-    data: getNotices(),
+  const [notices, setNotices] = React.useState({
+    data: noticeList,
     pageSize: 7,
-    currentPage:1
+    currentPage: 1,
   });
 
-  const handlePageChange =(page) => {
-    setNotices({...notices,currentPage : page});
-  }
+  const handlePageChange = (page) => {
+    setNotices({ ...notices, currentPage: page });
+  };
 
   const { data, pageSize, currentPage } = notices;
-  const pagedNotices = paginate(data,currentPage,pageSize);
+  const pagedNotices = paginate(data, currentPage, pageSize);
 
-  const {length: count} = notices.data;
+  const { length: count } = notices.data;
 
   return (
     <div className={classes.content}>
@@ -197,10 +197,10 @@ export default function Notice(props) {
 
         {/* Notice Content */}
         <List className={classes.allNoticeBox}>
-          {pagedNotices.map((notice,index) => (
+          {pagedNotices.map((notice, index) => (
             <>
-              <ListItem  key={index} className={classes.noticeBox}>
-                <ListItemAvatar>
+              <ListItem key={`item-${index}`} className={classes.noticeBox}>
+                <ListItemAvatar key={`avatar-${index}`}>
                   {notice.status === 0 ? (
                     <Avatar style={{ background: '#47B881' }}>
                       <DoneIcon />
@@ -215,7 +215,8 @@ export default function Notice(props) {
                     </Avatar>
                   )}
                 </ListItemAvatar>
-                <ListItemText key={index}
+                <ListItemText
+                  key={`text-${index}`}
                   primary={
                     <Typography variant="h3" className={classes.typoPrimary}>
                       {notice.title}
@@ -226,9 +227,9 @@ export default function Notice(props) {
                       {notice.content}
                     </Typography>
                   }
-                ></ListItemText>
+                />
               </ListItem>
-              <Divider className={classes.divider} />
+              <Divider key={`divider-${index}`} className={classes.divider} />
             </>
           ))}
         </List>
@@ -246,4 +247,3 @@ export default function Notice(props) {
     </div>
   );
 }
-

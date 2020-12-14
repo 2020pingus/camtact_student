@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 75,
     height: 25,
     marginLeft: theme.spacing(1.2),
-    padding: 0,
   },
   isAllowedWaitingChip: {
     backgroundColor: '#42ABFF',
@@ -30,9 +29,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     minWidth: 75,
     height: 25,
-    padding: 12,
     marginLeft: theme.spacing(1.2),
-    padding: 0,
   },
   isEndedChip: {
     backgroundColor: '#F2C94C',
