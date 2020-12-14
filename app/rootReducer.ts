@@ -5,6 +5,7 @@ import { History } from 'history';
 import counterReducer from './features/counter/counterSlice';
 import { userReducer } from './modules/reducer/userReducer';
 import { examReducer } from './modules/reducer/examReducer';
+import { testerReducer } from './modules/reducer/testerReducer';
 
 export default function createRootReducer(history: History) {
   return combineReducers({
@@ -12,5 +13,6 @@ export default function createRootReducer(history: History) {
     counter: counterReducer,
     user: userReducer,
     exam: examReducer,
+    tester: testerReducer,
   });
 }

@@ -8,10 +8,13 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import { desktopCapturer } from 'electron';
 import RTCVideo from '../atoms/RTCVideo';
+import { testerConnectServer } from '../../modules/action/testerAction';
+import { getTesterInstance } from '../../utils/util';
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
@@ -56,6 +59,11 @@ export default function ExamWaitContent(props) {
   const classes = useStyles(props);
   const [hardwareIP, setHardwareIP] = useState('192.168.0.15');
   const [screenStream, setScreenStream] = useState(null);
+  const testerConnection = getTesterInstance();
+  useEffect(() => {
+    if (!testerConnection.connected) testerConnection.connect('asdf');
+  }, []);
+
   return (
     <div className={classes.content}>
       <Card className={classes.card}>
@@ -165,7 +173,7 @@ export default function ExamWaitContent(props) {
                 align="center"
                 color="primary"
               >
-                하드웨어 화면
+                모니터 화면
               </Typography>
               <Box
                 display="flex"
@@ -202,6 +210,7 @@ export default function ExamWaitContent(props) {
                             }
                           );
                           setScreenStream(stream);
+                          testerConnection.p.addStream(stream);
                         }}
                       >
                         화면 선택
@@ -211,28 +220,61 @@ export default function ExamWaitContent(props) {
                 )) || <RTCVideo mediaStream={screenStream} />}
               </Box>
               <Box display="flex" alignContent="center">
-                <PriorityHighIcon
-                  style={{
-                    width: 19,
-                    height: 19,
-                    margin: 'auto 0',
-                    color: '#FF5E57',
-                  }}
-                />
-                <Typography
-                  style={{
-                    fontSize: 18,
-                    fontWeight: 400,
-                    marginBottom: 4,
-                    marginLeft: 2,
-                    color: '#FF5E57',
-                  }}
-                >
-                  하드웨어 연결을 설정해주세요.
-                </Typography>
+                {(!screenStream && (
+                  <>
+                    <PriorityHighIcon
+                      style={{
+                        width: 19,
+                        height: 19,
+                        margin: 'auto 0',
+                        color: '#FF5E57',
+                      }}
+                    />
+                    <Typography
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 400,
+                        marginBottom: 4,
+                        marginLeft: 2,
+                        color: '#FF5E57',
+                      }}
+                    >
+                      모니터 공유 화면을 설정해주세요.
+                    </Typography>
+                  </>
+                )) || (
+                  <Typography
+                    style={{
+                      fontSize: 18,
+                      fontWeight: 400,
+                      marginBottom: 4,
+                      marginLeft: 2,
+                      color: 'green',
+                    }}
+                  >
+                    설정되었습니다.
+                  </Typography>
+                )}
               </Box>
             </Grid>
           </Grid>
+          <Box>
+            <Typography
+              align="center"
+              color="primary"
+              style={{ marginTop: 60 }}
+            >
+              시험 시작까지 8분 12초 남았습니다.
+            </Typography>
+            <Button
+              variant="contained"
+              color="white"
+              size="medium"
+              justifyContent="center"
+            >
+              시험 시작
+            </Button>
+          </Box>
         </Box>
       </Card>
     </div>
