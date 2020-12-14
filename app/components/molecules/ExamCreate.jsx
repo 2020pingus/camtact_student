@@ -87,7 +87,7 @@ export default function ExamCreate(props) {
   const [minute,setMinute] = React.useState('30');
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setYear(event.target.value);
   };
   return (
     <div className={classes.content}>
@@ -178,8 +178,8 @@ export default function ExamCreate(props) {
               {examtime.title}
             </label>
             <div>
-            <FormControl variant="outlined">
-              <Select 
+              <Select
+                variant="outlined" 
                 className={classes.year}
                 value={year}
                 onChange={handleChange}
@@ -190,9 +190,8 @@ export default function ExamCreate(props) {
                 <MenuItem value={2021}>2021</MenuItem>
                 <MenuItem value={2022}>2022</MenuItem>
               </Select>
-            </FormControl>
-            <FormControl variant="outlined">
               <Select
+                variant="outlined"
                 className={classes.calendercomponent}
                 value={month}
                 onChange={handleChange}
@@ -202,9 +201,8 @@ export default function ExamCreate(props) {
                   <MenuItem key={index} value={month.month}>{month.month}</MenuItem>
                 ))}
               </Select>
-            </FormControl>
-            <FormControl variant="outlined">
               <Select
+                variant="outlined"
                 className={classes.calendercomponent}
                 value={date}
                 onChange={handleChange}
@@ -214,9 +212,8 @@ export default function ExamCreate(props) {
                   <MenuItem key={index} value={date.date}>{date.date}</MenuItem>
                 ))}
               </Select>
-            </FormControl>
-            <FormControl variant="outlined">
               <Select
+                variant="outlined"
                 className={classes.calendercomponent}
                 value={hour}
                 onChange={handleChange}
@@ -226,9 +223,8 @@ export default function ExamCreate(props) {
                   <MenuItem key={index} value={hour.hour}>{hour.hour}</MenuItem>
                 ))}
               </Select>
-            </FormControl>
-            <FormControl variant="outlined">
               <Select
+                variant="outlined"
                 className={classes.calendercomponent}
                 value={minute}
                 onChange={handleChange}
@@ -238,7 +234,6 @@ export default function ExamCreate(props) {
                   <MenuItem key={index} value={minute.minute}>{minute.minute}</MenuItem>
                 ))}
               </Select>
-            </FormControl>
             </div>
             </div>
             ))}
