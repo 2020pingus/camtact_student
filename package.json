@@ -300,7 +300,8 @@
     "simple-peer": "^9.9.3",
     "socket.io-client": "^3.0.4",
     "source-map-support": "^0.5.19",
-    "websocket-as-promised": "^1.1.0"
+    "websocket-as-promised": "^1.1.0",
+    "use-react-router": "^1.0.7"
   },
   "devEngines": {
     "node": ">=7.x",
