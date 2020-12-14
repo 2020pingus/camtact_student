@@ -299,7 +299,8 @@
     "regenerator-runtime": "^0.13.5",
     "simple-peer": "^9.9.3",
     "socket.io-client": "^3.0.4",
-    "source-map-support": "^0.5.19"
+    "source-map-support": "^0.5.19",
+    "use-react-router": "^1.0.7"
   },
   "devEngines": {
     "node": ">=7.x",
