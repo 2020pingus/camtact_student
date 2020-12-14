@@ -2,10 +2,12 @@
 /* eslint-disable import/prefer-default-export */
 import io from 'socket.io-client';
 import SimplePeer from 'simple-peer';
+import { EventEmitter } from 'events';
 
 class TesterConnection {
   constructor() {
     this.connected = false;
+    this.events = new EventEmitter();
   }
 
   async connect(tid) {
@@ -33,6 +35,7 @@ class TesterConnection {
       p.on('connect', () => {
         console.log('connected!');
         this.connected = true;
+        this.events.emit('connected');
         resolve(p);
         // window.onbeforeunload = () => p.destroy();
       });
@@ -48,7 +51,10 @@ class TesterConnection {
 
       socket.on('signal', (data) => p.signal(data));
 
-      socket.on('disconnect', () => p.destroy());
+      socket.on('disconnect', () => {
+        this.events.emit('disconnected');
+        p.destroy();
+      });
     });
   }
 }
