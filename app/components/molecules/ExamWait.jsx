@@ -20,6 +20,8 @@ import RTCVideo from '../atoms/RTCVideo';
 import { testerConnectServer } from '../../modules/action/testerAction';
 import { getTesterInstance } from '../../utils/util';
 import { HardwarePeer } from '../../utils/hardwarepeer';
+import useReactRouter from 'use-react-router';
+import routes from '../../constants/routes.json';
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
@@ -28,13 +30,14 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     top: props.appBarHeight,
     backgroundColor: '#F6F6F6',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }),
   card: {
     width: 1144,
     height: 753,
     padding: 0,
-    marginLeft: 'auto',
-    marginRight: 'auto',
     boxShadow:
       '0px 1px 0px rgba(63, 63, 68, 0.05), 0px 1px 3px rgba(63, 63, 68, 0.15)',
   },
@@ -55,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
   headerSubTopography: {
     fontSize: 18,
     fontWeight: 400,
+    paddingTop: 3,
     margin: 'auto 0',
     textAlign: 'center',
   },
@@ -62,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ExamWaitContent(props) {
   const classes = useStyles(props);
+  const { history } = useReactRouter();
 
   const [hardwareIP, setHardwareIP] = useState('192.168.0.45');
   const [screenStream, setScreenStream] = useState(null);
@@ -83,24 +88,21 @@ export default function ExamWaitContent(props) {
     testerConnection_pc.connect();
   }
 
-  useEffect(() => {}, []);
-
   return (
     <div className={classes.content}>
       <Card className={classes.card}>
+        {/* Header */}
         <Box className={classes.header} display="flex" alignContent="center">
           <Typography className={classes.headerTopography} color="primary">
             연결 설정
           </Typography>
-          <Typography
-            className={classes.headerSubTopography}
-            align="center"
-            color="primary"
-          >
+          <Typography className={classes.headerSubTopography} color="primary">
             하드웨어와 공유 화면을 설정합니다.
           </Typography>
         </Box>
         <Divider />
+
+        {/* Content */}
         <Box>
           <Grid
             container
@@ -131,7 +133,7 @@ export default function ExamWaitContent(props) {
                     display="flex"
                     justifyContent="center"
                     alignContent="center"
-                    style={{ background: '#979797', width: '100%' }}
+                    style={{ background: '#C4C4C4', width: '100%' }}
                   >
                     <div style={{ margin: 'auto' }}>
                       <Typography
@@ -149,7 +151,12 @@ export default function ExamWaitContent(props) {
                           style={{
                             backgroundColor: 'white',
                             width: 161,
+                            height: 36,
                             marginRight: 13,
+                            borderRadius: 4,
+                          }}
+                          inputProps={{
+                            style: { paddingTop: 8.5, paddingBottom: 8.5 },
                           }}
                           label=""
                           size="small"
@@ -162,7 +169,7 @@ export default function ExamWaitContent(props) {
                         <Button
                           variant="contained"
                           color="primary"
-                          size="medium"
+                          style={{ width: 44, height: 36, marginTop: 1 }}
                           onClick={() => {
                             hardwarePeer.init(
                               `ws://${hardwareIP}:8080/stream/webrtc`
@@ -184,6 +191,7 @@ export default function ExamWaitContent(props) {
                     margin: 'auto 0',
                     color: '#FF5E57',
                   }}
+                  viewBox="2 2.3 23 23"
                 />
                 <Typography
                   style={{
@@ -220,7 +228,7 @@ export default function ExamWaitContent(props) {
                     display="flex"
                     justifyContent="center"
                     alignContent="center"
-                    style={{ background: '#979797', width: '100%' }}
+                    style={{ background: '#C4C4C4', width: '100%' }}
                   >
                     <div style={{ margin: 'auto' }}>
                       <Button
@@ -266,6 +274,7 @@ export default function ExamWaitContent(props) {
                         margin: 'auto 0',
                         color: '#FF5E57',
                       }}
+                      viewBox="2 2.3 23 23"
                     />
                     <Typography
                       style={{
@@ -280,38 +289,67 @@ export default function ExamWaitContent(props) {
                     </Typography>
                   </>
                 )) || (
-                  <Typography
-                    style={{
-                      fontSize: 18,
-                      fontWeight: 400,
-                      marginBottom: 4,
-                      marginLeft: 2,
-                      color: 'green',
-                    }}
-                  >
-                    설정되었습니다.
-                  </Typography>
+                  <>
+                    <PriorityHighIcon
+                      style={{
+                        width: 19,
+                        height: 19,
+                        margin: 'auto 0',
+                        color: '#47B881',
+                      }}
+                      viewBox="2 2.3 23 23"
+                    />
+                    <Typography
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 400,
+                        marginBottom: 4,
+                        marginLeft: 2,
+                        color: '#47B881',
+                      }}
+                    >
+                      설정되었습니다.
+                    </Typography>
+                  </>
                 )}
               </Box>
             </Grid>
           </Grid>
-          <Box>
-            <Typography
-              align="center"
-              color="primary"
-              style={{ marginTop: 60 }}
-            >
-              시험 시작까지 8분 12초 남았습니다.
-            </Typography>
-            <Button
-              variant="contained"
-              color="white"
-              size="medium"
-              justifyContent="center"
-            >
-              시험 시작
-            </Button>
-          </Box>
+        </Box>
+
+        {/* Footer */}
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Typography
+            color="primary"
+            style={{ marginTop: 60, marginBottom: 20 }}
+          >
+            시험이 진행중입니다.
+          </Typography>
+          <Button
+            variant="contained"
+            color="white"
+            justifyContent="center"
+            onClick={() => history.replace(routes.EXAM)}
+            style={{
+              width: 140,
+              height: 36,
+              color: '#253053',
+              backgroundColor: 'white',
+              fontSize: 18,
+              fontWeight: 600,
+              padding: 2.5,
+              borderRadius: 7,
+              boxShadow:
+                '0px 1px 0px rgba(63, 63, 68, 0.14), 0px 3px 4px rgba(63, 63, 68, 0.12), 0px 1px 5px rgba(63, 63, 68, 0.2)',
+            }}
+          >
+            시험 시작
+          </Button>
         </Box>
       </Card>
     </div>

@@ -6,6 +6,7 @@ import {
   Divider,
   FormControl,
   FormControlLabel,
+  FormGroup,
   makeStyles,
   Radio,
   RadioGroup,
@@ -80,11 +81,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProblemCard({ problem, currentProblem, count }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('');
+  const init =
+    problem.type === MULTIPLE_CHOICE
+      ? Array.from({ length: problem.choices.length }, (v) => (v = false))
+      : '';
+  const [value, setValue] = React.useState(init);
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setValue(event.target.value);
+  };
+
+  const handleMultiChange = (event) => {
+    setValue(...value, (value[event.target.name] = !value[event.target.name]));
   };
 
   const handleBeforePage = () => {
@@ -122,28 +131,85 @@ export default function ProblemCard({ problem, currentProblem, count }) {
             &nbsp;&nbsp;&nbsp;&nbsp;{problem.questionContent}
           </p>
         </Box>
-        <Box className={classes.choices}>
-          <FormControl component="fieldset">
-            <RadioGroup value={value} onChange={handleChange}>
-              {problem.choices.map((choice, index) => (
-                <FormControlLabel
-                  value={index.toString()}
-                  key={index}
-                  control={<Radio color="primary" />}
-                  label={
-                    <Typography
-                      variant="h3"
-                      color="primary"
-                      style={{ paddingBottom: 1.5, marginLeft: 7 }}
-                    >
-                      {choice}
-                    </Typography>
-                  }
-                />
-              ))}
-            </RadioGroup>
-          </FormControl>
-        </Box>
+        {problem.type === SINGLE_CHOICE && (
+          <Box className={classes.choices}>
+            <FormControl component="fieldset">
+              <RadioGroup value={value} onChange={handleChange}>
+                {problem.choices.map((choice, index) => (
+                  <FormControlLabel
+                    value={index.toString()}
+                    key={index}
+                    control={<Radio color="primary" />}
+                    label={
+                      <Typography
+                        variant="h3"
+                        color="primary"
+                        style={{ paddingBottom: 1.5, marginLeft: 7 }}
+                      >
+                        {choice}
+                      </Typography>
+                    }
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+          </Box>
+        )}
+        {problem.type === MULTIPLE_CHOICE && (
+          <Box className={classes.choices}>
+            <FormControl component="fieldset">
+              <FormGroup>
+                {problem.choices.map((choice, index) => (
+                  <FormControlLabel
+                    value={index.toString()}
+                    key={index}
+                    control={
+                      <Checkbox
+                        checked={value[index]}
+                        color="primary"
+                        name={index}
+                      />
+                    }
+                    onChange={handleMultiChange}
+                    label={
+                      <Typography
+                        variant="h3"
+                        color="primary"
+                        style={{ paddingBottom: 1.5, marginLeft: 7 }}
+                      >
+                        {choice}
+                      </Typography>
+                    }
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Box>
+        )}
+        {problem.type === SHORT_ANSWER && (
+          <Box className={classes.choices}>
+            <FormControl component="fieldset">
+              <RadioGroup value={value} onChange={handleChange}>
+                {problem.choices.map((choice, index) => (
+                  <FormControlLabel
+                    value={index.toString()}
+                    key={index}
+                    control={<Radio color="primary" />}
+                    label={
+                      <Typography
+                        variant="h3"
+                        color="primary"
+                        style={{ paddingBottom: 1.5, marginLeft: 7 }}
+                      >
+                        {choice}
+                      </Typography>
+                    }
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+          </Box>
+        )}
       </div>
       <Divider className={classes.divider} />
 
@@ -169,3 +235,8 @@ export default function ProblemCard({ problem, currentProblem, count }) {
     </Card>
   );
 }
+
+const SINGLE_CHOICE = 0;
+const MULTIPLE_CHOICE = 1;
+const SHORT_ANSWER = 2;
+const LONG_ANSWER = 3;

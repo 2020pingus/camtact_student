@@ -10,6 +10,8 @@ import {
   Chip,
   DialogActions,
 } from '@material-ui/core';
+import useReactRouter from 'use-react-router';
+import routes from '../../constants/routes.json';
 
 const useStyles = makeStyles((theme) => ({
   dialogTitle: {
@@ -106,8 +108,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ExamCardButton(props) {
   const classes = useStyles(props);
-
   const [open, setOpen] = useState(false);
+  const { history } = useReactRouter();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -116,6 +118,11 @@ export default function ExamCardButton(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleExamStart = () => {
+    history.push(routes.EXAMWAIT);
+  };
+
   return (
     <>
       {props.type === 'exam' && (
@@ -190,7 +197,11 @@ export default function ExamCardButton(props) {
             style={{ height: 54, alignSelf: 'center' }}
           />
           {props.state === 0 ? (
-            <Button className={classes.button} style={{ color: '#FF5E57' }}>
+            <Button
+              className={classes.button}
+              style={{ color: '#FF5E57' }}
+              onClick={handleExamStart}
+            >
               시험 시작
             </Button>
           ) : (

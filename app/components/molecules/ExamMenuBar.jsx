@@ -46,17 +46,9 @@ const END = 3;
 const rowsStart = [
   createData(
     0,
-    '운영체제',
-    '양승민 교수님',
-    '2020년 12월 4일 12시 ~ 13시',
-    ONGOING,
-    '숭실대학교 소프트웨어학부생'
-  ),
-  createData(
-    1,
-    '컴퓨터그래픽',
+    '컴퓨터 그래픽스',
     '김동호 교수님',
-    '2020년 12월 7일 12시',
+    '2020년 12월 15일 10시',
     ONGOING,
     '숭실대학교 컴퓨터학부생'
   ),
@@ -65,17 +57,17 @@ const rowsStart = [
 const rowsExpecting = [
   createData(
     2,
-    '컴퓨터그래픽스',
-    '김동호 교수님',
-    '2020년 12월 7일 12시 ~ 13시',
+    '운영체제',
+    '양승민 교수님',
+    '2020년 12월 4일 12시 ~ 13시',
     ALLOWED,
-    '숭실대학교 컴퓨터학부생'
+    '숭실대학교 소프트웨어학부생'
   ),
   createData(
     3,
-    '캡스톤',
+    '캡스톤 디자인 종합 프로젝트',
     '이수원 교수님',
-    '2020년 12월 10일 12시 ~ 13시',
+    '2020년 12월 16일 12시 ~ 13시',
     WAITING_ALLWOWED,
     '숭실대학교 소프트웨어학부생'
   ),
@@ -282,7 +274,10 @@ export default function ExamMenuBar(props) {
               fontSize: 16,
               fontWeight: 700,
               width: 95,
+              paddingRight: 5,
+              paddingTop: 1,
               height: 36,
+              borderRadius: 7,
             }}
           >
             {options[selectedIndex]}
@@ -310,6 +305,7 @@ export default function ExamMenuBar(props) {
                     {options.map((option, index) => (
                       <MenuItem
                         key={option}
+                        style={{ width: 95, color: '#253053' }}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
@@ -342,16 +338,17 @@ export default function ExamMenuBar(props) {
             id="form-dialog-title"
             style={{
               color: '#253053',
-              paddingRight: 50,
-              paddingLeft: 50,
-              paddingTop: 25,
+              paddingRight: 40,
+              paddingLeft: 40,
+              paddingTop: 20,
+              paddingBottom: 0,
             }}
           >
             초대 코드를 입력해주세요
           </DialogTitle>
           <DialogContent style={{ textAlign: 'center' }}>
             <TextField
-              style={{ width: '75%' }}
+              style={{ width: 212 }}
               autoFocus
               id="name"
               label="초대코드"
@@ -362,9 +359,11 @@ export default function ExamMenuBar(props) {
           </DialogContent>
           <DialogActions
             style={{
+              paddingLeft: 40,
+              paddingRight: 40,
               display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
+              justifyContent: 'space-evenly',
+              paddingBottom: 16,
             }}
           >
             <Button onClick={handleDialogClose} color="primary">
