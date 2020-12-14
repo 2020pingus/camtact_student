@@ -36,6 +36,8 @@ export default function Home(): JSX.Element {
         <Link to={routes.EXAMMODIFICATE}>to ExamModify</Link>
         <br />
         <Link to={routes.EXAMCOMPLETE}>to ExamComplete</Link>
+        <br />
+        <Link to={routes.EXAMWAIT}>to ExamWait</Link>
       </div>
     </>
   );
