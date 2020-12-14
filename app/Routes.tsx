@@ -48,7 +48,7 @@ export default function Routes() {
         <Route path={routes.EXAMLIST} component={ExamListPage} />
         <Route path={routes.SUPERVISE} component={SupervisePage} />
         <Route
-          path={routes.SUPERVISE_REALTIME}
+          path={`${routes.SUPERVISE_REALTIME}/:tid`}
           component={SuperviseRealTimePage}
         />
         <Route

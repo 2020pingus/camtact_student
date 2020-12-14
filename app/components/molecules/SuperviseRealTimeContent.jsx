@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import {
   makeStyles,
   Box,
@@ -15,7 +16,10 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+import { getSupervisorInstance } from '../../utils/util';
+import RTCVideo from '../atoms/RTCVideo';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: (props) => ({
@@ -223,7 +227,13 @@ export default function SuperviseRealTimeContent(props) {
   const classes = useStyles(props);
   const history = useHistory();
   const [checked, setChecked] = React.useState(true);
-
+  const { tid } = useParams();
+  const user = getSupervisorInstance(tid);
+  const data = useSelector((state) => state.users.users).find(
+    (_) => _.id == tid
+  );
+  console.log(data);
+  console.log(tid, user);
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -239,7 +249,7 @@ export default function SuperviseRealTimeContent(props) {
                   className={classes.headerTopography}
                   color="primary"
                 >
-                  허예은
+                  {data.name}
                 </Typography>
               </div>
               <div className={classes.space}>&nbsp;</div>
@@ -271,7 +281,10 @@ export default function SuperviseRealTimeContent(props) {
               </div>
 
               <div className={classes.window}>
-                <p>화면2</p>
+                <RTCVideo
+                  mediaStream={user.stream}
+                  style={{ width: 531, height: 336 }}
+                />
               </div>
             </div>
 
@@ -340,12 +353,16 @@ export default function SuperviseRealTimeContent(props) {
 
               <div className={classes.infoSection}>
                 <p className={classes.infoSectionHeader}>시험자 정보</p>
-                <p className={classes.infoSectionContent}>IP 주소: </p>
-                <p className={classes.infoSectionContent}>통신 속도: </p>
-                <p className={classes.infoSectionContent}>시험 접속 시간: </p>
+                <p className={classes.infoSectionContent}>IP 주소: {data.ip}</p>
+                <p className={classes.infoSectionContent}>
+                  통신 속도: {data.speed}
+                </p>
+                <p className={classes.infoSectionContent}>
+                  시험 접속 시간: {data.time}
+                </p>
                 <p className={classes.infoSectionContent}>시험 종료 시간: </p>
                 <p className={classes.infoSectionContent}>
-                  현재까지 푼 문제 개수:{' '}
+                  현재까지 푼 문제 개수:{data.numSolvedProblem}
                 </p>
               </div>
             </div>

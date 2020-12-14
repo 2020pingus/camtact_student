@@ -4,7 +4,7 @@
 
 import React, { useRef, useEffect } from 'react';
 
-const RTCVideo = ({ mediaStream }) => {
+const RTCVideo = ({ mediaStream, style }) => {
   const viewRef = useRef(null);
 
   useEffect(() => {
@@ -13,7 +13,11 @@ const RTCVideo = ({ mediaStream }) => {
   }, [mediaStream]);
 
   return (
-    <video ref={viewRef} autoPlay style={{ width: '100%', height: '100%' }} />
+    <video
+      ref={viewRef}
+      autoPlay
+      style={{ width: '100%', height: '100%', ...style }}
+    />
   );
 };
 
