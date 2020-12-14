@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable promise/always-return */
+/* eslint-disable promise/catch-or-return */
+/* eslint-disable no-new */
 import {
   Box,
   Button,
@@ -15,6 +19,7 @@ import { desktopCapturer } from 'electron';
 import RTCVideo from '../atoms/RTCVideo';
 import { testerConnectServer } from '../../modules/action/testerAction';
 import { getTesterInstance } from '../../utils/util';
+import { HardwarePeer } from '../../utils/hardwarepeer';
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
@@ -57,12 +62,28 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ExamWaitContent(props) {
   const classes = useStyles(props);
-  const [hardwareIP, setHardwareIP] = useState('192.168.0.15');
+
+  const [hardwareIP, setHardwareIP] = useState('192.168.0.45');
   const [screenStream, setScreenStream] = useState(null);
-  const testerConnection = getTesterInstance();
-  useEffect(() => {
-    if (!testerConnection.connected) testerConnection.connect('asdf');
-  }, []);
+  const [hardwareStream, setHardwareStream] = useState(null);
+  const [hardwarePeer, setHardwarePeer] = useState(
+    new HardwarePeer((stream) => {
+      // setHardwareStream(stream);
+      // testerConnection_hw.p.addStream(stream);
+      setHardwareStream(stream);
+    })
+  );
+  const testerConnection_pc = getTesterInstance('0', (dir) => {
+    console.log(dir);
+    hardwarePeer.remoteDirection = dir;
+  });
+
+  if (!testerConnection_pc.connected && !testerConnection_pc.connecting) {
+    console.log(testerConnection_pc);
+    testerConnection_pc.connect();
+  }
+
+  useEffect(() => {}, []);
 
   return (
     <div className={classes.content}>
@@ -103,42 +124,57 @@ export default function ExamWaitContent(props) {
                 display="flex"
                 style={{ width: '100%', height: 335, marginBottom: 18 }}
               >
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignContent="center"
-                  style={{ background: '#979797', width: '100%' }}
-                >
-                  <div style={{ margin: 'auto' }}>
-                    <Typography
-                      style={{
-                        fontSize: 12,
-                        fontWeight: 400,
-                        marginBottom: 4,
-                      }}
-                      color="primary"
-                    >
-                      하드웨어 IP 주소
-                    </Typography>
-                    <div>
-                      <TextField
+                {(hardwareStream && (
+                  <RTCVideo mediaStream={hardwareStream} />
+                )) || (
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignContent="center"
+                    style={{ background: '#979797', width: '100%' }}
+                  >
+                    <div style={{ margin: 'auto' }}>
+                      <Typography
                         style={{
-                          backgroundColor: 'white',
-                          width: 161,
-                          marginRight: 13,
+                          fontSize: 12,
+                          fontWeight: 400,
+                          marginBottom: 4,
                         }}
-                        label=""
-                        size="small"
-                        variant="outlined"
-                        onChange={(event) => setHardwareIP(event.target.value)}
-                        value={hardwareIP}
-                      />
-                      <Button variant="contained" color="primary" size="medium">
-                        연결
-                      </Button>
+                        color="primary"
+                      >
+                        하드웨어 IP 주소
+                      </Typography>
+                      <div>
+                        <TextField
+                          style={{
+                            backgroundColor: 'white',
+                            width: 161,
+                            marginRight: 13,
+                          }}
+                          label=""
+                          size="small"
+                          variant="outlined"
+                          onChange={(event) => {
+                            setHardwareIP(event.target.value);
+                          }}
+                          value={hardwareIP}
+                        />
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          size="medium"
+                          onClick={() => {
+                            hardwarePeer.init(
+                              `ws://${hardwareIP}:8080/stream/webrtc`
+                            );
+                          }}
+                        >
+                          연결
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                </Box>
+                  </Box>
+                )}
               </Box>
               <Box display="flex" alignContent="center">
                 <PriorityHighIcon
@@ -209,8 +245,9 @@ export default function ExamWaitContent(props) {
                               },
                             }
                           );
+                          testerConnection_pc.stream = stream;
                           setScreenStream(stream);
-                          testerConnection.p.addStream(stream);
+                          testerConnection_pc.p.addStream(stream);
                         }}
                       >
                         화면 선택

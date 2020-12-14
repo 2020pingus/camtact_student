@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable import/prefer-default-export */
@@ -6,12 +7,17 @@ import SimplePeer from 'simple-peer';
 import { EventEmitter } from 'events';
 
 class TesterConnection {
-  constructor() {
+  constructor(tid, onRemote) {
     this.connected = false;
+    this.connecting = false;
+    this.tid = tid;
     this.events = new EventEmitter();
+    this.stream = null;
+    this.datachannel = null;
+    this.onRemote = onRemote;
   }
 
-  async connect(tid) {
+  async connect() {
     const name = 'broadcaster';
     return new Promise((resolve, reject) => {
       const socket = io('https://hia.chocola.moe:443');
@@ -28,9 +34,11 @@ class TesterConnection {
         },
       });
       this.p = p;
+      this.socket = socket;
+      this.connecting = true;
       socket.on('connect', () => {
         console.log('s connected');
-        socket.emit('client', { name, tid });
+        socket.emit('client', { name, tid: this.tid });
       });
 
       p.on('connect', () => {
@@ -40,7 +48,14 @@ class TesterConnection {
         resolve(p);
         // window.onbeforeunload = () => p.destroy();
       });
-
+      p.on('data', (data) => {
+        data = data.toString();
+        data = JSON.parse(data);
+        console.log(data);
+        if (data.type === 'remote') {
+          this.onRemote(data.direction);
+        }
+      });
       p.on('close', () => {
         console.log('closed!');
       });
@@ -59,11 +74,13 @@ class TesterConnection {
     });
   }
 }
-let testerInstance = null;
-export const getTesterInstance = () => {
-  if (testerInstance) return testerInstance;
-  testerInstance = new TesterConnection();
-  return testerInstance;
+
+const testerInstances = new Map();
+export const getTesterInstance = (tid, ...arg) => {
+  tid = tid.toString();
+  if (!testerInstances.has(tid))
+    testerInstances.set(tid, new TesterConnection(tid, ...arg));
+  return testerInstances.get(tid);
 };
 
 class SupervisorConnection {
