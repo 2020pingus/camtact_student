@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { current } from 'immer';
 import '../scroll.css';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -35,25 +36,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SuperviseDrawerList(props) {
   const classes = useStyles();
+  const data = useSelector((state) => state.users.users);
 
   return (
     <div className={classes.box}>
       <List component="nav" className={classes.list}>
-        {examiners.map((examiner) => (
+        {data.map((examiner) => (
           <ListItem button key={examiner.id} className={classes.listItem}>
-            {examiner.state === DETECTED && (
-              <ListItemText
-                primary={examiner.name}
-                className={classes.listItem}
-                style={{ color: '#F2C94C' }}
-              />
-            )}
-            {examiner.state === NOT_DETECTED && (
-              <ListItemText
-                primary={examiner.name}
-                className={classes.listItem}
-              />
-            )}
+            <ListItemText
+              primary={examiner.name}
+              className={classes.listItem}
+            />
           </ListItem>
         ))}
       </List>
