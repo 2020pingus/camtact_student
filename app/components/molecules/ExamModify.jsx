@@ -140,7 +140,7 @@ export default function ExamCreate(props) {
           <FormControl style={{ marginTop: 40, marginBottom: 20 }}>
             <label
               style={{ variant: 'h4', color: '#253053', marginBottom: 6 }}
-              htmlFor="exam-type"
+              htmlFor="exam-host"
             >
               시험 주최
             </label>

@@ -21,13 +21,14 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'space-evenly',
     float: 'left',
   },
-  rightContent: {
+  rightContent: (props) => ({
     width: 645,
+    marginTop: 31,
     display: 'flex',
     flexWrap: 'wrap',
-    alignContent: 'space-evenly',
+    alignItems: 'flex-start',
     float: 'right',
-  },
+  }),
 }));
 
 export default function Content(props) {
@@ -40,7 +41,6 @@ export default function Content(props) {
       </div>
       <div className={classes.rightContent}>
         <Settings />
-        <Box style={{ height: 98 }} />
       </div>
     </div>
   );
