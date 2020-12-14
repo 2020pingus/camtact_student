@@ -189,9 +189,19 @@ export default function ExamCardButton(props) {
             orientation="vertical"
             style={{ height: 54, alignSelf: 'center' }}
           />
-          <Button className={classes.button} style={{ color: '#FF5E57' }}>
-            시험 시작
-          </Button>
+          {props.state === 0 ? (
+            <Button className={classes.button} style={{ color: '#FF5E57' }}>
+              시험 시작
+            </Button>
+          ) : (
+            <Button
+              className={classes.button}
+              style={{ color: '#C4C4C4' }}
+              disabled
+            >
+              시험 시작
+            </Button>
+          )}
         </>
       )}
       {props.type === 'supervise' && props.mode === 'start' && (
