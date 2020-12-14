@@ -1,6 +1,7 @@
 import {
   EDIT_AVATAR,
   EDIT_USER_INFO,
+  LOGIN,
   MOVE_TO_PAGE,
   REMOVE_AVATAR,
 } from '../action/userAction';
@@ -68,7 +69,10 @@ const USER_INITIAL_STATE = {
 };
 
 export const userReducer = createReducer(USER_INITIAL_STATE, {
-  [EDIT_USER_INFO]: (state, action) => console.log(state, action),
+  [EDIT_USER_INFO]: (state, action) => {
+    console.log(state, action);
+    state.user = action.userInfo;
+  },
   [EDIT_AVATAR]: (state, action) => {
     console.log(state, action);
   },
@@ -76,4 +80,5 @@ export const userReducer = createReducer(USER_INITIAL_STATE, {
   [MOVE_TO_PAGE]: (state, action) => {
     state.currentPage = action.page;
   },
+  [LOGIN]: (state, action) => {},
 });

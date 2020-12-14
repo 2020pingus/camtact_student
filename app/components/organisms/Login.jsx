@@ -1,4 +1,9 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -8,9 +13,11 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import routes from '../../constants/routes.json';
 import logo from '../../../resources/camtact_img.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { editUserInfo } from '../../modules/action/userAction';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -66,6 +73,14 @@ const useStyles = makeStyles((theme) => ({
 export default function Login() {
   const classes = useStyles();
   const [check, setCheck] = React.useState(true);
+  const [id, setId] = useState('');
+  const user = useSelector((state) => state.user);
+  const users = useSelector((state) => state.users.users);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  console.log(users);
+
   return (
     <>
       <div className={classes.main}>
@@ -96,6 +111,10 @@ export default function Login() {
             variant="outlined"
             className={classes.textField}
             inputProps={{ style: { paddingTop: 15.5, paddingBottom: 15.5 } }}
+            value={id}
+            onChange={(e) => {
+              setId(e.target.value);
+            }}
             required
           />
           <TextField
@@ -109,7 +128,6 @@ export default function Login() {
             required
           />
           <Box className={classes.box2}>
-            {' '}
             <FormControlLabel
               control={
                 <Checkbox
@@ -134,6 +152,18 @@ export default function Login() {
             variant="contained"
             color="primary"
             className={classes.button}
+            onClick={() => {
+              const _user = users.find((u) => u.email === id);
+              console.log(_user);
+              if (_user)
+                dispatch(
+                  editUserInfo({
+                    ...user,
+                    username: _user.name,
+                    email: _user.email,
+                  })
+                );
+            }}
           >
             로그인
           </Button>
@@ -141,7 +171,13 @@ export default function Login() {
       </div>
       <div className={classes.logo}>
         <Box className={classes.image}>
-          <img src={logo} alt="" width="352" height="231" />
+          <img
+            src={logo}
+            alt=""
+            width="352"
+            height="231"
+            onClick={() => history.push(routes.NOTIFICATION)}
+          />
         </Box>
       </div>
     </>

@@ -9,6 +9,7 @@ const USERS_INITIAL_STATE = {
     {
       id: 0,
       name: '정승욱',
+      email: 'wjdtmddnr24@naver.com',
       ip: '127.0.0.1',
       speed: 1,
       time: '2020년 12월 7일 12시',
@@ -19,6 +20,7 @@ const USERS_INITIAL_STATE = {
     {
       id: 1,
       name: '조혜은',
+      email: 'kancho1216@naver.com',
       ip: '127.0.0.1',
       speed: 1,
       time: '2020년 12월 7일 12시',
@@ -29,6 +31,7 @@ const USERS_INITIAL_STATE = {
     {
       id: 2,
       name: '허예은',
+      email: '',
       ip: '127.0.0.1',
       speed: 1,
       time: '2020년 12월 7일 12시',
@@ -39,6 +42,7 @@ const USERS_INITIAL_STATE = {
     {
       id: 3,
       name: '김은혜',
+      email: '',
       ip: '127.0.0.1',
       speed: 1,
       time: '2020년 12월 7일 12시',
