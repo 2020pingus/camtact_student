@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     fontWeight: 700,
     minWidth: 75,
-    minHeight: 25,
+    height: 25,
     marginLeft: theme.spacing(1.2),
   },
   isAllowedWaitingChip: {
@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
     fontSize: 14,
     fontWeight: 700,
-    minWidth: 74,
-    minHeight: 25,
+    minWidth: 75,
+    height: 25,
     marginLeft: theme.spacing(1.2),
   },
   isEndedChip: {
@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#253053',
     fontSize: 14,
     fontWeight: 700,
-    minWidth: 74,
-    minHeight: 25,
+    minWidth: 75,
+    height: 25,
     marginLeft: theme.spacing(1.2),
   },
   moreIcon: {

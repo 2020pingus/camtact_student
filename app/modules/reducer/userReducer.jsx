@@ -54,6 +54,16 @@ const USER_INITIAL_STATE = {
       title: '시스템 프로그래밍 기말고사',
       content: '시험 점수가 발표되었습니다.',
     },
+    {
+      status: 1,
+      title: 'IoT 프로그래밍 중간고사',
+      content: '응시 거부를 받았습니다.',
+    },
+    {
+      stauts: 0,
+      title: '유비쿼터스센서네트워크 중간고사',
+      content: '응시 승인을 받았습니다.',
+    },
   ],
 };
 

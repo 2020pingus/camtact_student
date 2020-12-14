@@ -5,7 +5,9 @@ import Divider from '@material-ui/core/Divider';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
 import { LabelImportantRounded, VerticalAlignCenterRounded } from '@material-ui/icons';
+import { LoaderOptionsPlugin } from 'webpack';
 
 const useStyles = makeStyles((theme) => ({
   content: (props) => ({
@@ -71,7 +73,6 @@ const useStyles = makeStyles((theme) => ({
     width: 126,
     height: 36,
     color: '#FFFFFF',
-    backgroundColor: '#253053',
     fontSize: 18,
     fontWeight: 'bold',
     padding: 0,
@@ -90,8 +91,10 @@ export default function ExamCreate(props) {
   const [minute,setMinute] = React.useState('30');
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setYear(event.target.value);    
   };
+  
+
   return (
     <div className={classes.content}>
       <Card className={classes.card}>
@@ -181,67 +184,61 @@ export default function ExamCreate(props) {
               {examtime.title}
             </label>
             <div>
-            <FormControl variant="outlined">
-              <Select 
+              <Select key={index}
+                variant="outlined"
                 className={classes.year}
                 value={year}
                 onChange={handleChange}
-                label="Year"
-  
+                id="Year"
               >
                 <MenuItem value={2020}>2020</MenuItem>
                 <MenuItem value={2021}>2021</MenuItem>
                 <MenuItem value={2022}>2022</MenuItem>
               </Select>
-            </FormControl>
-            <FormControl variant="outlined">
               <Select
+                variant="outlined"
                 className={classes.calendercomponent}
                 value={month}
                 onChange={handleChange}
-                label="Month"
+                id="Month"
               >
                 {monthList.map((month,index) => (
                   <MenuItem key={index} value={month.month}>{month.month}</MenuItem>
                 ))}
               </Select>
-            </FormControl>
-            <FormControl variant="outlined">
               <Select
+                variant ="outlined"
                 className={classes.calendercomponent}
                 value={date}
                 onChange={handleChange}
-                label="Date"
+                id="Date"
               >
                 {dateList.map((date,index) => (
                   <MenuItem key={index} value={date.date}>{date.date}</MenuItem>
                 ))}
               </Select>
-            </FormControl>
-            <FormControl variant="outlined">
               <Select
+                variant = "outlined"
                 className={classes.calendercomponent}
                 value={hour}
                 onChange={handleChange}
-                label="Date"
+                id="Date"
               >
                 {hourList.map((hour,index) => (
                   <MenuItem key={index} value={hour.hour}>{hour.hour}</MenuItem>
                 ))}
               </Select>
-            </FormControl>
-            <FormControl variant="outlined">
-              <Select
+              <Select 
+                variant="outlined"
                 className={classes.calendercomponent}
                 value={minute}
                 onChange={handleChange}
-                label="Date"
+                id="Date"
               >
                 {minuteList.map((minute,index) => (
                   <MenuItem key={index} value={minute.minute}>{minute.minute}</MenuItem>
                 ))}
               </Select>
-            </FormControl>
             </div>
             </div>
             ))}

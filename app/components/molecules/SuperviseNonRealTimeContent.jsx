@@ -12,12 +12,13 @@ import {
 } from '@material-ui/core';
 import PauseIcon from '@material-ui/icons/Pause';
 import CropFreeIcon from '@material-ui/icons/CropFree';
-import React from 'react';
+import React, { useState } from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { useHistory } from 'react-router';
 import { Pause } from '@material-ui/icons';
 
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: 1145,
     height: 753,
-    margin: theme.spacing(2.6, 2.7, 0, 2.8),
+    margin: theme.spacing(3.25, 2.7, 0, 2.8),
     padding: theme.spacing(0),
     display: 'flex',
     flexWrap: 'wrap',
@@ -105,14 +106,13 @@ const useStyles = makeStyles((theme) => ({
   },
   infoContent: { color: '#253053', fontSize: 16, fontWeight: 400 },
   screen: {
-    width: 1080,
-    margin: theme.spacing(0, 0, 0, 3.2),
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: '100%',
   },
-
   contentSection: {
     width: 1080,
     display: 'flex',
@@ -125,24 +125,28 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginLeft: 15,
+    height: 38,
   },
-  iconButton: { padding: 0, marginTop: 18 },
+  iconButton: { padding: 0 },
   pauseIcon: { width: 30, height: 30 },
   timeSection: {
     color: '#253053',
     textAlign: 'center',
-    marginRight: 5,
+    marginLeft: -15,
+    marginTop: -8,
     width: 130,
   },
-  slider: { marginTop: 19 },
+  slider: { width: 865, marginLeft: -13, marginTop: 3 },
   infoRight: {
     padding: 0,
-    marginTop: 18,
-    marginLeft: 18,
     width: 30,
     height: 30,
   },
-  cropFreeIcon: { width: 30, height: 30 },
+  cropFreeIcon: { width: 30, height: 30, marginLeft: -25 },
   footer: {
     display: 'flex',
     width: 1144,
@@ -153,15 +157,16 @@ const useStyles = makeStyles((theme) => ({
   goBackButton: {
     height: 36,
     backgroundColor: '#FFFFFF',
-    margin: theme.spacing(1.1, 0, 0, 0),
+    margin: theme.spacing(1.5, 0, 0, 0),
   },
 }));
 
 export default function SuperviseRealTimeContent(props) {
   const classes = useStyles(props);
   const history = useHistory();
-  const [checked, setChecked] = React.useState(true);
-  const [value, setValue] = React.useState(30);
+  const [checked, setChecked] = useState(true);
+  const [value, setValue] = useState(30);
+  const [play, setPlay] = useState(false);
 
   const handleCheckChange = (event) => {
     setChecked(event.target.checked);
@@ -217,31 +222,47 @@ export default function SuperviseRealTimeContent(props) {
               <div className={classes.window}>
                 <p>화면2</p>
               </div>
-              <div className={classes.sliderSection}>
-                <div xs={3}>
-                  <IconButton className={classes.iconButton} color="primary">
+            </div>
+
+            <div className={classes.sliderSection}>
+              <div xs={3}>
+                {play ? (
+                  <IconButton
+                    onClick={() => setPlay(false)}
+                    className={classes.iconButton}
+                    color="primary"
+                  >
                     <PauseIcon className={classes.pauseIcon} />
                   </IconButton>
-                </div>
-                <div className={classes.timeSection} xs={3}>
-                  <p style={{ marginTop: 20 }}>16:42 / 1:50:12</p>
-                </div>
-                <div
-                  style={{
-                    width: 865,
-                  }}
-                >
-                  <Slider
-                    className={classes.slider}
-                    value={value}
-                    onChange={handleValueChange}
-                    aria-labelledby="continuous-slider"
-                  />
-                </div>
-                <IconButton color="primary" className={classes.infoRight}>
-                  <CropFreeIcon className={classes.cropFreeIcon} />
-                </IconButton>
+                ) : (
+                  <IconButton
+                    onClick={() => setPlay(true)}
+                    className={classes.iconButton}
+                    color="primary"
+                  >
+                    <PlayArrowIcon className={classes.pauseIcon} />
+                  </IconButton>
+                )}
               </div>
+
+              <div className={classes.timeSection} xs={3}>
+                <p style={{ marginTop: 22 }}>16:42 / 1:50:12</p>
+              </div>
+              <div
+                style={{
+                  width: 865,
+                }}
+              >
+                <Slider
+                  className={classes.slider}
+                  value={value}
+                  onChange={handleValueChange}
+                  aria-labelledby="continuous-slider"
+                />
+              </div>
+              <IconButton color="primary" className={classes.infoRight}>
+                <CropFreeIcon className={classes.cropFreeIcon} />
+              </IconButton>
             </div>
             <div className={classes.footer}>
               <Button

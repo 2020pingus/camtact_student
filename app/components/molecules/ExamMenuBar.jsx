@@ -14,9 +14,17 @@ import {
   Paper,
   ClickAwayListener,
   MenuList,
+  MenuItem,
+  ButtonGroup,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ExamList from './ExamList';
 
@@ -187,12 +195,45 @@ function a11yProps(index) {
   };
 }
 
+const options = ['날짜순', '시간순', '이름순'];
 export default function ExamMenuBar(props) {
   const classes = useStyles(props);
   const [value, setValue] = React.useState(0);
+  const [open, setOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const anchorRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleClick = () => {
+    console.info(`You clicked ${options[selectedIndex]}`);
+  };
+
+  const handleMenuItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setOpen(false);
+  };
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleDialogClickOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
   };
 
   return (
@@ -219,13 +260,112 @@ export default function ExamMenuBar(props) {
         </Tabs>
       </AppBar>
       <Box className={classes.buttons}>
-        <Button className={classes.sortButton} variant="contained">
-          날짜순
-          <ArrowDropDownIcon viewBox="-2 1.5 22 22" />
-        </Button>
-        <Button className={classes.createExamButton} variant="contained">
+        <ButtonGroup
+          variant="contained"
+          ref={anchorRef}
+          aria-label="split button"
+        >
+          <Button
+            size="small"
+            aria-controls={open ? 'split-button-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleToggle}
+            style={{
+              backgroundColor: '#FFFFFF',
+              color: '#253053',
+              fontSize: 16,
+              fontWeight: 700,
+              width: 95,
+              height: 36,
+            }}
+          >
+            {options[selectedIndex]}
+            <ArrowDropDownIcon />
+          </Button>
+        </ButtonGroup>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom',
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList id="split-button-menu">
+                    {options.map((option, index) => (
+                      <MenuItem
+                        key={option}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+
+        <Button
+          className={classes.createExamButton}
+          variant="contained"
+          onClick={handleDialogClickOpen}
+        >
           시험 등록
         </Button>
+        <Dialog
+          open={dialogOpen}
+          onClose={handleDialogClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle
+            id="form-dialog-title"
+            style={{
+              color: '#253053',
+              paddingRight: 50,
+              paddingLeft: 50,
+              paddingTop: 25,
+            }}
+          >
+            초대 코드를 입력해주세요
+          </DialogTitle>
+          <DialogContent style={{ textAlign: 'center' }}>
+            <TextField
+              style={{ width: '75%' }}
+              autoFocus
+              id="name"
+              label="초대코드"
+              type="input"
+              fullWidth
+              color="primary"
+            />
+          </DialogContent>
+          <DialogActions
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+            }}
+          >
+            <Button onClick={handleDialogClose} color="primary">
+              취소
+            </Button>
+            <Button onClick={handleDialogClose} color="primary">
+              등록
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Box>
 
       <TabPanel className={classes.tabPanel} value={value} index={0}>

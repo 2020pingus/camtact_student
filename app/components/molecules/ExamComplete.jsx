@@ -5,6 +5,8 @@ import {
   Card,
   Button,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import routes from '../../constants/routes.json';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -78,7 +80,8 @@ export default function Notice(props) {
           <Typography className={classes.endexam}>시험이 종료되었습니다.</Typography>
           <Typography className={classes.autosubmit}>현재까지 작성한 답안은 자동 제출됩니다.</Typography>
           <div classses={classes.back}>
-            <Button variant="contained" className={classes.backbutton}>돌아가기</Button>
+            <Link to ={routes.EXAMLIST} style={{ textDecoration: 'none' }}>
+              <Button variant="contained" className={classes.backbutton}>돌아가기</Button></Link>
           </div>
       </Card>
     </div>
