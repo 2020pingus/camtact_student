@@ -206,6 +206,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/react-test-renderer": "^16.9.3",
     "@types/redux-logger": "^3.0.8",
+    "@types/socket.io-client": "^1.4.34",
     "@types/webpack": "^4.41.21",
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
@@ -296,6 +297,8 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "regenerator-runtime": "^0.13.5",
+    "simple-peer": "^9.9.3",
+    "socket.io-client": "^3.0.4",
     "source-map-support": "^0.5.19"
   },
   "devEngines": {
