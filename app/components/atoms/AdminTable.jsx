@@ -12,11 +12,13 @@ import {
   Divider,
   TableFooter,
   TablePagination,
-  Link,
 } from '@material-ui/core';
-import Paginations from '../atoms/Paginations';
-import { paginate } from '../../utils/paginate';
 import { makeStyles, useTheme } from '@material-ui/styles';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
+import routes from '../../constants/routes.json';
+import Paginations from './Paginations';
+import { paginate } from '../../utils/paginate';
 
 function createData(id, major, studentId, name, email, isAllowed) {
   return { id, major, studentId, name, email, isAllowed };
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   tableCell: {
     fontSize: 18,
     fontWeight: 400,
-    height: 59,
+    height: 70,
   },
   tableCellRow: {
     fontSize: 18,
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(-1),
   },
   divider: {
-    marginBottom: theme.spacing(1.75),
+    marginBottom: theme.spacing(0.3),
   },
   footer: {
     display: 'flex',
@@ -163,9 +165,9 @@ export default function AdminTable() {
       createData(
         15,
         '소프트웨어학부',
-        201800008,
+        20180008,
         '허승욱',
-        '201800008@naver.com',
+        '20180008@naver.com',
         'o'
       ),
     ];
@@ -186,6 +188,8 @@ export default function AdminTable() {
   const pagedExaminers = paginate(data, currentPage, pageSize);
 
   const { length: count } = examiners.data;
+
+  const history = useHistory();
 
   return (
     <>
@@ -226,7 +230,12 @@ export default function AdminTable() {
                   {row.studentId}
                 </TableCell>
                 <TableCell className={classes.tableCellRow}>
-                  {row.name}
+                  <Link
+                    to={routes.SUPERVISE_NON_REALTIME}
+                    style={{ color: '#253053' }}
+                  >
+                    {row.name}
+                  </Link>
                 </TableCell>
                 <TableCell className={classes.tableCellRow}>
                   {row.email}
@@ -237,42 +246,48 @@ export default function AdminTable() {
                 >
                   {row.isAllowed === 'x' ? (
                     <>
-                      <Link href="/#" color="primary" style={{ fontSize: 18 }}>
+                      <Link
+                        to={routes.HOME}
+                        color="primary"
+                        style={{ fontSize: 18, color: '#253053' }}
+                      >
                         승인
                       </Link>
                       &nbsp;/&nbsp;
                       <Link
-                        href="/#"
+                        to={routes.HOME}
                         color="primary"
-                        style={{ fontSize: 18, marginRight: 48 }}
+                        style={{
+                          fontSize: 18,
+                          marginRight: 48,
+                          color: '#253053',
+                        }}
                       >
                         거절
                       </Link>
                     </>
                   ) : (
-                    <div>
-                      <Button disabled style={{ marginRight: 48 }}>
-                        -
-                      </Button>
-                    </div>
+                    <Button disabled style={{ marginRight: 48 }}>
+                      -
+                    </Button>
                   )}
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
-          <div className={classes.caption}>
-            <Divider className={classes.divider} />
-            <div className={classes.footer}>
-              <Paginations
-                className={classes.pagination}
-                pageSize={pageSize}
-                itemsCount={count}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-              />
-            </div>
-          </div>
         </Table>
+        <div className={classes.caption}>
+          <Divider className={classes.divider} />
+          <div className={classes.footer}>
+            <Paginations
+              className={classes.pagination}
+              pageSize={pageSize}
+              itemsCount={count}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        </div>
       </Card>
     </>
   );
