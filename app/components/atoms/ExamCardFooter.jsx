@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, Divider } from '@material-ui/core';
 import ExamCardButton from '../molecules/ExamCardButton';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(() => ({
   footer: {
@@ -16,22 +17,27 @@ const useStyles = makeStyles(() => ({
 
 export default function ExamCardFooter(props) {
   const classes = useStyles();
+  const { role } = useSelector((state) => state.user);
   const { state, name, professor, startTime, endTime, examiners } = props;
   return (
     <>
       <Divider className={classes.divider} />
       <div className={classes.footer}>
-        <ExamCardButton
-          type="exam"
-          state={state}
-          name={name}
-          professor={professor}
-          startTime={startTime}
-          endTime={endTime}
-          examiners={examiners}
-        />
-        {/* <CardButton type="supervise" mode="start" /> */}
-        {/* <CardButton type="supervise" mode="notStart" /> */}
+        {role === '응시자' && (
+          <ExamCardButton
+            type="exam"
+            state={state}
+            name={name}
+            professor={professor}
+            startTime={startTime}
+            endTime={endTime}
+            examiners={examiners}
+          />
+        )}
+        {role === '감독자' && <ExamCardButton type="supervise" mode="start" />}
+        {role === '감독자' && (
+          <ExamCardButton type="supervise" mode="notStart" />
+        )}
       </div>
     </>
   );
