@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import React from 'react';
 import AdminMenu from '../atoms/AdminMenu';
 import AdminTable from '../atoms/AdminTable';

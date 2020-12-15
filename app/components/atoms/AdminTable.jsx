@@ -26,9 +26,10 @@ function createData(id, major, studentId, name, email, isAllowed) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(2, 2.9, 2, 2.8),
+    margin: theme.spacing(1.5, 0, 0, 3),
     width: 1144,
     height: 703,
+    marginBottom: 0,
   },
   table: {
     flex: 1,
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   tableCell: {
     fontSize: 18,
     fontWeight: 400,
-    height: 70,
+    height: 30,
   },
   tableCellRow: {
     fontSize: 18,
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   caption: {
     position: 'fixed',
-    bottom: 50,
+    bottom: 48,
     captionSide: 'bottom',
     width: 1144,
     marginLeft: theme.spacing(-0.1),
@@ -176,7 +177,7 @@ export default function AdminTable() {
 
   const [examiners, setExaminers] = useState({
     data: getExaminers(),
-    pageSize: 10,
+    pageSize: 11,
     currentPage: 1,
   });
 
@@ -196,7 +197,7 @@ export default function AdminTable() {
       <Card className={classes.root}>
         <Table className={classes.table} size="small">
           <TableHead>
-            <TableRow style={{ height: 50.5 }}>
+            <TableRow style={{ height: 40 }}>
               <TableCell
                 className={classes.tableCell}
                 style={{ paddingLeft: 20 }}
@@ -277,7 +278,6 @@ export default function AdminTable() {
           </TableBody>
         </Table>
         <div className={classes.caption}>
-          <Divider className={classes.divider} />
           <div className={classes.footer}>
             <Paginations
               className={classes.pagination}

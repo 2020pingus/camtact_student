@@ -6,13 +6,16 @@ import AdminTable from './AdminTable';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(2, 2.9, 2, 2.8),
+    margin: theme.spacing(2, 2.9, 2, 3.2),
     width: 1177,
+    marginRight: 0,
   },
   filterButton: {
     backgroundColor: '#FFFFFF',
     fontWeight: 'bold',
     color: theme.palette.primary.main,
+    padding: 2.5,
+    fontSize: 18,
     width: 90,
     height: 36.1,
   },
@@ -59,6 +62,8 @@ const useStyles = makeStyles((theme) => ({
     height: 36.1,
     float: 'right',
     alignItems: 'flex-end',
+    padding: 2.5,
+    fontSize: 18,
   },
 }));
 export default function AdminMenu() {
