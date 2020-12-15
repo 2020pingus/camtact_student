@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     float: 'right',
     marginRight: 15,
+    paddingTop: 4,
   },
   cardP: {
     width: 73,

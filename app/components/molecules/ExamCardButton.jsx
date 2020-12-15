@@ -285,14 +285,22 @@ export default function ExamCardButton(props) {
       )}
       {props.type === 'supervise' && props.mode === 'start' && (
         <>
-          <Button className={classes.button} style={{ color: '#FF5E57' }}>
+          <Button
+            className={classes.button}
+            style={{ color: '#FF5E57' }}
+            onClick={() => history.push(routes.SUPERVISE)}
+          >
             시험 감독
           </Button>
         </>
       )}
       {props.type === 'supervise' && props.mode === 'notStart' && (
         <>
-          <Button className={classes.button} style={{ width: '100%' }}>
+          <Button
+            className={classes.button}
+            style={{ width: '100%' }}
+            onClick={() => history.push(routes.ADMIN)}
+          >
             응시자 관리
           </Button>
           <Divider

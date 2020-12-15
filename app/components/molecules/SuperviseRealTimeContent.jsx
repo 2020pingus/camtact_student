@@ -86,13 +86,13 @@ const useStyles = makeStyles((theme) => ({
   headerRightTopography: {
     fontSize: 18,
     fontWeight: 400,
-    margin: theme.spacing(2.5, 1.1, 0, 0),
+    margin: theme.spacing(2.5, 0.7, 0, 0),
   },
   checkbox: {
     justifyContent: 'center',
     weight: 28,
     height: 28,
-    margin: theme.spacing(2.5, 3.2, 0, 0),
+    margin: theme.spacing(2.5, 1.2, 0, 0),
     padding: 0,
   },
   screen: {
@@ -219,7 +219,11 @@ const useStyles = makeStyles((theme) => ({
   goBackButton: {
     height: 36,
     backgroundColor: '#FFFFFF',
-    margin: theme.spacing(1.1, 0, 0, 0),
+    color: theme.palette.primary.main,
+    fontSize: 16,
+    fontWeight: 600,
+    margin: theme.spacing(1.5, 0, 0, 0),
+    paddingTop: 4,
   },
 }));
 

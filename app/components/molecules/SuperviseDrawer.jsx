@@ -1,8 +1,19 @@
 import React from 'react';
-import { Button, Divider, Drawer, makeStyles } from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  Divider,
+  Drawer,
+  makeStyles,
+} from '@material-ui/core';
 import LogoBar from '../atoms/LogoBar';
 import SuperviseDrawerInfo from '../atoms/SuperviseDrawerInfo';
 import SuperviseDrawerList from '../atoms/SuperviseDrawerList';
+import useReactRouter from 'use-react-router';
+import routes from '../../constants/routes.json';
 
 const useStyles = makeStyles((theme) => ({
   drawer: (drawerWidth) => ({
@@ -33,10 +44,33 @@ const useStyles = makeStyles((theme) => ({
       '0px 2px 4px rgba(0, 0, 0, 0.14), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2)',
     borderRadius: 7,
   },
+  dialogContent: {
+    padding: 20,
+    paddingBottom: 0,
+  },
+  dialogAction: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
 }));
 
 function SuperviseDrawer({ appBarHeight, drawerWidth }, props) {
   const classes = useStyles(drawerWidth);
+  const [open, setOpen] = React.useState(false);
+  const { history } = useReactRouter();
+
+  const handleExamExit = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleAgree = () => {
+    handleClose();
+    history.replace(routes.EXAMLIST);
+  };
 
   return (
     <Drawer
@@ -60,9 +94,27 @@ function SuperviseDrawer({ appBarHeight, drawerWidth }, props) {
           type="submit"
           className={classes.submitButton}
           style={{ backgroundColor: '#FF5E57' }}
+          onClick={handleExamExit}
         >
           감독 종료
         </Button>
+
+        {/* Exam Exit Dialog */}
+        <Dialog open={open} onClose={handleClose}>
+          <DialogContent className={classes.dialogContent}>
+            <DialogContentText color="primary">
+              감독을 종료하시겠습니까?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions className={classes.dialogAction}>
+            <Button onClick={handleAgree} color="error">
+              예
+            </Button>
+            <Button onClick={handleClose} color="primary">
+              아니오
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </Drawer>
   );
