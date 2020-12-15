@@ -50,6 +50,28 @@ const USERS_INITIAL_STATE = {
       isDetected: false,
       isConnected: false,
     },
+    {
+      id: 4,
+      name: '시험자1',
+      email: '',
+      ip: '127.0.0.1',
+      speed: 1,
+      time: '2020년 12월 7일 12시',
+      numSolvedProblem: 23,
+      isDetected: false,
+      isConnected: false,
+    },
+    {
+      id: 5,
+      name: '시험자2',
+      email: '',
+      ip: '127.0.0.1',
+      speed: 1,
+      time: '2020년 12월 7일 12시',
+      numSolvedProblem: 23,
+      isDetected: false,
+      isConnected: false,
+    },
   ],
 };
 
