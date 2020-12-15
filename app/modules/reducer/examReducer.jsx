@@ -58,14 +58,14 @@ const EXAM_INITIAL_STATE = {
       isSolved: false,
       check: false,
     },
-    // {
-    //   type: LONG_ANSWER,
-    //   title: '서술형 1',
-    //   score: 50,
-    //   question: 'Lorem ipsum 에 대해 논하시오.',
-    //   isSolved: false,
-    //   check: false,
-    // },
+    {
+      type: LONG_ANSWER,
+      title: '서술형 1',
+      score: 50,
+      question: 'Lorem ipsum 에 대해 논하시오.',
+      isSolved: false,
+      check: false,
+    },
   ],
 };
 

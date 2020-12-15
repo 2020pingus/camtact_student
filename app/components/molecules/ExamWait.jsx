@@ -15,6 +15,7 @@ import {
 import { useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
+import DoneIcon from '@material-ui/icons/Done';
 import { desktopCapturer } from 'electron';
 import RTCVideo from '../atoms/RTCVideo';
 import { testerConnectServer } from '../../modules/action/testerAction';
@@ -290,7 +291,7 @@ export default function ExamWaitContent(props) {
                   </>
                 )) || (
                   <>
-                    <PriorityHighIcon
+                    <DoneIcon
                       style={{
                         width: 19,
                         height: 19,
@@ -308,7 +309,7 @@ export default function ExamWaitContent(props) {
                         color: '#47B881',
                       }}
                     >
-                      설정되었습니다.
+                      모니터 공유 화면 설정이 완료되었습니다.
                     </Typography>
                   </>
                 )}

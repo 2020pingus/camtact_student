@@ -58,6 +58,7 @@ export default function ExamDialog(props) {
             marginBottom: 27,
             backgroundColor: '#FF5E57',
             color: '#FFFFFF',
+            fontSize: 16,
             fontWeight: 700,
             width: 250,
             height: 36,

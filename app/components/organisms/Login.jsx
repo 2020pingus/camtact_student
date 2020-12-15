@@ -164,7 +164,7 @@ export default function Login() {
             //       })
             //     );
             // }}
-            onClick={() => history.push(routes.NOTIFICATION)}
+            onClick={() => history.push(routes.MYPAGE);}
           >
             로그인
           </Button>

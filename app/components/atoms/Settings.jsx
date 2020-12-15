@@ -312,7 +312,7 @@ export default function Settings() {
                   <label className={classes.label} htmlFor="phoneNumber">
                     연락처
                   </label>
-                  <MyTextField id="phoneNumber" defaultValue="" />
+                  <MyTextField id="phoneNumber" defaultValue="010-1234-5678" />
                 </Box>
               </FormControl>
             </Box>
@@ -329,14 +329,13 @@ export default function Settings() {
                   />
                 </Box>
                 <Box className={classes.box}>
-                  <label
-                    className={classes.label}
-                    htmlFor="organization2"
-                    defaultValue={organization.split('')[1]}
-                  >
+                  <label className={classes.label} htmlFor="organization2">
                     소속 학과
                   </label>
-                  <MyTextField id="organization2" defaultValue="" />
+                  <MyTextField
+                    id="organization2"
+                    defaultValue={organization.split(' ')[1]}
+                  />
                 </Box>
               </FormControl>
               <FormControl className={classes.formControl}>
@@ -344,7 +343,7 @@ export default function Settings() {
                   <label className={classes.label} htmlFor="studentId">
                     학번
                   </label>
-                  <MyTextField id="studentId" defaultValue="" />
+                  <MyTextField id="studentId" defaultValue="20180330" />
                 </Box>
               </FormControl>
             </Box>

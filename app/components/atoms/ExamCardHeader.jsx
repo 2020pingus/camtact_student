@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, CardHeader, IconButton, Chip } from '@material-ui/core';
+import {
+  makeStyles,
+  CardHeader,
+  IconButton,
+  Chip,
+  Typography,
+} from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,15 +27,14 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 75,
     height: 25,
     marginLeft: theme.spacing(1.2),
+    marginBottom: 3,
   },
   isAllowedWaitingChip: {
     backgroundColor: '#42ABFF',
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 700,
     minWidth: 75,
     height: 25,
     marginLeft: theme.spacing(1.2),
+    marginBottom: 3,
   },
   isEndedChip: {
     backgroundColor: '#F2C94C',
@@ -39,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 75,
     height: 25,
     marginLeft: theme.spacing(1.2),
+    marginBottom: 3,
   },
   moreIcon: {
     display: 'flex',
@@ -64,16 +70,40 @@ export default function ExamCardHeader(props) {
           <div className={classes.examTitle}>
             {props.name}
             {state === 1 && (
-              <Chip className={classes.isAllowedChip} label="승인 완료" />
+              <Chip
+                className={classes.isAllowedChip}
+                label={
+                  <Typography
+                    style={{ color: '#FFFFFF', fontSize: 14, fontWeight: 700 }}
+                  >
+                    승인 완료
+                  </Typography>
+                }
+              />
             )}
             {state === 2 && (
               <Chip
                 className={classes.isAllowedWaitingChip}
-                label="승인 대기"
+                label={
+                  <Typography
+                    style={{ color: '#FFFFFF', fontSize: 14, fontWeight: 700 }}
+                  >
+                    승인 대기
+                  </Typography>
+                }
               />
             )}
             {state === 3 && (
-              <Chip className={classes.isEndedChip} label="종료" />
+              <Chip
+                className={classes.isEndedChip}
+                label={
+                  <Typography
+                    style={{ color: '#253053', fontSize: 14, fontWeight: 700 }}
+                  >
+                    종료
+                  </Typography>
+                }
+              />
             )}
           </div>
         }

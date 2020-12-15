@@ -10,6 +10,7 @@ import {
   makeStyles,
   Radio,
   RadioGroup,
+  TextField,
   Typography,
 } from '@material-ui/core';
 import React from 'react';
@@ -127,9 +128,11 @@ export default function ProblemCard({ problem, currentProblem, count }) {
           <Typography variant="h2" color="primary">
             {problem.question}
           </Typography>
-          <p style={{ fontSize: 20, color: '#253053', paddingTop: 4 }}>
-            &nbsp;&nbsp;&nbsp;&nbsp;{problem.questionContent}
-          </p>
+          {problem.type !== LONG_ANSWER && (
+            <p style={{ fontSize: 20, color: '#253053', paddingTop: 4 }}>
+              &nbsp;&nbsp;&nbsp;&nbsp;{problem.questionContent}
+            </p>
+          )}
         </Box>
         {problem.type === SINGLE_CHOICE && (
           <Box className={classes.choices}>
@@ -188,25 +191,37 @@ export default function ProblemCard({ problem, currentProblem, count }) {
         )}
         {problem.type === SHORT_ANSWER && (
           <Box className={classes.choices}>
-            <FormControl component="fieldset">
-              <RadioGroup value={value} onChange={handleChange}>
-                {problem.choices.map((choice, index) => (
-                  <FormControlLabel
-                    value={index.toString()}
-                    key={index}
-                    control={<Radio color="primary" />}
-                    label={
-                      <Typography
-                        variant="h3"
-                        color="primary"
-                        style={{ paddingBottom: 1.5, marginLeft: 7 }}
-                      >
-                        {choice}
-                      </Typography>
-                    }
-                  />
-                ))}
-              </RadioGroup>
+            <FormControl>
+              <TextField
+                variant="outlined"
+                style={{
+                  width: 1064,
+                  height: 54,
+                  marginLeft: -10,
+                  marginTop: 15,
+                }}
+                inputProps={{ style: { padding: 14 } }}
+              />
+            </FormControl>
+          </Box>
+        )}
+        {problem.type === LONG_ANSWER && (
+          <Box className={classes.choices}>
+            <FormControl style={{ height: 474 }}>
+              <TextField
+                variant="outlined"
+                multiline
+                rows={23}
+                style={{
+                  width: 1064,
+                  height: '100%',
+                  marginLeft: -10,
+                  marginTop: 20,
+                }}
+                inputProps={{
+                  style: { padding: 12, paddingTop: 4, fontSize: 16 },
+                }}
+              />
             </FormControl>
           </Box>
         )}
