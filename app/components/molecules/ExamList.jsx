@@ -4,6 +4,7 @@ import ExamCard from './ExamCard';
 
 export default function ExamList(props) {
   const { data } = props;
+
   return (
     <>
       {data.map((item) => (
@@ -11,7 +12,8 @@ export default function ExamList(props) {
           key={item.id}
           name={item.name}
           professor={item.professor}
-          time={item.time}
+          startTime={item.startTime}
+          endTime={item.endTime}
           state={item.state}
           examiners={item.examiners}
         />

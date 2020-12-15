@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
 
 export default function ExamCardFooter(props) {
   const classes = useStyles();
-  const { state, name, professor, time, examiners } = props;
+  const { state, name, professor, startTime, endTime, examiners } = props;
   return (
     <>
       <Divider className={classes.divider} />
@@ -26,7 +26,8 @@ export default function ExamCardFooter(props) {
           state={state}
           name={name}
           professor={professor}
-          time={time}
+          startTime={startTime}
+          endTime={endTime}
           examiners={examiners}
         />
         {/* <CardButton type="supervise" mode="start" /> */}

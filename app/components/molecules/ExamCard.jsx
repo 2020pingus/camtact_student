@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ExamCard(props) {
   const classes = useStyles(props);
-  const { state, name, professor, time, examiners } = props;
+  const { state, name, professor, startTime, endTime, examiners } = props;
   return (
     <>
       {state === 3 ? (
@@ -39,13 +39,15 @@ export default function ExamCard(props) {
             state={state}
             name={name}
             professor={professor}
-            time={time}
+            startTime={startTime}
+            endTime={endTime}
           />
           <ExamCardFooter
             state={state}
             name={name}
             professor={professor}
-            time={time}
+            startTime={startTime}
+            endTime={endTime}
             examiners={examiners}
             style={{ marginTop: -30 }}
           />
@@ -57,14 +59,16 @@ export default function ExamCard(props) {
             state={state}
             name={name}
             professor={professor}
-            time={time}
+            startTime={startTime}
+            endTime={endTime}
             examiners={examiners}
           />
           <ExamCardFooter
             state={state}
             name={name}
             professor={professor}
-            time={time}
+            startTime={startTime}
+            endTime={endTime}
             examiners={examiners}
           />
         </Card>

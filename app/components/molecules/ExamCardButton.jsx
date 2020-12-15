@@ -12,6 +12,8 @@ import {
 } from '@material-ui/core';
 import useReactRouter from 'use-react-router';
 import routes from '../../constants/routes.json';
+import moment from 'moment';
+import { useInterval } from './SuperviseContent.jsx';
 
 const useStyles = makeStyles((theme) => ({
   dialogTitle: {
@@ -111,6 +113,16 @@ export default function ExamCardButton(props) {
   const [open, setOpen] = useState(false);
   const { history } = useReactRouter();
 
+  const now = moment();
+  const [seconds, setSeconds] = useState(now);
+  const startTime = new Date(props.startTime);
+  const endTime = new Date(props.endTime);
+
+  useInterval(() => {
+    setSeconds(moment().format('MM-DD HH:mm:ss'));
+  }, 1000);
+  console.log(now);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -142,24 +154,80 @@ export default function ExamCardButton(props) {
               </span>
             </DialogTitle>
             <DialogContent>
-              {/* <DialogContentText style={{display: 'flex', alignItems: 'center', justifyContent: 'column' }}> */}
               <p className={classes.p}>{props.professor}</p>
               {props.state === 0 && (
                 <Chip
                   className={classes.ongoingChip}
-                  label="0시간 10분 30초 남음"
+                  label={
+                    <>
+                      <>시험 종료 </>
+                      {moment
+                        .duration(moment(endTime).diff(now))
+                        .hours()
+                        .toString()}
+                      <>시간 </>
+                      {moment
+                        .duration(moment(endTime).diff(now))
+                        .minutes()
+                        .toString()}
+                      <>분 </>
+                      {moment
+                        .duration(moment(endTime).diff(now))
+                        .seconds()
+                        .toString()}
+                      <>초 남음</>
+                    </>
+                  }
                 />
               )}
               {props.state === 1 && (
                 <Chip
                   className={classes.allowedChip}
-                  label="10일 23시간 50분 20초 남음"
+                  label={
+                    <>
+                      <>시험 종료 </>
+                      {moment
+                        .duration(moment(startTime).diff(now))
+                        .hours()
+                        .toString()}
+                      <>시간 </>
+                      {moment
+                        .duration(moment(startTime).diff(now))
+                        .minutes()
+                        .toString()}
+                      <>분 </>
+                      {moment
+                        .duration(moment(startTime).diff(now))
+                        .seconds()
+                        .toString()}
+                      <>초 남음</>
+                    </>
+                  }
                 />
               )}
               {props.state === 2 && (
                 <Chip
                   className={classes.allowedWaitingChip}
-                  label="5시간 50분 20초 남음"
+                  label={
+                    <>
+                      <>시험 종료 </>
+                      {moment
+                        .duration(moment(startTime).diff(now))
+                        .hours()
+                        .toString()}
+                      <>시간 </>
+                      {moment
+                        .duration(moment(startTime).diff(now))
+                        .minutes()
+                        .toString()}
+                      <>분 </>
+                      {moment
+                        .duration(moment(startTime).diff(now))
+                        .seconds()
+                        .toString()}
+                      <>초 남음</>
+                    </>
+                  }
                 />
               )}
               {props.state === 3 && (
@@ -173,11 +241,11 @@ export default function ExamCardButton(props) {
               </div>
               <div className={classes.infoDiv}>
                 <p className={classes.infoTitle}>시험 점수</p>
-                <p style={{ marginRight: 93 }}> -- / 100</p>
+                <p style={{ marginRight: 93 }}> 87 / 100</p>
               </div>
               <div className={classes.infoDiv}>
                 <p className={classes.infoTitle}>시험 등수</p>
-                <p style={{ marginRight: 93 }}> -- / 50</p>
+                <p style={{ marginRight: 93 }}> 21 / 50</p>
               </div>
               {/* </DialogContentText> */}
             </DialogContent>

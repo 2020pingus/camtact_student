@@ -5,6 +5,8 @@ import { Translate } from '@material-ui/icons';
 import PersonIcon from '@material-ui/icons/Person';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+import moment from 'moment';
+import { useInterval } from '../molecules/SuperviseContent';
 
 const useStyles = makeStyles((theme) => ({
   cardContent: {
@@ -34,8 +36,19 @@ const useStyles = makeStyles((theme) => ({
     height: 15,
   },
 }));
+
 export default function ExamCardContents(props) {
   const classes = useStyles();
+  const now = moment();
+  const [seconds, setSeconds] = useState(now);
+  const startTime = new Date(props.startTime);
+  const endTime = new Date(props.endTime);
+
+  useInterval(() => {
+    setSeconds(moment().format('MM-DD HH:mm:ss'));
+  }, 1000);
+  console.log(now);
+
   return (
     <>
       {props.state === 0 && (
@@ -46,11 +59,18 @@ export default function ExamCardContents(props) {
           </Typography>
           <Typography className={classes.examInfo}>
             <EventNoteIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-            {props.time}
+            {moment(startTime).format('MM월 DD일 HH시 mm분')}
           </Typography>
+
           <Typography className={classes.examInfo} color="error">
             <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-            시험 종료 0시간 50분 20초 남음
+            <>시험 종료 </>
+            {moment.duration(moment(endTime).diff(now)).hours().toString()}
+            <>시간 </>
+            {moment.duration(moment(endTime).diff(now)).minutes().toString()}
+            <>분 </>
+            {moment.duration(moment(endTime).diff(now)).seconds().toString()}
+            <>초 남음</>
           </Typography>
         </CardContent>
       )}
@@ -62,11 +82,16 @@ export default function ExamCardContents(props) {
           </Typography>
           <Typography className={classes.examInfo}>
             <EventNoteIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-            {props.time}
+            {moment(startTime).format('MM월 DD일 HH시 mm분')}
           </Typography>
           <Typography className={classes.examInfo} style={{ color: '#47B881' }}>
             <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-            10일 23시간 50분 20초 남음
+            {moment.duration(moment(startTime).diff(now)).hours().toString()}
+            <>시간 </>
+            {moment.duration(moment(startTime).diff(now)).minutes().toString()}
+            <>분 </>
+            {moment.duration(moment(startTime).diff(now)).seconds().toString()}
+            <>초 남음</>
           </Typography>
         </CardContent>
       )}
@@ -78,11 +103,16 @@ export default function ExamCardContents(props) {
           </Typography>
           <Typography className={classes.examInfo}>
             <EventNoteIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-            {props.time}
+            {moment(startTime).format('MM월 DD일 HH시 mm분')}
           </Typography>
           <Typography className={classes.examInfo} style={{ color: '#42ABFF' }}>
             <AccessAlarmIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-            5시간 50분 20초 남음
+            {moment.duration(moment(startTime).diff(now)).hours().toString()}
+            <>시간 </>
+            {moment.duration(moment(startTime).diff(now)).minutes().toString()}
+            <>분 </>
+            {moment.duration(moment(startTime).diff(now)).seconds().toString()}
+            <>초 남음</>
           </Typography>
         </CardContent>
       )}
@@ -97,7 +127,7 @@ export default function ExamCardContents(props) {
           </Typography>
           <Typography className={classes.examInfo}>
             <EventNoteIcon className={classes.icon} viewBox="0 -1 23 23" />{' '}
-            {props.time}
+            {moment(startTime).format('MM월 DD일 HH시 mm분')}
           </Typography>
         </CardContent>
       )}

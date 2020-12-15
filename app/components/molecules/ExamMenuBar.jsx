@@ -34,8 +34,8 @@ function createUser(type) {
 
 const users = createUser('examiners');
 
-function createData(id, name, professor, time, state, examiners) {
-  return { id, name, professor, time, state, examiners };
+function createData(id, name, professor, startTime, endTime, state, examiners) {
+  return { id, name, professor, startTime, endTime, state, examiners };
 }
 
 const ONGOING = 0;
@@ -48,7 +48,8 @@ const rowsStart = [
     0,
     '컴퓨터 그래픽스',
     '김동호 교수님',
-    '2020년 12월 15일 10시',
+    '2020-12-15T11:00',
+    '2020-12-15T15:00',
     ONGOING,
     '숭실대학교 컴퓨터학부생'
   ),
@@ -59,7 +60,8 @@ const rowsExpecting = [
     2,
     '운영체제',
     '양승민 교수님',
-    '2020년 12월 4일 12시 ~ 13시',
+    '2020-12-15T15:00',
+    '2020-12-15T17:00',
     ALLOWED,
     '숭실대학교 소프트웨어학부생'
   ),
@@ -67,7 +69,8 @@ const rowsExpecting = [
     3,
     '캡스톤 디자인 종합 프로젝트',
     '이수원 교수님',
-    '2020년 12월 16일 12시 ~ 13시',
+    '2020-12-15T16:30',
+    '2020-12-15T17:00',
     WAITING_ALLWOWED,
     '숭실대학교 소프트웨어학부생'
   ),
@@ -78,7 +81,8 @@ const rowsEnd = [
     4,
     '프레젠테이션테크닉디자인',
     '유명환 교수님',
-    '2020년 12월 1일 12시',
+    '2020-12-13T12:30',
+    '2020-12-13T17:00',
     END,
     '숭실대학교 소프트웨어학부생'
   ),
