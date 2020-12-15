@@ -241,11 +241,11 @@ export default function ExamCardButton(props) {
               </div>
               <div className={classes.infoDiv}>
                 <p className={classes.infoTitle}>시험 점수</p>
-                <p style={{ marginRight: 93 }}> 87 / 100</p>
+                <p style={{ marginRight: 93 }}> -- / 100</p>
               </div>
               <div className={classes.infoDiv}>
                 <p className={classes.infoTitle}>시험 등수</p>
-                <p style={{ marginRight: 93 }}> 21 / 50</p>
+                <p style={{ marginRight: 93 }}> -- / 50</p>
               </div>
               {/* </DialogContentText> */}
             </DialogContent>
