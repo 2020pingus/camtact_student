@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
+import CreateRounded from '@material-ui/icons/CreateOutlined';
 import {
   List,
   ListItem,
@@ -50,10 +51,10 @@ export default function DrawerList() {
     history.push(routes.MYPAGE);
   };
 
-  // const moveToCreateExamPage = () => {
-  //   dispatch(moveToAnotherPage(CREATE_EXAM));
-  //   history.push(routes.CREATE_EXAM);
-  // };
+  const moveToCreateExamPage = () => {
+    dispatch(moveToAnotherPage(CREATE_EXAM));
+    history.push(routes.EXAMCREATE);
+  };
 
   return (
     <>
@@ -77,6 +78,68 @@ export default function DrawerList() {
               />
             </ListItemIcon>
             <ListItemText primary="시험 목록" style={{ marginLeft: -3 }} />
+          </ListItem>
+          <ListItem
+            button
+            className={classes.listItem}
+            style={{
+              marginTop: 4,
+              color: `${currentPage === MY_PAGE ? 'white' : '#8D93A5'}`,
+            }}
+            onClick={moveToMyPage}
+          >
+            <ListItemIcon>
+              <PersonRoundedIcon
+                viewBox="2 0 23 23"
+                className={classes.listIcon}
+                style={{
+                  color: `${currentPage === MY_PAGE ? 'white' : '#8D93A5'}`,
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText primary="마이 페이지" style={{ marginLeft: -3 }} />
+          </ListItem>
+        </List>
+      )}
+      {role === '감독자' && (
+        <List component="nav" className={classes.list}>
+          <ListItem
+            button
+            className={classes.listItem}
+            style={{
+              color: `${currentPage === EXAM_LIST ? 'white' : '#8D93A5'}`,
+            }}
+            onClick={moveToExamListPage}
+          >
+            <ListItemIcon>
+              <DashboardRoundedIcon
+                viewBox="2 0 23 23"
+                className={classes.listIcon}
+                style={{
+                  color: `${currentPage === EXAM_LIST ? 'white' : '#8D93A5'}`,
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText primary="시험 관리" style={{ marginLeft: -3 }} />
+          </ListItem>
+          <ListItem
+            button
+            className={classes.listItem}
+            style={{
+              color: `${currentPage === CREATE_EXAM ? 'white' : '#8D93A5'}`,
+            }}
+            onClick={moveToCreateExamPage}
+          >
+            <ListItemIcon>
+              <CreateRounded
+                viewBox="2 0 23 23"
+                className={classes.listIcon}
+                style={{
+                  color: `${currentPage === CREATE_EXAM ? 'white' : '#8D93A5'}`,
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText primary="시험 생성" style={{ marginLeft: -3 }} />
           </ListItem>
           <ListItem
             button

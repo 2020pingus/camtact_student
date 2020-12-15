@@ -1,7 +1,8 @@
 import { Avatar, Box, makeStyles, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import avatar from '../../../resources/avatar_example.jpg';
+import avatar1 from '../../../resources/avatar_example.jpg';
+import avatar2 from '../../../resources/avatar_example2.jpg';
 
 const useStyles = makeStyles((theme) => ({
   avatarBar: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export default function DrawerAvatar() {
   const classes = useStyles();
   const { username, role, avatarImage } = useSelector((state) => state.user);
+  const avatar = role === '응시자' ? avatar1 : avatar2;
 
   return (
     <>

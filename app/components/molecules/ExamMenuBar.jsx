@@ -27,6 +27,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ExamList from './ExamList';
+import { useSelector } from 'react-redux';
 
 function createUser(type) {
   return type;
@@ -49,7 +50,7 @@ const rowsStart = [
     '컴퓨터 그래픽스',
     '김동호 교수님',
     '2020-12-15T11:00',
-    '2020-12-15T15:00',
+    '2020-12-15T18:00',
     ONGOING,
     '숭실대학교 컴퓨터학부생'
   ),
@@ -200,6 +201,7 @@ function a11yProps(index) {
 const options = ['날짜순', '시간순', '이름순'];
 export default function ExamMenuBar(props) {
   const classes = useStyles(props);
+  const { role } = useSelector((state) => state.user);
   const [value, setValue] = React.useState(0);
   const [open, setOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -323,7 +325,7 @@ export default function ExamMenuBar(props) {
           )}
         </Popper>
 
-        {users !== 'superviser' && (
+        {role === '응시자' && (
           <Button
             className={classes.createExamButton}
             variant="contained"

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import avatar from '../../../resources/avatar_example.jpg';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
+import moment from 'moment';
+import { useInterval } from '../molecules/SuperviseContent';
 
 const useStyles = makeStyles((theme) => ({
   infoBar: {
@@ -47,6 +49,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ExamDrawerInfo() {
   const classes = useStyles();
+  const now = moment();
+  const [seconds, setSeconds] = useState(now);
+  const endTime = new Date(EXAM_INFO.endTime);
+
+  useInterval(() => {
+    setSeconds(moment().format('MM-DD HH:mm:ss'));
+  }, 1000);
+  console.log(now);
 
   return (
     <>
@@ -55,7 +65,12 @@ export default function ExamDrawerInfo() {
           {EXAM_INFO.title}
         </Typography>
         <Typography display="block" className={classes.timer}>
-          {EXAM_INFO.timer}
+          {moment.duration(moment(endTime).diff(now)).hours().toString()}
+          <>시간 </>
+          {moment.duration(moment(endTime).diff(now)).minutes().toString()}
+          <>분 </>
+          {moment.duration(moment(endTime).diff(now)).seconds().toString()}
+          <>초 남음</>
         </Typography>
         <Box className={classes.infoButton}>
           {EXAM_INFO.monitorState === CONNECT_SUCCESS ? (
@@ -115,7 +130,7 @@ const CONNECT_SUCCESS = 1;
 
 const EXAM_INFO = {
   title: '컴퓨터 그래픽스',
-  timer: '1 시간 43 분 8 초',
+  endTime: '2020-12-15T18:00',
   monitorState: CONNECT_SUCCESS,
   cameraState: CONNECT_FAIL,
 };
