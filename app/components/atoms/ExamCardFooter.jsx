@@ -34,11 +34,16 @@ export default function ExamCardFooter(props) {
             examiners={examiners}
           />
         )}
-        {role === '감독자' && <ExamCardButton type="supervise" mode="start" />}
-        {role === '감독자' && (
+        {role === '감독자' && START_INFO.mode === 'start' ? (
+          <ExamCardButton type="supervise" mode="start" />
+        ) : (
           <ExamCardButton type="supervise" mode="notStart" />
         )}
       </div>
     </>
   );
 }
+
+const START_INFO = {
+  mode: 'notStart', // 여기 start, notStart 바꾸면 돼용
+};
