@@ -87,6 +87,7 @@ export default function ProblemCard({ problem, currentProblem, count }) {
       ? Array.from({ length: problem.choices.length }, (v) => (v = false))
       : '';
   const [value, setValue] = React.useState(init);
+  const [status, setStatus] = React.useState(init);
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
@@ -94,7 +95,7 @@ export default function ProblemCard({ problem, currentProblem, count }) {
   };
 
   const handleMultiChange = (event) => {
-    setValue(...value, (value[event.target.name] = !value[event.target.name]));
+    setStatus((status[event.target.name] = !status[event.target.name]));
   };
 
   const handleBeforePage = () => {
@@ -168,7 +169,7 @@ export default function ProblemCard({ problem, currentProblem, count }) {
                     key={index}
                     control={
                       <Checkbox
-                        checked={value[index]}
+                        checked={status[index]}
                         color="primary"
                         name={index}
                       />
