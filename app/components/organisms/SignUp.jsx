@@ -7,8 +7,13 @@ import {
   makeStyles,
   TextField,
   Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import routes from '../../constants/routes.json';
 import logo from '../../../resources/camtact_img.png';
@@ -59,7 +64,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const history = useHistory();
   const [role, setRole] = React.useState(false);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <>
       <div className={classes.main}>
@@ -160,9 +176,48 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.button}
+            onClick={handleClickOpen}
           >
             회원 가입
           </Button>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+          >
+            <DialogTitle
+              id="form-dialog-title"
+              style={{
+                color: '#253053',
+                paddingRight: 40,
+                paddingLeft: 40,
+                paddingTop: 20,
+                paddingBottom: 0,
+              }}
+            >
+              회원가입을 진행 하시겠습니까?
+            </DialogTitle>
+
+            <DialogActions
+              style={{
+                paddingLeft: 40,
+                paddingRight: 40,
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                paddingBottom: 16,
+              }}
+            >
+              <Button onClick={handleClose} color="primary">
+                아니오
+              </Button>
+              <Button
+                color="primary"
+                onClick={() => history.push(routes.LOGIN)}
+              >
+                네
+              </Button>
+            </DialogActions>
+          </Dialog>
         </form>
       </div>
       <div className={classes.logo}>

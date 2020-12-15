@@ -14,9 +14,9 @@ import {
   Typography,
 } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import routes from '../../constants/routes.json';
 import logo from '../../../resources/camtact_img.png';
-import { useDispatch, useSelector } from 'react-redux';
 import { editUserInfo } from '../../modules/action/userAction';
 
 const useStyles = makeStyles((theme) => ({
@@ -152,18 +152,19 @@ export default function Login() {
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={() => {
-              const _user = users.find((u) => u.email === id);
-              console.log(_user);
-              if (_user)
-                dispatch(
-                  editUserInfo({
-                    ...user,
-                    username: _user.name,
-                    email: _user.email,
-                  })
-                );
-            }}
+            // onClick={() => {
+            //   const _user = users.find((u) => u.email === id);
+            //   console.log(_user);
+            //   if (_user)
+            //     dispatch(
+            //       editUserInfo({
+            //         ...user,
+            //         username: _user.name,
+            //         email: _user.email,
+            //       })
+            //     );
+            // }}
+            onClick={() => history.push(routes.NOTIFICATION)}
           >
             로그인
           </Button>
